@@ -1,0 +1,110 @@
+.footer {
+    margin-top: auto;
+
+    .footer__top {
+        background: $colorGrayExtraLight;
+        padding: 96px 0;
+
+        .footer__top-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 70%;
+            margin: 0 auto;
+
+            .footer__top-text {
+                max-width: 70%;
+            }
+        }
+    }
+
+    .footer__main {
+        .footer__main-wrap {
+            display: flex;
+            padding: 96px 0;
+        }
+
+        .footer__main-info {
+            display: flex;
+            flex-direction: column;
+
+            .footer__main-logo {
+                &:hover {
+                    opacity: 1;
+                }
+            }
+
+            .footer__main-socials {
+                display: flex;
+                align-items: center;
+                margin-top: 28px;
+
+                .footer__main-socials-item {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background: $colorGrayExtraLight;
+
+                    i {
+                        color: $colorText;
+                        font-size: 16px;
+                        height: 18px;
+                    }
+                }
+
+                .footer__main-socials-item + .footer__main-socials-item {
+                    margin-left: 8px;
+                }
+            }
+        }
+
+        .footer__main-nav {
+            display: flex;
+            flex-direction: column;
+            margin: 0 136px 0 128px;
+            min-width: 280px;
+
+            .footer__main-nav-item + .footer__main-nav-item {
+                margin-top: 12px;
+            }
+        }
+
+        .footer__main-contacts {
+            .footer__main-contacts-block {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .footer__main-contacts-title {
+                line-height: 24px;
+            }
+
+            .footer__main-contacts-link {
+                margin-top: 8px;
+                color: $colorText;
+                font-size: 16px;
+                line-height: 28px;
+            }
+        }
+    }
+
+    .footer__bottom {
+        background: $colorWhite;
+        padding: 16px 0;
+        border-top: 1px solid $colorGrayLight;
+
+        .footer__bottom-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .footer__bottom-info {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+}

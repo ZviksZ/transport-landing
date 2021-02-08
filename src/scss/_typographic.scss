@@ -1,0 +1,108 @@
+// Типографика
+
+.section {
+    display: block;
+    position: relative;
+    z-index: 10;
+    margin: 0;
+    padding: 52px 0;
+    overflow: hidden;
+    @include mobile {
+        padding: 35px 0;
+    }
+    &.section-bg {
+        background: $colorGrayLight;
+    }
+}
+
+@mixin text-properties {
+    color: $colorText;
+}
+
+h1, .h1 {
+    font-weight: 600;
+    font-size: 52px;
+    line-height: 64px;
+    @include text-properties;
+}
+h2, .h2 {
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 56px;
+    @include text-properties;
+}
+h3, .h3 {
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 40px;
+    @include text-properties;
+}
+h4, .h4 {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+    @include text-properties;
+}
+
+h5, .h5 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    @include text-properties;
+}
+
+h6, .h6 {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    @include text-properties;
+}
+
+p {
+    font-size: 18px;
+    line-height: 32px;
+    @include text-properties;
+    margin: 10px 0;
+}
+
+.body18 {
+    font-size: 18px;
+    line-height: 32px;
+}
+.body16 {
+    font-size: 16px;
+    line-height: 28px;
+}
+.body14 {
+    font-size: 14px;
+    line-height: 24px;
+}
+.body12 {
+    font-size: 12px;
+    line-height: 16px;
+}
+
+
+a {
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+    line-height: 24px;
+    color: $colorPrimary;
+    outline: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    text-decoration: none;
+    transition: .1s ease;
+    @include desktop {
+        &:not(.button):hover {
+            opacity: 0.7;
+        }
+    }
+}
+
+

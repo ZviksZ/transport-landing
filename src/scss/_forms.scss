@@ -1,0 +1,389 @@
+// Типографика форм
+
+input, textarea, select {
+    font-family: 'Graphik LCG' !important;
+}
+
+@-webkit-keyframes autofill {
+    to {
+        background: #ffffff;
+    }
+}
+
+
+::-webkit-input-placeholder {
+    font-weight: 400;
+    color: $colorGrayMiddle;
+}
+
+:-ms-input-placeholder {
+    font-weight: 400;
+    color: $colorGrayMiddle;
+}
+
+::-moz-placeholder {
+    font-weight: 400;
+    color: $colorGrayMiddle;
+    opacity: 1;
+}
+
+:-moz-placeholder {
+    font-weight: 400;
+    color: $colorGrayMiddle;
+    opacity: 1;
+}
+
+
+.form {
+    position: relative;
+    background: #ffffff;
+    overflow: hidden;
+
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+
+        .field {
+            width: 49%;
+        }
+
+        @include mobile {
+            flex-wrap: wrap;
+            .field {
+                width: 100%;
+            }
+        }
+    }
+
+    * {
+        position: relative;
+        transition: .3s linear;
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .form-text {
+        width: 100%;
+        margin: 0;
+    }
+
+}
+
+.form-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    opacity: 0;
+    transform: translateY(100%);
+    transition-delay: 1s;
+    z-index: 1000;
+
+    &.show-message {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .title {
+        margin: 0;
+    }
+
+    .text {
+        text-align: center;
+        margin: 14px 27px;
+    }
+
+    .button {
+        margin: 0;
+    }
+}
+
+.field {
+    position: relative;
+    display: block;
+    margin: 16px 0;
+    padding: 1px 0 0 0;
+    cursor: pointer;
+    z-index: 999;
+
+    .label {
+        position: absolute;
+        top: 8px;
+        left: 16px;
+        display: inline-block;
+        width: 100%;
+        z-index: 20;
+        margin-top: 0;
+        font-weight: 400;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+        font-family: $fontBase !important;
+        font-size: 14px;
+        line-height: 24px;
+        color: $colorGray;
+        margin-bottom: 6px;
+    }
+
+    .input-text, .input-fill-control {
+        background: $colorWhite;
+        display: flex;
+        width: 100%;
+        height: 64px;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 32px;
+        color: $colorText;
+        padding: 28px 16px 4px;
+        box-sizing: border-box;
+        font-family: $fontBase !important;
+        border: 2px solid $colorGrayMiddle;
+        border-radius: 4px;
+
+        &:-webkit-autofill {
+            -webkit-animation-name: autofill;
+            -webkit-animation-fill-mode: both;
+        }
+
+        &:focus {
+            border: 2px solid $colorGrayMiddle;
+        }
+
+    }
+
+    &.empty {
+        .label {
+            top: 16px;
+            left: 16px;
+            font-size: 18px;
+            line-height: 32px;
+            color: $colorDarkGray;
+        }
+
+        .input-text {
+            background: $colorGrayExtraLight;
+            border: 2px solid $colorGrayExtraLight;
+
+            &::-webkit-input-placeholder {
+                opacity: 0;
+            }
+
+            &:-ms-input-placeholder {
+                opacity: 0;
+            }
+
+            &::-moz-placeholder {
+                opacity: 0;
+            }
+
+            &:-moz-placeholder {
+                opacity: 0;
+            }
+        }
+
+        &.error {
+            .input-text, .input-fill-control {
+                border: 2px solid $colorDangerous;
+            }
+        }
+    }
+
+    @include desktop {
+        &:hover {
+            .input-text, .input-fill-control {
+                border: 2px solid $colorGrayMiddle;
+            }
+
+        }
+    }
+
+    textarea.input-text {
+        height: 96px;
+        resize: none;
+    }
+
+    .error-message {
+        display: none;
+        font-size: 12px;
+        line-height: 16px;
+        font-weight: 400;
+        color: #FF0000;
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+        margin: 0;
+    }
+
+    &.error {
+        &:before {
+            position: absolute;
+            right: 22px;
+            top: 22px;
+            display: block;
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: url("../img/error.svg") no-repeat center center;
+            -webkit-background-size: contain;
+            background-size: contain;
+        }
+
+        input, select, textarea {
+            color: $colorText;
+            border-color: $colorDangerous;
+        }
+
+        .error-message {
+            display: block;
+        }
+
+        @include desktop {
+            .input-text:hover, .input-fill-control:hover {
+                border: 2px solid $colorDangerous;
+            }
+        }
+    }
+
+    &.success {
+        &:before {
+            position: absolute;
+            right: 22px;
+            top: 22px;
+            display: block;
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: url("../img/success.svg") no-repeat center center;
+            -webkit-background-size: contain;
+            background-size: contain;
+        }
+    }
+}
+
+input[type="checkbox"]:checked,
+input[type="checkbox"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+
+input[type="checkbox"]:checked + label,
+input[type="checkbox"]:not(:checked) + label {
+    display: inline-block;
+    position: relative;
+    padding-left: 40px;
+    line-height: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #2C3341;
+
+    a {
+        color: $colorText;
+        text-decoration: underline;
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+
+input[type="checkbox"]:checked + label:before,
+input[type="checkbox"]:not(:checked) + label:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 21px;
+    height: 21px;
+    border: 2px solid #DDDDDD;
+    background-color: #ffffff;
+}
+
+input[type="checkbox"]:checked + label:before,
+input[type="checkbox"]:not(:checked) + label:before {
+    border-radius: 6px;
+}
+
+input[type="checkbox"]:checked + label:before {
+    background: $colorText;
+    border: 1px solid $colorText;
+}
+
+
+input[type="checkbox"]:checked + label:after,
+input[type="checkbox"]:not(:checked) + label:after {
+    content: "";
+    position: absolute;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+input[type="checkbox"]:checked + label:after,
+input[type="checkbox"]:not(:checked) + label:after {
+    left: 5px;
+    top: 6px;
+    width: 10px;
+    height: 5px;
+    border-radius: 1px;
+    border-left: 3px solid $colorWhite;
+    border-bottom: 3px solid $colorWhite;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+input[type="checkbox"]:not(:checked) + label:after {
+    opacity: 0;
+}
+
+input[type="checkbox"]:checked + label:after {
+    opacity: 1;
+}
+
+
+.input-wrap {
+    position: relative;
+}
+
+.input-wrap input {
+    width: 100%;
+    height: 44px;
+    background: #FFFFFF;
+    border: 2px solid $colorGray;
+    box-sizing: border-box;
+    border-radius: 6px;
+    font-size: 22px;
+    line-height: 33px;
+    padding: 5px 22px 5px 15px;
+    transition: .1s ease;
+}
+
+@include desktop {
+    .input-wrap input:hover {
+        border: 2px solid $colorText;
+    }
+}
+
+.input-wrap input:active,
+.input-wrap input:focus {
+    border: 2px solid $colorText;
+}
+
+.input-wrap span {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 22px;
+    line-height: 33px;
+}

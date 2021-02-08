@@ -1,0 +1,58 @@
+// переменные
+@import 'variables';
+
+@import 'mixins';
+
+// Шрифты
+@import 'fonts';
+
+// Иконки
+@import 'icons';
+
+// медиа-запросы
+@import 'mediaqueries';
+
+// обнуления отступов, margin и т.п.
+@import 'helper';
+
+// базовые стили шаблона
+@import 'base';
+
+// сетки
+@import 'grid';
+
+// типографика контента
+@import 'typographic';
+
+//кнопки
+@import 'buttons';
+
+//Select
+@import './node_modules/choices.js/src/styles/choices.scss';
+//@import 'selects';
+
+//header
+@import 'header';
+
+// модальные окна
+@import 'modals';
+
+// стилизация базовых элементов swiper слайдера
+@import './node_modules/swiper/swiper';
+@import 'swiper-slider';
+
+// инфографика
+@import 'infographic';
+
+// типографика форм
+@import 'forms';
+
+// кастомные селекты
+@import 'choices';
+
+// футер
+@import 'footer';
+
+
+@import 'range-slider';
+
