@@ -121,10 +121,6 @@ const config = {
         from: './src/img',
         to: './img'
       },
-      {
-        from: './src/documents',
-        to: './documents'
-      }
     ])
   ].concat(htmlPlugins)
 };

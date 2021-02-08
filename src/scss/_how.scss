@@ -1,0 +1,87 @@
+.how {
+    .how__steps-wrap {
+        display: flex;
+        margin: 36px -16px 88px;
+
+        .how__steps-item {
+            width: calc(25% - 32px);
+            margin: 0 16px 32px;
+
+            .how__steps-item-img {
+                height: 70px;
+                margin-bottom: 22px;
+
+                img {
+                    width: auto;
+                }
+            }
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .h6 {
+            margin-bottom: 4px;
+        }
+    }
+
+    .how__double {
+        display: flex;
+        align-items: center;
+        margin: 0 -16px 10px;
+
+        .how__double-item {
+            width: calc(50% - 32px);
+            margin: 0 16px;
+
+            &.images-stack-block {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            &.how__double-phone {
+                .image-stack-first {
+                    position: relative;
+                    width: auto;
+                    height: 596px;
+                }
+                .image-stack:not(.image-stack-first) {
+                    width: auto;
+                    height: 521px;
+                    top: 40px;
+                    left: 40%;
+                }
+            }
+
+            .how__double-phone-big {
+                top: -15%;
+            }
+            .how__double-phone-small {
+                left: 40%;
+                top: 10%;
+            }
+        }
+    }
+
+    @include mobile {
+        .how__steps-wrap {
+            flex-wrap: wrap;
+
+            .how__steps-item {
+                width: calc(50% - 32px);
+            }
+        }
+    }
+
+    @include only-mobile {
+        .how__steps-wrap {
+            margin: 26px 0 38px;
+            .how__steps-item {
+                width: 100%;
+                margin: 0 0 32px;
+            }
+        }
+    }
+}

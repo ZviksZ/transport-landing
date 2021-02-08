@@ -11,13 +11,10 @@ export class Calculator {
       this.JSON = JSON.parse(this.$calc.attr('data-settings'));
 
       this.$sumInput = $('#calculator-input');
-      this.$termText = $('#calculator-term');
-      this.$termInput = $('#calculator-term-input');
       this.$sumRangeInput = $('#calculator-range-value');
       this.$sendBtn = $('#calculator-send-btn');
 
       this.sumSlider = this.initSumRangeSlider();
-      this.termRangeSlider = this.initTermRangeSlider();
 
       this.init();
    }
@@ -26,11 +23,6 @@ export class Calculator {
       this.getCalculatorSummary();
 
       this.sumSlider.on('change', e => {
-         setTimeout(() => {
-            this.getCalculatorSummary();
-         }, 10);
-      });
-      this.termRangeSlider.on('change', e => {
          setTimeout(() => {
             this.getCalculatorSummary();
          }, 10);
@@ -72,10 +64,8 @@ export class Calculator {
    };
 
    getCalculatorSummary = () => {
-      let sumVal = parseInt(this.$sumRangeInput.val());
-      let roundedSum = Math.round(sumVal / 100) * 100;
-
-      let termVal = parseInt(this.$termInput.val());
+      let roundedSum = parseInt(this.$sumRangeInput.val());
+/*
       let dateString = this.getDateString(termVal);
       let percentPerDay = 0.01;
 
@@ -88,13 +78,13 @@ export class Calculator {
       $('#calculator-sum-date').text(dateString);
       $('#calculator-sum-date__input').val(dateString);
       $('#calculator-sum-total').text(numberFormat(totalVal, 0, '', ' ') + ' ₽');
-      $('#calculator-sum-total__input').val(totalVal);
+      $('#calculator-sum-total__input').val(totalVal);*/
 
       //this.$sumInput.val(roundedSum)
 
       //this.$sendBtn.attr('href', `https://new.kredito24.ru/entry?total_amount=${roundedSum}&number_of_installments=${termVal}&product_type=K24`);
       //this.$sendBtn.attr('href', `http://kredito24.pro/start/credit?amount=${roundedSum}&period=${termVal}&periodUnit=DAYS&creditProductId=345&utm`);
-      this.$sendBtn.attr('href', ` https://lk.kredito24.pro/start/credit?amount=${roundedSum}&period=${termVal}&periodUnit=DAYS&creditProductId=345&utm`);
+      //this.$sendBtn.attr('href', ` https://lk.kredito24.pro/start/credit?amount=${roundedSum}&period=${termVal}&periodUnit=DAYS&creditProductId=345&utm`);
    };
 
    getDateString = term => {
@@ -108,6 +98,8 @@ export class Calculator {
 
    initSumRangeSlider = () => {
       const mortgageSumInput = this.$sumInput;
+
+      console.log(this.JSON)
 
       mortgageSumInput[0].value = numberFormat(this.JSON.default.price, 0, ' ');
       this.$sumRangeInput[0].value = this.JSON.default.price;
@@ -139,35 +131,6 @@ export class Calculator {
             setTimeout(() => {
                this.getCalculatorSummary();
             }, 10);
-         }
-      });
-   };
-
-   initTermRangeSlider = () => {
-      const mortgageTermInput = this.$termText;
-      mortgageTermInput.text(this.JSON.default.term + ` ${declOfNum(this.JSON.default.term, ['день', 'дня', 'дней'])}`);
-
-      this.$termInput
-         .closest('.calculator-item')
-         .find('.calculator-min')
-         .text(this.JSON.values.minTerm + ` ${declOfNum(this.JSON.default.minTerm, ['день', 'дня', 'дней'])}`);
-      this.$termInput
-         .closest('.calculator-item')
-         .find('.calculator-max')
-         .text(this.JSON.values.maxTerm + ` ${declOfNum(this.JSON.default.maxTerm, ['день', 'дня', 'дней'])}`);
-
-      this.$termInput.val(this.JSON.default.term);
-
-      return $('[name="mortgage_term_range"]').ionRangeSlider({
-         type: 'single',
-         min: this.JSON.values.minTerm,
-         max: this.JSON.values.maxTerm,
-         from: this.JSON.default.term,
-         step: 1,
-         drag_interval: true,
-         onChange: data => {
-            this.$termInput.val(data.from);
-            mortgageTermInput.text(data.from + ` ${declOfNum(data.from, ['день', 'дня', 'дней'])}`);
          }
       });
    };

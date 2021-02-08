@@ -1,0 +1,91 @@
+.main {
+    .main__info {
+        width: 592px;
+        margin: 42px 0;
+
+        .main__info-top {
+            position: relative;
+            z-index: 12;
+        }
+    }
+
+    .main__calculator {
+        position: relative;
+        z-index: 12;
+        width: 384px;
+
+        .main__calculator-summary {
+            margin-top: 10px;
+            .main__calculator-summary-block {
+                .main__calculator-summary-title {
+                    display: flex;
+                    align-items: center;
+                    span {
+                        display: inline-block;
+                    }
+                }
+
+                .main__calculator-summary-text {
+                    display: flex;
+                    align-items: center;
+
+                    span + span {
+                        margin-left: 12px;
+                    }
+                }
+
+                .main__calculator-summary-info {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 36px;
+                    height: 36px;
+                    cursor: pointer;
+
+                    i {
+                        font-size: 15px;
+                        height: 17px;
+                        color: $colorGrayMiddle;
+                    }
+                }
+
+                .main__calculator-summary-cross {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    &:before {
+                        position: absolute;
+                        left: 0;
+                        top: calc(50% - 1px);
+                        display: block;
+                        content: '';
+                        width: 100%;
+                        height: 2px;
+                        background: rgba(25,28,31,0.5);
+                    }
+
+                    span + span {
+                        margin-left: 4px;
+                    }
+                }
+            }
+
+            .main__calculator-summary-block + .main__calculator-summary-block {
+                margin-top: 6px;
+            }
+        }
+    }
+
+    .main__images {
+        position: absolute;
+        right: 0;
+        top: 0;
+        max-width: 750px;
+        height: 100%;
+        width: 100%;
+
+        @include desktop-small {
+            max-width: 550px;
+        }
+    }
+}

@@ -1,3 +1,47 @@
 .header-margin {
     height: 80px;
 }
+
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: $colorWhite;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    &.preloader-hide {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+}
+
+
+.images-stack-block {
+    position: relative;
+    .image-stack {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        &.image-stack-first {
+            z-index: 3;
+        }
+
+        &.z-index-up {
+            z-index: 12;
+        }
+    }
+
+    &.images-stack-relative {
+        .image-stack {
+            &.image-stack-first {
+                position: relative;
+                top: auto;
+                left: auto;
+                width: 100%;
+            }
+        }
+    }
+
+}

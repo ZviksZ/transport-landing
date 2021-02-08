@@ -1,5 +1,321 @@
 <% var data = { title: "Главная | Факторинг" }; %> <%= _.template(require('./../includes/header.html').default)(data) %>
 
+<section class="section main">
+    <div class="container">
+        <div class="main__info">
+            <div class="main__info-top">
+                <h1>Зарабатываешь на грузоперевозках? </h1>
+                <div class="h4">Не жди месяц, чтобы получить свои деньги!</div>
+                <p class="color-gray">Первый сервис в России в котором перевозчики могут получить заработанные деньги в течении одного дня</p>
 
+            </div>
+
+            <div class="main__images images-stack-block">
+                <img alt="" class="parallax main__images-phone image-stack image-stack-first" src="/img/main-2.png">
+                <img alt="" class="parallax main__images-map image-stack" src="/img/main-1.png">
+            </div>
+
+            <div class="main__calculator" data-settings='{"default":{"price":20000},"values":{"minPrice":5000,"maxPrice":50000}}' id="calculator">
+                <div class="main__calculator-item">
+                    <label class="field field-input margin-bottom">
+                        <input class="input-money input-text placeholder validate" data-currency=" ₽" data-placeholder="Выберите сумму" data-validate="required" id="calculator-input"
+                               name="calculator-input"
+                               placeholder="Введите значение" type="text">
+                        <input class="input-money" hidden id="calculator-range-value" type="text">
+                        <p class="error-message"></p>
+
+                        <input class="js-range-slider" name="mortgage_sum_range" type="text" value=""/>
+                    </label>
+
+                </div>
+
+                <a class="button full-width" href="">Получить деньги</a>
+
+                <div class="main__calculator-summary">
+                    <div class="main__calculator-summary-block">
+                        <div class="main__calculator-summary-title">
+                            <span class="body12 color-gray">Первая выплата</span>
+
+                            <div class="main__calculator-summary-info">
+                                <i class="icon-info"></i>
+                            </div>
+                        </div>
+                        <div class="main__calculator-summary-text">
+                            <span class="body14 bold-text">22 400 ₽</span>
+                            <span class="body14 color-gray">(70%)</span>
+                        </div>
+                    </div>
+                    <div class="main__calculator-summary-block">
+                        <div class="main__calculator-summary-title">
+                            <span class="body12 color-gray">Закрывающая выплата</span>
+
+                            <div class="main__calculator-summary-info">
+                                <i class="icon-info"></i>
+                            </div>
+                        </div>
+                        <div class="main__calculator-summary-text">
+                            <span class="body14 main__calculator-summary-cross">
+                                <span>6 400 ₽</span><span class="body14 color-gray">(70%)</span>
+                            </span>
+                            <span class="body14 bold-text">9 600 ₽</span>
+                            <span class="body14 color-gray">(30%)</span>
+                        </div>
+                    </div>
+                    <div class="main__calculator-summary-block">
+                        <div class="main__calculator-summary-title">
+                            <span class="body12 color-gray">Комиссия</span>
+
+                            <div class="main__calculator-summary-info">
+                                <i class="icon-info"></i>
+                            </div>
+                        </div>
+                        <div class="main__calculator-summary-text">
+                            <span class="body14 main__calculator-summary-cross">
+                                <span>3 200 ₽</span> <span class="body14 color-gray">(10%)</span>
+                            </span>
+                            <span class="body14 bold-text">0 ₽</span>
+                            <span class="body14 color-gray">Первая сделка бесплатно!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section how" id="section-how">
+    <div class="container">
+        <h2 class="h2 text-align-center">Как это работает</h2>
+        <div class="how__steps-wrap">
+            <div class="how__steps-item">
+                <div class="how__steps-item-img">
+                    <img src="/img/how/waiting.svg" alt="">
+                </div>
+                <p class="h6">Зарегистрируйтесь</p>
+                <p class="body14 color-gray">Заполните анкету за 2 минуты</p>
+            </div>
+            <div class="how__steps-item">
+                <div class="how__steps-item-img">
+                    <img src="/img/how/delivery-truck.svg" alt="">
+                </div>
+                <p class="h6">Выполните рейс</p>
+                <p class="body14 color-gray">После выполнения заказа сохраните закрывающие документы</p>
+            </div>
+            <div class="how__steps-item">
+                <div class="how__steps-item-img">
+                    <img src="/img/how/secure.svg" alt="">
+                </div>
+                <p class="h6">Загрузите документы</p>
+                <p class="body14 color-gray">Загрузите в личном кабинете скан-копии:</p>
+                <p class="body14 color-gray no-margin-top">1. Договора-заявки</p>
+                <p class="body14 color-gray no-margin-top">2. Акта выполненных работ</p>
+            </div>
+            <div class="how__steps-item">
+                <div class="how__steps-item-img">
+                    <img src="/img/how/money-bags.svg" alt="">
+                </div>
+                <p class="h6">Получите деньги</p>
+                <p class="body14 color-gray">Зачисление на банковскую карту течение 1 часа</p>
+            </div>
+        </div>
+
+        <div class="how__double">
+            <div class="how__double-item images-stack-block images-stack-relative">
+                <img alt="" class="parallax main__images-phone image-stack image-stack-first" src="/img/credits-2.png">
+                <img alt="" class="parallax main__images-map image-stack z-index-up" src="/img/credits-1.png">
+            </div>
+            <div class="how__double-item">
+                <h3 class="h3">Не нужно брать кредиты</h3>
+                <p class="color-gray">63% опрошенных пользовались кредитами из-за того, что не могли покрыть непредвиденные расходы свыше 15 000 ₽.
+                </p>
+                <p class="color-gray">
+                    Доступ к заработанным деньгам помогает отказаться от кредитов и экономить деньги на процентах и штрафах.
+                </p>
+            </div>
+        </div>
+
+        <div class="how__double">
+            <div class="how__double-item">
+                <h3 class="h3">Четко видно сколько денег начислено и за что</h3>
+                <p class="color-gray">Никаких скрытых платежей, на этапе подачи заявки вы получаете расчет по сделке с финальными условиями. В личном кабинете вы всегда можете посмотреть историю
+                    операций и поступлений денежных средств.
+                </p>
+            </div>
+            <div class="how__double-item how__double-phone images-stack-block images-stack-relative">
+                <img alt="" class="parallax main__images-phone image-stack image-stack-first z-index-up" src="/img/mobile-1.png">
+                <img alt="" class="parallax main__images-map image-stack" src="/img/mobile-2.png">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="section reviews">
+    <div class="container">
+        <h2 class="h2 text-align-center">Отзывы</h2>
+
+        <div class="reviews__slider-wrap">
+            <div class="reviews__slider" id="reviews__slider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="reviews__slider-item">
+                            <div class="reviews__top">
+                                <div class="reviews__top-avatar" style="background-image: url('/img/avatar-default.png')"></div>
+                                <div class="reviews__top-name">
+                                    <div class="h6">Константинов Михаил Павлович</div>
+                                    <p class="body12 color-gray no-margin-vertical">Санкт-Петербург</p>
+                                </div>
+                            </div>
+
+                            <div class="reviews__content">
+                                <p class="body14 no-margin-bottom">Каждый из нас понимает очевидную вещь: перспективное планирование предоставляет широкие возможности для анализа существующих паттернов
+                                    поведения. В
+                                    своём
+                                    стремлении улучшить пользовательский опыт мы
+                                    </p>
+                                <a href="#" class="text-underline">Подробнее</a>
+                            </div>
+
+                            <div class="reviews__bottom">
+                                <div class="reviews__bottom-points">
+                                    <span class="h6 bold-text">Оценка</span>
+                                    <div class="reviews__bottom-mark mark-5">5</div>
+                                </div>
+
+                                <div class="reviews__bottom-date body14 color-gray">30.11.2020</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="reviews__slider-item">
+                            <div class="reviews__top">
+                                <div class="reviews__top-avatar" style="background-image: url('/img/avatar-default.png')"></div>
+                                <div class="reviews__top-name">
+                                    <div class="h6">Константинов Михаил Павлович</div>
+                                    <p class="body12 color-gray no-margin-vertical">Санкт-Петербург</p>
+                                </div>
+                            </div>
+
+                            <div class="reviews__content">
+                                <p class="body14 no-margin-bottom">Каждый из нас понимает очевидную вещь: перспективное планирование предоставляет широкие возможности для анализа существующих паттернов
+                                    поведения. В
+                                    своём
+                                    стремлении улучшить пользовательский опыт мы
+                                </p>
+                                <a href="#" class="text-underline">Подробнее</a>
+                            </div>
+
+                            <div class="reviews__bottom">
+                                <div class="reviews__bottom-points">
+                                    <span class="h6 bold-text">Оценка</span>
+                                    <div class="reviews__bottom-mark mark-5">5</div>
+                                </div>
+
+                                <div class="reviews__bottom-date body14 color-gray">30.11.2020</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="reviews__slider-item">
+                            <div class="reviews__top">
+                                <div class="reviews__top-avatar" style="background-image: url('/img/avatar-default.png')"></div>
+                                <div class="reviews__top-name">
+                                    <div class="h6">Константинов Михаил Павлович</div>
+                                    <p class="body12 color-gray no-margin-vertical">Санкт-Петербург</p>
+                                </div>
+                            </div>
+
+                            <div class="reviews__content">
+                                <p class="body14 no-margin-bottom">Каждый из нас понимает очевидную вещь: перспективное планирование предоставляет широкие возможности для анализа существующих паттернов
+                                    поведения. В
+                                    своём
+                                    стремлении улучшить пользовательский опыт мы
+                                </p>
+                                <a href="#" class="text-underline">Подробнее</a>
+                            </div>
+
+                            <div class="reviews__bottom">
+                                <div class="reviews__bottom-points">
+                                    <span class="h6 bold-text">Оценка</span>
+                                    <div class="reviews__bottom-mark mark-3">3</div>
+                                </div>
+
+                                <div class="reviews__bottom-date body14 color-gray">30.11.2020</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="reviews__slider-item">
+                            <div class="reviews__top">
+                                <div class="reviews__top-avatar" style="background-image: url('/img/avatar-default.png')"></div>
+                                <div class="reviews__top-name">
+                                    <div class="h6">Константинов Михаил Павлович</div>
+                                    <p class="body12 color-gray no-margin-vertical">Санкт-Петербург</p>
+                                </div>
+                            </div>
+
+                            <div class="reviews__content">
+                                <p class="body14 no-margin-bottom">Каждый из нас понимает очевидную вещь: перспективное планирование предоставляет широкие возможности для анализа существующих паттернов
+                                    поведения. В
+                                    своём
+                                    стремлении улучшить пользовательский опыт мы
+                                </p>
+                                <a href="#" class="text-underline">Подробнее</a>
+                            </div>
+
+                            <div class="reviews__bottom">
+                                <div class="reviews__bottom-points">
+                                    <span class="h6 bold-text">Оценка</span>
+                                    <div class="reviews__bottom-mark mark-5">5</div>
+                                </div>
+
+                                <div class="reviews__bottom-date body14 color-gray">30.11.2020</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="reviews__slider-item">
+                            <div class="reviews__top">
+                                <div class="reviews__top-avatar" style="background-image: url('/img/avatar-default.png')"></div>
+                                <div class="reviews__top-name">
+                                    <div class="h6">Константинов Михаил Павлович</div>
+                                    <p class="body12 color-gray no-margin-vertical">Санкт-Петербург</p>
+                                </div>
+                            </div>
+
+                            <div class="reviews__content">
+                                <p class="body14 no-margin-bottom">Каждый из нас понимает очевидную вещь: перспективное планирование предоставляет широкие возможности для анализа существующих паттернов
+                                    поведения. В
+                                    своём
+                                    стремлении улучшить пользовательский опыт мы
+                                </p>
+                                <a href="#" class="text-underline">Подробнее</a>
+                            </div>
+
+                            <div class="reviews__bottom">
+                                <div class="reviews__bottom-points">
+                                    <span class="h6 bold-text">Оценка</span>
+                                    <div class="reviews__bottom-mark mark-1">1</div>
+                                </div>
+
+                                <div class="reviews__bottom-date body14 color-gray">30.11.2020</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="swiper-button swiper-button-prev">
+                <i class="icon-fi-sr-angle-left"></i>
+            </div>
+            <div class="swiper-button swiper-button-next">
+               <i class="icon-fi-sr-angle-right"></i>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+    </div>
+</section>
 
 <%= _.template(require('./../includes/footer.html').default)(data) %>

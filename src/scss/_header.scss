@@ -57,6 +57,10 @@
 
             .header__menu-link + .header__menu-link {
                 margin-left: 24px;
+
+                @include desktop-small {
+                    margin-left: 20px;
+                }
             }
 
             @include mobile {

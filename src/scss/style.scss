@@ -39,7 +39,6 @@
 
 // стилизация базовых элементов swiper слайдера
 @import './node_modules/swiper/swiper';
-@import 'swiper-slider';
 
 // инфографика
 @import 'infographic';
@@ -55,4 +54,9 @@
 
 
 @import 'range-slider';
+
+
+@import 'main';
+@import 'how';
+@import 'reviews';
 
