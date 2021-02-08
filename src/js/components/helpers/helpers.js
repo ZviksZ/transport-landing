@@ -315,6 +315,14 @@ function transformDate(date, type, localTimezone) {
    return dateResult;
 }
 
+const toCurrency = price => {
+   return new Intl.NumberFormat('ru-RU', {
+      currency: 'rub',
+      style: 'currency',
+      minimumFractionDigits: 0
+   }).format(price)
+}
+
 export {
    numberFormat,
    declOfNum,
@@ -325,5 +333,6 @@ export {
    highlightSomeText,
    getIdFromURL,
    kFormatter,
-   transformDate
+   transformDate,
+   toCurrency
 };

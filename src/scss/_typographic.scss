@@ -8,10 +8,7 @@
     padding: 52px 0;
     overflow: hidden;
     @include mobile {
-        padding: 35px 0;
-    }
-    &.section-bg {
-        background: $colorGrayLight;
+        padding: 28px 0;
     }
 }
 

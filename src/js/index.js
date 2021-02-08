@@ -35,7 +35,6 @@ $(function () {
    initMoneyInput();
 
    initInfoTabs();
-   initInteriorMobileBtn();
 
    setTimeout(() => {
       $('.preloader').addClass('preloader-hide');

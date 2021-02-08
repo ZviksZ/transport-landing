@@ -53,8 +53,8 @@
 .irs-handle {
     position: absolute;
     display: block;
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     background-color: $colorPrimary;
     /*box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.16), 0px 3px 8px rgba(0, 0, 0, 0.15);*/
     border-radius: 6px;
@@ -62,7 +62,7 @@
     box-sizing: border-box;
     cursor: pointer;
     z-index: 1;
-    top: -16px;
+    top: -14px;
 
     &.type_last {
         z-index: 2;

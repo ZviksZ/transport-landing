@@ -1,21 +1,31 @@
 .reviews {
     .reviews__slider-wrap {
         position: relative;
+        margin-top: 22px;
+
+        .swiper-slide {
+            align-items: stretch;
+            height: auto;
+        }
 
         .reviews__slider {
             overflow: hidden;
-            padding-bottom: 20px;
+            padding: 30px 0;
 
             .reviews__slider-item {
+                display: flex;
+                flex-direction: column;
                 padding: 22px;
                 background: #FFFFFF;
                 box-shadow: 0px 5px 24px rgba(0, 0, 0, 0.1);
                 border-radius: 8px;
                 transition: 0.2s ease;
                 cursor: pointer;
+                height: 100%;
 
                 @include desktop {
                     &:hover {
+                        opacity: 1;
                         transform: translateY(-10px);
                         box-shadow: 0px 15px 24px rgba(0, 0, 0, 0.1);
                     }
@@ -24,6 +34,7 @@
 
 
                 .reviews__top {
+                    width: 100%;
                     display: flex;
                     margin-bottom: 20px;
 
@@ -40,11 +51,16 @@
                     }
 
                 }
+                .reviews__content {
+                    width: 100%;
+                    margin-bottom: 80px;
+                }
                 .reviews__bottom {
+                    width: 100%;
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
-                    margin-top: 80px;
+                    margin-top: auto;
 
                     .reviews__bottom-points {
                         display: flex;
@@ -101,6 +117,11 @@
                 left: -50px;
             }
 
+            &.swiper-button-disabled {
+                opacity: 0.6;
+                pointer-events: none;
+            }
+
             i {
                 font-size: 32px;
                 height: 34px;
@@ -119,6 +140,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-top: 15px;
 
             .swiper-pagination-bullet {
                 display: block;

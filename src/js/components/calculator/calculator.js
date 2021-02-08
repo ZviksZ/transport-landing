@@ -1,4 +1,5 @@
-import * as $ from 'jquery';
+import * as $                      from 'jquery';
+import {toCurrency}                from "../helpers";
 import { numberFormat, declOfNum } from '../helpers/index';
 import 'ion-rangeslider';
 
@@ -12,7 +13,6 @@ export class Calculator {
 
       this.$sumInput = $('#calculator-input');
       this.$sumRangeInput = $('#calculator-range-value');
-      this.$sendBtn = $('#calculator-send-btn');
 
       this.sumSlider = this.initSumRangeSlider();
 
@@ -34,23 +34,21 @@ export class Calculator {
 
    getRoundedValue = (e) => {
       let sumVal = parseInt($(e.currentTarget).val());
-      let roundedSum = Math.round(sumVal / 100) * 100;
+      let newValue;
 
       if (sumVal > this.JSON.values.maxPrice) {
-         roundedSum = this.JSON.values.maxPrice;
+         newValue = this.JSON.values.maxPrice;
       } else if (sumVal < this.JSON.values.minPrice) {
-         roundedSum = this.JSON.values.minPrice;
+         newValue = this.JSON.values.minPrice;
       }
 
-      $(e.currentTarget).val(roundedSum)
+      $(e.currentTarget).val(newValue)
    }
 
    inputChange = e => {
-      let value = +e.target.value;
+      let newVal = +e.target.value;
 
       const initialFeeSlider = $('[name="mortgage_sum_range"]').data('ionRangeSlider');
-
-      let newVal = value;
 
       if (value > this.JSON.values.maxPrice) {
          newVal = this.JSON.values.maxPrice;
@@ -64,7 +62,18 @@ export class Calculator {
    };
 
    getCalculatorSummary = () => {
-      let roundedSum = parseInt(this.$sumRangeInput.val());
+      const enteredSum = parseInt(this.$sumRangeInput.val());
+
+      const firstPaid = parseInt(enteredSum * 0.7);
+      const closePaid = parseInt(enteredSum * 0.3);
+      const closePaidCrossed = parseInt(enteredSum * 0.2);
+      const commissionPaid = parseInt(enteredSum * 0.1);
+
+      $('#calc-first-paid').text(toCurrency(firstPaid))
+      $('#calc-close-paid').text(toCurrency(closePaid))
+      $('#calc-close-paid-crossed').text(toCurrency(closePaidCrossed))
+      $('#calc-commission-paid').text(toCurrency(commissionPaid))
+
 /*
       let dateString = this.getDateString(termVal);
       let percentPerDay = 0.01;
@@ -87,19 +96,8 @@ export class Calculator {
       //this.$sendBtn.attr('href', ` https://lk.kredito24.pro/start/credit?amount=${roundedSum}&period=${termVal}&periodUnit=DAYS&creditProductId=345&utm`);
    };
 
-   getDateString = term => {
-      let currentDate = new Date();
-      let newDate = new Date();
-      let termValNum = +term;
-      newDate.setDate(currentDate.getDate() + termValNum);
-
-      return newDate.getDate() + '.' + (newDate.getMonth() + 1) + '.' + newDate.getFullYear();
-   };
-
    initSumRangeSlider = () => {
       const mortgageSumInput = this.$sumInput;
-
-      console.log(this.JSON)
 
       mortgageSumInput[0].value = numberFormat(this.JSON.default.price, 0, ' ');
       this.$sumRangeInput[0].value = this.JSON.default.price;

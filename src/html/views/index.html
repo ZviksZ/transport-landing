@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <div class="main__calculator-summary-text">
-                            <span class="body14 bold-text">22 400 ₽</span>
+                            <span class="body14 bold-text" id="calc-first-paid">22 400 ₽</span>
                             <span class="body14 color-gray">(70%)</span>
                         </div>
                     </div>
@@ -55,9 +55,9 @@
                         </div>
                         <div class="main__calculator-summary-text">
                             <span class="body14 main__calculator-summary-cross">
-                                <span>6 400 ₽</span><span class="body14 color-gray">(70%)</span>
+                                <span id="calc-close-paid-crossed">6 400 ₽</span><span class="body14 color-gray">(20%)</span>
                             </span>
-                            <span class="body14 bold-text">9 600 ₽</span>
+                            <span class="body14 bold-text" id="calc-close-paid">9 600 ₽</span>
                             <span class="body14 color-gray">(30%)</span>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                         </div>
                         <div class="main__calculator-summary-text">
                             <span class="body14 main__calculator-summary-cross">
-                                <span>3 200 ₽</span> <span class="body14 color-gray">(10%)</span>
+                                <span id="calc-commission-paid">3 200 ₽</span> <span class="body14 color-gray">(10%)</span>
                             </span>
                             <span class="body14 bold-text">0 ₽</span>
                             <span class="body14 color-gray">Первая сделка бесплатно!</span>
@@ -159,7 +159,7 @@
             <div class="reviews__slider" id="reviews__slider">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <div class="reviews__slider-item">
+                        <a href="#" class="reviews__slider-item">
                             <div class="reviews__top">
                                 <div class="reviews__top-avatar" style="background-image: url('/img/avatar-default.png')"></div>
                                 <div class="reviews__top-name">
@@ -174,7 +174,7 @@
                                     своём
                                     стремлении улучшить пользовательский опыт мы
                                     </p>
-                                <a href="#" class="text-underline">Подробнее</a>
+                                <span class="review__content-more text-underline">Подробнее</span>
                             </div>
 
                             <div class="reviews__bottom">
@@ -185,10 +185,10 @@
 
                                 <div class="reviews__bottom-date body14 color-gray">30.11.2020</div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <div class="swiper-slide">
-                        <div class="reviews__slider-item">
+                        <a href="#" class="reviews__slider-item">
                             <div class="reviews__top">
                                 <div class="reviews__top-avatar" style="background-image: url('/img/avatar-default.png')"></div>
                                 <div class="reviews__top-name">
@@ -203,7 +203,7 @@
                                     своём
                                     стремлении улучшить пользовательский опыт мы
                                 </p>
-                                <a href="#" class="text-underline">Подробнее</a>
+                                <span class="review__content-more text-underline">Подробнее</span>
                             </div>
 
                             <div class="reviews__bottom">
@@ -214,10 +214,10 @@
 
                                 <div class="reviews__bottom-date body14 color-gray">30.11.2020</div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <div class="swiper-slide">
-                        <div class="reviews__slider-item">
+                        <a href="#" class="reviews__slider-item">
                             <div class="reviews__top">
                                 <div class="reviews__top-avatar" style="background-image: url('/img/avatar-default.png')"></div>
                                 <div class="reviews__top-name">
@@ -232,7 +232,7 @@
                                     своём
                                     стремлении улучшить пользовательский опыт мы
                                 </p>
-                                <a href="#" class="text-underline">Подробнее</a>
+                                <span class="review__content-more text-underline">Подробнее</span>
                             </div>
 
                             <div class="reviews__bottom">
@@ -243,10 +243,10 @@
 
                                 <div class="reviews__bottom-date body14 color-gray">30.11.2020</div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <div class="swiper-slide">
-                        <div class="reviews__slider-item">
+                        <a href="#" class="reviews__slider-item">
                             <div class="reviews__top">
                                 <div class="reviews__top-avatar" style="background-image: url('/img/avatar-default.png')"></div>
                                 <div class="reviews__top-name">
@@ -261,7 +261,7 @@
                                     своём
                                     стремлении улучшить пользовательский опыт мы
                                 </p>
-                                <a href="#" class="text-underline">Подробнее</a>
+                                <span class="review__content-more text-underline">Подробнее</span>
                             </div>
 
                             <div class="reviews__bottom">
@@ -272,10 +272,10 @@
 
                                 <div class="reviews__bottom-date body14 color-gray">30.11.2020</div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <div class="swiper-slide">
-                        <div class="reviews__slider-item">
+                        <a href="#" class="reviews__slider-item">
                             <div class="reviews__top">
                                 <div class="reviews__top-avatar" style="background-image: url('/img/avatar-default.png')"></div>
                                 <div class="reviews__top-name">
@@ -285,12 +285,8 @@
                             </div>
 
                             <div class="reviews__content">
-                                <p class="body14 no-margin-bottom">Каждый из нас понимает очевидную вещь: перспективное планирование предоставляет широкие возможности для анализа существующих паттернов
-                                    поведения. В
-                                    своём
-                                    стремлении улучшить пользовательский опыт мы
+                                <p class="body14 no-margin-bottom">Каждый из нас
                                 </p>
-                                <a href="#" class="text-underline">Подробнее</a>
                             </div>
 
                             <div class="reviews__bottom">
@@ -301,7 +297,7 @@
 
                                 <div class="reviews__bottom-date body14 color-gray">30.11.2020</div>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
                 </div>
@@ -315,6 +311,75 @@
             <div class="swiper-pagination"></div>
         </div>
 
+    </div>
+</section>
+
+
+<section class="section info">
+    <div class="container">
+        <h2 class="h2 text-align-center">Вопросы и ответы</h2>
+        <div class="info__wrap">
+            <div class="item">
+                <div class="top">
+                    <p class="bold-text">Подтверждено: сознание наших соотечественников не замутнено пропагандой?</p>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path class="item-path"
+                              d="M17 11H13V7C13 6.73478 12.8946 6.48043 12.7071 6.29289C12.5196 6.10536 12.2652 6 12 6C11.7348 6 11.4804 6.10536 11.2929 6.29289C11.1054 6.48043 11 6.73478 11 7V11H7C6.73478 11 6.48043 11.1054 6.29289 11.2929C6.10536 11.4804 6 11.7348 6 12C6 12.2652 6.10536 12.5196 6.29289 12.7071C6.48043 12.8946 6.73478 13 7 13H11V17C11 17.2652 11.1054 17.5196 11.2929 17.7071C11.4804 17.8946 11.7348 18 12 18C12.2652 18 12.5196 17.8946 12.7071 17.7071C12.8946 17.5196 13 17.2652 13 17V13H17C17.2652 13 17.5196 12.8946 17.7071 12.7071C17.8946 12.5196 18 12.2652 18 12C18 11.7348 17.8946 11.4804 17.7071 11.2929C17.5196 11.1054 17.2652 11 17 11Z" fill="#191C1F"/>
+                        <circle class="item-circle"  cx="12" cy="12" r="11" stroke="#191C1F" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="content">
+                    <p class="color-gray">
+                        В частности, дальнейшее развитие различных форм деятельности позволяет выполнить важные задания по разработке дальнейших направлений развития. Предварительные выводы неутешительны: экономическая повестка сегодняшнего дня говорит о возможностях существующих финансовых и административных условий.
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <div class="top">
+                    <p class="bold-text">Подтверждено: сознание наших соотечественников не замутнено пропагандой?</p>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path class="item-path"
+                              d="M17 11H13V7C13 6.73478 12.8946 6.48043 12.7071 6.29289C12.5196 6.10536 12.2652 6 12 6C11.7348 6 11.4804 6.10536 11.2929 6.29289C11.1054 6.48043 11 6.73478 11 7V11H7C6.73478 11 6.48043 11.1054 6.29289 11.2929C6.10536 11.4804 6 11.7348 6 12C6 12.2652 6.10536 12.5196 6.29289 12.7071C6.48043 12.8946 6.73478 13 7 13H11V17C11 17.2652 11.1054 17.5196 11.2929 17.7071C11.4804 17.8946 11.7348 18 12 18C12.2652 18 12.5196 17.8946 12.7071 17.7071C12.8946 17.5196 13 17.2652 13 17V13H17C17.2652 13 17.5196 12.8946 17.7071 12.7071C17.8946 12.5196 18 12.2652 18 12C18 11.7348 17.8946 11.4804 17.7071 11.2929C17.5196 11.1054 17.2652 11 17 11Z" fill="#191C1F"/>
+                        <circle class="item-circle"  cx="12" cy="12" r="11" stroke="#191C1F" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="content">
+                    <p class="color-gray">
+                        В частности, дальнейшее развитие различных форм деятельности позволяет выполнить важные задания по разработке дальнейших направлений развития. Предварительные выводы неутешительны: экономическая повестка сегодняшнего дня говорит о возможностях существующих финансовых и административных условий.
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <div class="top">
+                    <p class="bold-text">Подтверждено: сознание наших соотечественников не замутнено пропагандой?</p>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path class="item-path"
+                              d="M17 11H13V7C13 6.73478 12.8946 6.48043 12.7071 6.29289C12.5196 6.10536 12.2652 6 12 6C11.7348 6 11.4804 6.10536 11.2929 6.29289C11.1054 6.48043 11 6.73478 11 7V11H7C6.73478 11 6.48043 11.1054 6.29289 11.2929C6.10536 11.4804 6 11.7348 6 12C6 12.2652 6.10536 12.5196 6.29289 12.7071C6.48043 12.8946 6.73478 13 7 13H11V17C11 17.2652 11.1054 17.5196 11.2929 17.7071C11.4804 17.8946 11.7348 18 12 18C12.2652 18 12.5196 17.8946 12.7071 17.7071C12.8946 17.5196 13 17.2652 13 17V13H17C17.2652 13 17.5196 12.8946 17.7071 12.7071C17.8946 12.5196 18 12.2652 18 12C18 11.7348 17.8946 11.4804 17.7071 11.2929C17.5196 11.1054 17.2652 11 17 11Z" fill="#191C1F"/>
+                        <circle class="item-circle"  cx="12" cy="12" r="11" stroke="#191C1F" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="content">
+                    <p class="color-gray">
+                        В частности, дальнейшее развитие различных форм деятельности позволяет выполнить важные задания по разработке дальнейших направлений развития. Предварительные выводы неутешительны: экономическая повестка сегодняшнего дня говорит о возможностях существующих финансовых и административных условий.
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <div class="top">
+                    <p class="bold-text">Подтверждено: сознание наших соотечественников не замутнено пропагандой?</p>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path class="item-path"
+                              d="M17 11H13V7C13 6.73478 12.8946 6.48043 12.7071 6.29289C12.5196 6.10536 12.2652 6 12 6C11.7348 6 11.4804 6.10536 11.2929 6.29289C11.1054 6.48043 11 6.73478 11 7V11H7C6.73478 11 6.48043 11.1054 6.29289 11.2929C6.10536 11.4804 6 11.7348 6 12C6 12.2652 6.10536 12.5196 6.29289 12.7071C6.48043 12.8946 6.73478 13 7 13H11V17C11 17.2652 11.1054 17.5196 11.2929 17.7071C11.4804 17.8946 11.7348 18 12 18C12.2652 18 12.5196 17.8946 12.7071 17.7071C12.8946 17.5196 13 17.2652 13 17V13H17C17.2652 13 17.5196 12.8946 17.7071 12.7071C17.8946 12.5196 18 12.2652 18 12C18 11.7348 17.8946 11.4804 17.7071 11.2929C17.5196 11.1054 17.2652 11 17 11Z" fill="#191C1F"/>
+                        <circle class="item-circle"  cx="12" cy="12" r="11" stroke="#191C1F" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="content">
+                    <p class="color-gray">
+                        В частности, дальнейшее развитие различных форм деятельности позволяет выполнить важные задания по разработке дальнейших направлений развития. Предварительные выводы неутешительны: экономическая повестка сегодняшнего дня говорит о возможностях существующих финансовых и административных условий.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
