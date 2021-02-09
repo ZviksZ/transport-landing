@@ -34,30 +34,17 @@ export class Calculator {
 
    getRoundedValue = (e) => {
       let sumVal = parseInt($(e.currentTarget).val());
-      let newValue;
 
       if (sumVal > this.JSON.values.maxPrice) {
-         newValue = this.JSON.values.maxPrice;
+         $(e.currentTarget).val(this.JSON.values.maxPrice)
       } else if (sumVal < this.JSON.values.minPrice || !sumVal) {
-         newValue = this.JSON.values.minPrice;
+         $(e.currentTarget).val(this.JSON.values.minPrice)
       }
-
-      $(e.currentTarget).val(newValue)
    }
 
    inputChange = e => {
-      let newVal = +e.target.value;
-
-      const initialFeeSlider = $('[name="mortgage_sum_range"]').data('ionRangeSlider');
-
-      if (newVal > this.JSON.values.maxPrice) {
-         newVal = this.JSON.values.maxPrice;
-      } else if (newVal < this.JSON.values.minPrice || !newVal) {
-         newVal = this.JSON.values.minPrice;
-      }
-
-      initialFeeSlider.update({
-         from: newVal
+      $('[name="mortgage_sum_range"]').data('ionRangeSlider').update({
+         from: +e.target.value || this.JSON.values.minPrice
       });
    };
 
