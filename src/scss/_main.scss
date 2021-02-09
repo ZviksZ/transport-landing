@@ -1,11 +1,40 @@
 .main {
+    @include desktop-smaller {
+        padding: 10px;
+    }
+    @include only-mobile {
+        padding-top: 0;
+    }
     .main__info {
         width: 592px;
         margin: 42px 0;
 
+        @include desktop-smaller {
+            width: 520px;
+            margin: 15px 0;
+        }
+
+        @include mobile {
+            width: 100%;
+            margin: 15px 0;
+        }
+
         .main__info-top {
             position: relative;
             z-index: 12;
+
+            @include mobile {
+                * {
+                    text-align: center;
+                }
+            }
+
+            @include only-mobile {
+                h1 {
+                    font-size: 30px;
+                    line-height: 38px;
+                }
+            }
         }
     }
 
@@ -13,6 +42,10 @@
         position: relative;
         z-index: 12;
         width: 384px;
+
+        @include mobile {
+            width: 100%;
+        }
 
         .main__calculator-summary {
             margin-top: 10px;
@@ -29,8 +62,12 @@
                     display: flex;
                     align-items: center;
 
-                    span + span {
-                        margin-left: 12px;
+                    span {
+                        margin-right: 12px;
+                    }
+
+                    @include mobile {
+                        flex-wrap: wrap;
                     }
                 }
 
@@ -86,6 +123,19 @@
 
         @include desktop-small {
             max-width: 550px;
+        }
+
+        @include mobile {
+            position: relative;
+            right: auto;
+            top: auto;
+            max-width: 100%;
+
+            .image-stack-first {
+                position: relative;
+                top: auto;
+                left: auto;
+            }
         }
     }
 }

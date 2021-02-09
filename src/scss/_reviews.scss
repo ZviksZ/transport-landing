@@ -1,11 +1,16 @@
 .reviews {
+    @include mobile {
+        padding-top: 0;
+    }
     .reviews__slider-wrap {
         position: relative;
         margin-top: 22px;
 
         .swiper-slide {
-            align-items: stretch;
             height: auto;
+            @include desktop {
+                align-items: stretch;
+            }
         }
 
         .reviews__slider {
@@ -109,6 +114,10 @@
             top: calc(50% - 17px);
             transition: 0.1s ease;
             cursor: pointer;
+
+            @include mobile {
+                display: none;
+            }
 
             &.swiper-button-next {
                 right: -50px;

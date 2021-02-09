@@ -1,4 +1,9 @@
 .how {
+
+    @include desktop-smaller {
+        padding-bottom: 10px;
+    }
+
     .how__steps-wrap {
         display: flex;
         margin: 36px -16px 88px;
@@ -24,6 +29,34 @@
         .h6 {
             margin-bottom: 4px;
         }
+
+        @include mobile {
+            margin: 36px -16px 38px;
+            .how__steps-item {
+                width: calc(50% - 32px);
+            }
+        }
+        @include only-mobile {
+            margin: 36px 0 38px;
+            .how__steps-item {
+                width: 100%;
+                margin: 0 0 32px;
+                display: flex;
+                align-items: center;
+
+                .how__steps-item-img {
+                    height: auto;
+                    width: 55px;
+                    min-width: 55px;
+                    margin-right: 22px;
+                    margin-bottom: 0;
+
+                    img {
+                        width: 100%;
+                    }
+                }
+            }
+        }
     }
 
     .how__double {
@@ -31,9 +64,19 @@
         align-items: center;
         margin: 0 -16px 10px;
 
+        @include mobile {
+            flex-wrap: wrap;
+            margin: 0 0 10px;
+        }
+
         .how__double-item {
             width: calc(50% - 32px);
             margin: 0 16px;
+
+            @include mobile {
+                width: 100%;
+                margin: 0 0 32px;
+            }
 
             &.images-stack-block {
                 display: flex;
@@ -42,16 +85,41 @@
             }
 
             &.how__double-phone {
+                @include mobile {
+                    transform: translateX(-10%);
+                }
                 .image-stack-first {
                     position: relative;
                     width: auto;
                     height: 596px;
+
+                    @include mobile {
+                        height: auto;
+                        width: 80%;
+                    }
+                    @include only-mobile {
+                        height: auto;
+                        width: 100%;
+                    }
                 }
                 .image-stack:not(.image-stack-first) {
                     width: auto;
                     height: 521px;
                     top: 40px;
                     left: 40%;
+
+                    @include mobile {
+                        height: auto;
+                        width: 65%;
+                        top: 10%;
+                        left: 45%;
+                    }
+                    @include only-mobile {
+                        height: auto;
+                        width: 80%;
+                        top: 10%;
+                        left: 35%;
+                    }
                 }
             }
 

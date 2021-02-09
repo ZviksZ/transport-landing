@@ -4,15 +4,18 @@
     <div class="container">
         <div class="main__info">
             <div class="main__info-top">
-                <h1>Зарабатываешь на грузоперевозках? </h1>
+                <h1 class="margin-bottom">Зарабатываешь на грузоперевозках? </h1>
                 <div class="h4">Не жди месяц, чтобы получить свои деньги!</div>
-                <p class="color-gray">Первый сервис в России в котором перевозчики могут получить заработанные деньги в течении одного дня</p>
+                <p class="color-gray body16-mobile">Первый сервис в России в котором перевозчики могут получить заработанные деньги в течении одного дня</p>
 
             </div>
 
             <div class="main__images images-stack-block">
-                <img alt="" class="parallax main__images-phone image-stack image-stack-first" src="/img/main-2.png">
-                <img alt="" class="parallax main__images-map image-stack" src="/img/main-1.png">
+                <img alt="" data-top="" data-plus-offset="" data-direction="vertical" data-max-translate="-15" data-offset_x="" data-offset_y=""
+                     class="parallax main__images-phone image-stack image-stack-first"
+                     src="/img/main-2.png">
+                <img alt="" data-top="" data-plus-offset="" data-direction="vertical" data-max-translate="10" data-offset_x="" data-offset_y="" class="parallax main__images-map image-stack"
+                     src="/img/main-1.png">
             </div>
 
             <div class="main__calculator" data-settings='{"default":{"price":20000},"values":{"minPrice":5000,"maxPrice":50000}}' id="calculator">
@@ -29,14 +32,19 @@
 
                 </div>
 
-                <a class="button full-width" href="">Получить деньги</a>
+                <form action="/">
+                    <input type="hidden" id="calculator-sum-finally">
+                    <button class="button full-width" type="submit">Получить деньги</button>
+                </form>
+
+
 
                 <div class="main__calculator-summary">
                     <div class="main__calculator-summary-block">
                         <div class="main__calculator-summary-title">
                             <span class="body12 color-gray">Первая выплата</span>
 
-                            <div class="main__calculator-summary-info">
+                            <div class="main__calculator-summary-info tooltip" data-text="Закрывающая выплата — платеж, получаемый перевозчиком после оплаты заказчиком счета по перевозке.">
                                 <i class="icon-info"></i>
                             </div>
                         </div>
@@ -49,7 +57,7 @@
                         <div class="main__calculator-summary-title">
                             <span class="body12 color-gray">Закрывающая выплата</span>
 
-                            <div class="main__calculator-summary-info">
+                            <div class="main__calculator-summary-info tooltip" data-text="1Закрывающая выплата — платеж, получаемый перевозчиком после оплаты заказчиком счета по перевозке.">
                                 <i class="icon-info"></i>
                             </div>
                         </div>
@@ -65,7 +73,7 @@
                         <div class="main__calculator-summary-title">
                             <span class="body12 color-gray">Комиссия</span>
 
-                            <div class="main__calculator-summary-info">
+                            <div class="main__calculator-summary-info tooltip" data-text="2Закрывающая выплата — платеж, получаемый перевозчиком после оплаты заказчиком счета по перевозке.">
                                 <i class="icon-info"></i>
                             </div>
                         </div>
@@ -91,44 +99,60 @@
                 <div class="how__steps-item-img">
                     <img src="/img/how/waiting.svg" alt="">
                 </div>
-                <p class="h6">Зарегистрируйтесь</p>
-                <p class="body14 color-gray">Заполните анкету за 2 минуты</p>
+                <div class="how__steps-item-content">
+                    <p class="h6">Зарегистрируйтесь</p>
+                    <p class="body14 color-gray">Заполните анкету за 2 минуты</p>
+                </div>
+
             </div>
             <div class="how__steps-item">
                 <div class="how__steps-item-img">
                     <img src="/img/how/delivery-truck.svg" alt="">
                 </div>
-                <p class="h6">Выполните рейс</p>
-                <p class="body14 color-gray">После выполнения заказа сохраните закрывающие документы</p>
+                <div class="how__steps-item-content">
+                    <p class="h6">Выполните рейс</p>
+                    <p class="body14 color-gray">После выполнения заказа сохраните закрывающие документы</p>
+                </div>
+
             </div>
             <div class="how__steps-item">
                 <div class="how__steps-item-img">
                     <img src="/img/how/secure.svg" alt="">
                 </div>
-                <p class="h6">Загрузите документы</p>
-                <p class="body14 color-gray">Загрузите в личном кабинете скан-копии:</p>
-                <p class="body14 color-gray no-margin-top">1. Договора-заявки</p>
-                <p class="body14 color-gray no-margin-top">2. Акта выполненных работ</p>
+                <div class="how__steps-item-content">
+                    <p class="h6">Загрузите документы</p>
+                    <p class="body14 color-gray">Загрузите в личном кабинете скан-копии:</p>
+                    <p class="body14 color-gray no-margin-top">1. Договора-заявки</p>
+                    <p class="body14 color-gray no-margin-top">2. Акта выполненных работ</p>
+                </div>
+
             </div>
             <div class="how__steps-item">
                 <div class="how__steps-item-img">
                     <img src="/img/how/money-bags.svg" alt="">
                 </div>
-                <p class="h6">Получите деньги</p>
-                <p class="body14 color-gray">Зачисление на банковскую карту течение 1 часа</p>
+                <div class="how__steps-item-content">
+                    <p class="h6">Получите деньги</p>
+                    <p class="body14 color-gray">Зачисление на банковскую карту течение 1 часа</p>
+                </div>
+
             </div>
         </div>
 
         <div class="how__double">
             <div class="how__double-item images-stack-block images-stack-relative">
-                <img alt="" class="parallax main__images-phone image-stack image-stack-first" src="/img/credits-2.png">
-                <img alt="" class="parallax main__images-map image-stack z-index-up" src="/img/credits-1.png">
+                <img alt="" data-top="" data-plus-offset="600" data-direction="horizontal" data-max-translate="10" data-offset_x="" data-offset_y=""
+                     class="parallax main__images-phone image-stack image-stack-first"
+                     src="/img/credits-2.png">
+                <img alt="" data-top="" data-plus-offset="600" data-direction="horizontal" data-max-translate="-30" data-offset_x="" data-offset_y=""
+                     class="parallax main__images-map image-stack z-index-up"
+                     src="/img/credits-1.png">
             </div>
             <div class="how__double-item">
                 <h3 class="h3">Не нужно брать кредиты</h3>
-                <p class="color-gray">63% опрошенных пользовались кредитами из-за того, что не могли покрыть непредвиденные расходы свыше 15 000 ₽.
+                <p class="color-gray body16-mobile">63% опрошенных пользовались кредитами из-за того, что не могли покрыть непредвиденные расходы свыше 15 000 ₽.
                 </p>
-                <p class="color-gray">
+                <p class="color-gray body16-mobile">
                     Доступ к заработанным деньгам помогает отказаться от кредитов и экономить деньги на процентах и штрафах.
                 </p>
             </div>
@@ -137,13 +161,16 @@
         <div class="how__double">
             <div class="how__double-item">
                 <h3 class="h3">Четко видно сколько денег начислено и за что</h3>
-                <p class="color-gray">Никаких скрытых платежей, на этапе подачи заявки вы получаете расчет по сделке с финальными условиями. В личном кабинете вы всегда можете посмотреть историю
+                <p class="color-gray body16-mobile">Никаких скрытых платежей, на этапе подачи заявки вы получаете расчет по сделке с финальными условиями. В личном кабинете вы всегда можете посмотреть историю
                     операций и поступлений денежных средств.
                 </p>
             </div>
             <div class="how__double-item how__double-phone images-stack-block images-stack-relative">
-                <img alt="" class="parallax main__images-phone image-stack image-stack-first z-index-up" src="/img/mobile-1.png">
-                <img alt="" class="parallax main__images-map image-stack" src="/img/mobile-2.png">
+                <img alt="" data-top="" data-plus-offset="100" data-direction="vertical" data-max-translate="-30" data-offset_x="" data-offset_y=""
+                     class="parallax main__images-phone image-stack image-stack-first z-index-up"
+                     src="/img/mobile-1.png">
+                <img alt="" data-top="" data-plus-offset="100" data-direction="vertical" data-max-translate="-15" data-offset_x="" data-offset_y="" class="parallax main__images-map image-stack"
+                     src="/img/mobile-2.png">
             </div>
 
         </div>
@@ -329,7 +356,7 @@
                     </svg>
                 </div>
                 <div class="content">
-                    <p class="color-gray">
+                    <p class="color-gray body16-mobile">
                         В частности, дальнейшее развитие различных форм деятельности позволяет выполнить важные задания по разработке дальнейших направлений развития. Предварительные выводы неутешительны: экономическая повестка сегодняшнего дня говорит о возможностях существующих финансовых и административных условий.
                     </p>
                 </div>
@@ -344,7 +371,7 @@
                     </svg>
                 </div>
                 <div class="content">
-                    <p class="color-gray">
+                    <p class="color-gray body16-mobile">
                         В частности, дальнейшее развитие различных форм деятельности позволяет выполнить важные задания по разработке дальнейших направлений развития. Предварительные выводы неутешительны: экономическая повестка сегодняшнего дня говорит о возможностях существующих финансовых и административных условий.
                     </p>
                 </div>
@@ -359,7 +386,7 @@
                     </svg>
                 </div>
                 <div class="content">
-                    <p class="color-gray">
+                    <p class="color-gray body16-mobile">
                         В частности, дальнейшее развитие различных форм деятельности позволяет выполнить важные задания по разработке дальнейших направлений развития. Предварительные выводы неутешительны: экономическая повестка сегодняшнего дня говорит о возможностях существующих финансовых и административных условий.
                     </p>
                 </div>
@@ -374,7 +401,7 @@
                     </svg>
                 </div>
                 <div class="content">
-                    <p class="color-gray">
+                    <p class="color-gray body16-mobile">
                         В частности, дальнейшее развитие различных форм деятельности позволяет выполнить важные задания по разработке дальнейших направлений развития. Предварительные выводы неутешительны: экономическая повестка сегодняшнего дня говорит о возможностях существующих финансовых и административных условий.
                     </p>
                 </div>

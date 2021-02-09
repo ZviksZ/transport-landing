@@ -9,29 +9,23 @@ export function initInfoTabs() {
    });
 }
 
-export function initInteriorMobileBtn() {
-   $('.interior-page__wrap .see-more').on('click', function() {
-      if ($(this).closest('.interior-page__wrap').hasClass('show-content')) {
-         $(this)
-            .text('Показать больше')
-            .closest('.interior-page__wrap')
-            .removeClass('show-content');
-      } else {
-         $(this)
-            .text('Скрыть')
-            .closest('.interior-page__wrap')
-            .addClass('show-content');
+export function initSmoothScrollToAnchor() {
+   $(`a[href*="#"]`).click(function() {
+      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+         && location.hostname == this.hostname) {
+         var $target = $(this.hash);
+         $target = $target.length && $target || $('[name=' + this.hash.slice(1) +']');
+         if ($target.length) {
+            var targetOffset = $target.offset().top - $('#header').height();
+            $('html,body').animate({scrollTop: targetOffset}, 1000);
+            return false;
+         }
       }
    });
 }
 
-export function initMonedoHeader() {
-   $('.monedo-header .burger').on('click', function() {
-      $('html').toggleClass('show-menu');
-   });
-}
-export function initMonedoMenu() {
-   $('.monedo-menu nav a').on('click', function() {
-      $('html').removeClass('show-menu');
-   });
+export function initCloseMenuOnClick() {
+   $('.header__menu-nav .header__menu-link').on('click', () => {
+      $('html').removeClass('header-menu-open');
+   })
 }
