@@ -51,7 +51,7 @@
 
 
 /**
-Всплывающее окно на разметке
+Всплывающее окно на тултипе
  */
 .popup-info {
     display: none;
@@ -193,8 +193,10 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            width: 100%;
 
             .text {
+                width: 100%;
                 font-size: 12px;
                 line-height: 16px;
                 color: $colorWhite;
