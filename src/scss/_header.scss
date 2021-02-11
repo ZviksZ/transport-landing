@@ -25,6 +25,13 @@
             .header__menu-link {
                 position: relative;
 
+                @include desktop {
+                    &:hover {
+                        opacity: 1;
+                        color: $colorText !important;
+                    }
+                }
+
                 &.header__menu-link--account {
                     .header__menu-avatar {
                         display: flex;
@@ -104,13 +111,15 @@
         }
 
         .header__menu-buttons {
-            display: flex;
-            align-items: center;
             margin-left: 24px;
+        }
+    }
 
-            .button + .button {
-                margin-left: 20px;
-            }
+    .header__menu-buttons {
+        display: flex;
+        align-items: center;
+        .button + .button {
+            margin-left: 20px;
         }
     }
 
@@ -170,6 +179,18 @@
             z-index: 5;
         }
 
+        .header__menu-buttons {
+            justify-content: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            z-index: 102;
+            background: $colorWhite;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
         .header__menu {
             position: fixed;
             top: 0;
@@ -177,24 +198,15 @@
             width: 100%;
             height: 100%;
             overflow: auto;
+            opacity: 0;
             transform: translateX(-100%);
             transition: 0.2s linear;
             flex-direction: column;
-            opacity: 0;
             background: $colorWhite;
 
             .header__menu-nav {
                 width: 100%;
                 padding: 0 16px;
-            }
-
-            .header__menu-buttons {
-                width: 100%;
-                justify-content: center;
-                margin-top: auto;
-                margin-left: 0;
-                padding: 13px 0;
-                box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
             }
         }
     }
@@ -224,5 +236,9 @@
                 }
             }
         }
+    }
+
+    .footer__buttons {
+        z-index: 201;
     }
 }

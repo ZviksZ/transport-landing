@@ -26,7 +26,13 @@ export class Parallax {
       this.lastScrollTop = $(window).scrollTop() * 1;
 
       this.$items.each(function () {
-         let plusOffset = +$(this).attr('data-plus-offset') || $(window).height();
+         let plusOffset = +$(this).attr('data-plus-offset') || 0;
+
+         if ($(this).attr('data-plus-offset') === 'first') {
+            plusOffset = $(window).height() - $(this).offset().top
+         } else {
+            plusOffset += $(this).height();
+         }
 
          const top = $(this).offset().top + plusOffset;
          $(this).attr({
@@ -46,6 +52,7 @@ export class Parallax {
          const top = +$(this).attr('data-top'),
             direction = $(this).attr('data-direction'),
             maxTranslate = +$(this).attr('data-max-translate'),
+            percent = +$(this).attr('data-percent') || 0.05,
             isNegativeMove = maxTranslate < 0;
 
          if (screenTop > top && screenTop < top + windowHeight + 200) {
@@ -54,13 +61,13 @@ export class Parallax {
             let y = 0;
 
             if (direction === 'vertical') {
-               y = isNegativeMove ? -p * 0.1 : p * 0.1;
+               y = isNegativeMove ? -p * percent : p * percent;
 
                if (isNegativeMove && y < maxTranslate || !isNegativeMove && y > maxTranslate) {
                  y = maxTranslate
                }
             } else {
-               x = isNegativeMove ? -p * 0.1 : p * 0.1;
+               x = isNegativeMove ? -p * percent : p * percent;
 
                if (isNegativeMove && x < maxTranslate || !isNegativeMove && x > maxTranslate) {
                   x = maxTranslate

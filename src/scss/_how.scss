@@ -9,8 +9,32 @@
         margin: 36px -16px 88px;
 
         .how__steps-item {
+            opacity: 0;
+            transform: translateY(100%);
             width: calc(25% - 32px);
             margin: 0 16px 32px;
+            transition: 0.4s ease;
+
+
+            &.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            &.delay-1 {
+                transition-delay: 0.2s;
+            }
+            &.delay-2 {
+                transition-delay: 0.4s;
+            }
+            &.delay-3 {
+                transition-delay: 0.6s;
+            }
+
+            @include mobile {
+                opacity: 1;
+                transform: translateY(0);
+            }
 
             .how__steps-item-img {
                 height: 70px;
@@ -91,7 +115,7 @@
                 .image-stack-first {
                     position: relative;
                     width: auto;
-                    height: 596px;
+                    height: 567px;
 
                     @include mobile {
                         height: auto;
@@ -105,7 +129,7 @@
                 .image-stack:not(.image-stack-first) {
                     width: auto;
                     height: 521px;
-                    top: 40px;
+                    top: 30px;
                     left: 40%;
 
                     @include mobile {

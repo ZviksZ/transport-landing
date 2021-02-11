@@ -1,4 +1,5 @@
 import * as $ from 'jquery';
+import {lockyOn} from 'dom-locky';
 
 export default class TooltipCustom {
    constructor() {
@@ -113,6 +114,8 @@ export default class TooltipCustom {
     * Показ тултипа
     */
    showPopup() {
+      this.lock = lockyOn('#popup_info');
+
       this.$popupInfo.addClass('show');
       setTimeout(() => {
          this.$popupInfo.addClass('show-effect');
@@ -123,6 +126,9 @@ export default class TooltipCustom {
     * Закрытие тултипа
     */
    hidePopup() {
+
+      this.lock()
+
       if (this.desktop) {
          this.$popupInfo.removeClass('show show-effect');
          this.clearPopup();

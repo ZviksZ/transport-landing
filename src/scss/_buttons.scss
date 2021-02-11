@@ -32,7 +32,7 @@
         color: $colorText;
         @include desktop {
             &:hover {
-                background: #E0E5E9;
+                background: #E0E5E9 !important;
             }
         }
     }

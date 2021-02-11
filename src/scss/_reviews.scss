@@ -5,6 +5,11 @@
     .reviews__slider-wrap {
         position: relative;
         margin-top: 22px;
+        padding: 0 34px;
+
+        @include mobile {
+            padding: 0;
+        }
 
         .swiper-slide {
             height: auto;
@@ -14,8 +19,26 @@
         }
 
         .reviews__slider {
+            width: calc(100% - 30px);
+            margin: 0 auto;
             overflow: hidden;
-            padding: 30px 0;
+            padding: 60px 30px;
+
+            .swiper-slide {
+                @include desktop {
+                    margin: 0 16px !important;
+                }
+            }
+
+            @include mobile {
+                padding: 30px 20px;
+            }
+
+            @include only-mobile {
+                width: 100%;
+                padding: 30px 0;
+                overflow: visible;
+            }
 
             .reviews__slider-item {
                 display: flex;
@@ -120,10 +143,10 @@
             }
 
             &.swiper-button-next {
-                right: -50px;
+                right: 9px;
             }
             &.swiper-button-prev {
-                left: -50px;
+                left: 9px;
             }
 
             &.swiper-button-disabled {

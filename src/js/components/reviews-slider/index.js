@@ -26,7 +26,6 @@ export class ReviewsSlider {
          loop: false,
          preloadImages: false,
          slidesPerView: 1,
-         spaceBetween: 0,
          navigation: {
             nextEl: '.reviews__slider-wrap .swiper-button-next',
             prevEl: '.reviews__slider-wrap .swiper-button-prev',
@@ -36,15 +35,18 @@ export class ReviewsSlider {
             clickable: true,
          },
          autoHeight: true,
+         spaceBetween: 32,
          breakpoints: {
             768: {
                slidesPerView: 2,
-               spaceBetween: 32,
                autoHeight: false,
             },
             1000: {
+               slidesPerView: 2,
+               autoHeight: false,
+            },
+            1350: {
                slidesPerView: 3,
-               spaceBetween: 32,
                autoHeight: false,
             }
          }

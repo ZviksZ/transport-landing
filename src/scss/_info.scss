@@ -5,16 +5,20 @@
         .item {
             background: $colorWhite;
             padding: 14px 0;
-            border-radius: 8px;
 
             .top {
                 display: flex;
-                align-items: center;
+                align-items: flex-start;
                 justify-content: space-between;
                 cursor: pointer;
                 -moz-user-select: none;
                 -khtml-user-select: none;
                 user-select: none;
+
+                svg {
+                    min-width: 24px;
+                    margin: 10px 0 0 15px;
+                }
 
                 @include desktop {
                     &:hover {
