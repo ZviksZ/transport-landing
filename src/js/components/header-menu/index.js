@@ -11,6 +11,11 @@ export class HeaderMenu {
 
    init = () => {
       this.$burgerBtn.on('click', this.toggleMenu);
+
+      $('.header__menu-nav .header__menu-link').on('click', () => {
+         $('html').removeClass('header-menu-open');
+         this.lock()
+      })
    };
 
    toggleMenu = () => {

@@ -43,7 +43,6 @@ $(function () {
    initInfoTabs();
 
    initSmoothScrollToAnchor();
-   initCloseMenuOnClick();
 
    setTimeout(() => {
       $('.preloader').addClass('preloader-hide');

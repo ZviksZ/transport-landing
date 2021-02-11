@@ -23,9 +23,3 @@ export function initSmoothScrollToAnchor() {
       }
    });
 }
-
-export function initCloseMenuOnClick() {
-   $('.header__menu-nav .header__menu-link').on('click', () => {
-      $('html').removeClass('header-menu-open');
-   })
-}
