@@ -1,4 +1,4 @@
-import { toCurrency, transformDate, declOfNum, kFormatter, numberFormat, parseGets, initToggleBlock, formatDate, getGenderByFIO, highlightSomeText, getIdFromURL } from './helpers';
+import { lockBodyOnModalOpen, toCurrency, transformDate, declOfNum, kFormatter, numberFormat, parseGets, initToggleBlock, formatDate, getGenderByFIO, highlightSomeText, getIdFromURL } from './helpers';
 
 export {
 	declOfNum,
@@ -11,5 +11,6 @@ export {
 	getIdFromURL,
 	kFormatter,
 	transformDate,
-	toCurrency
+	toCurrency,
+	lockBodyOnModalOpen
 };

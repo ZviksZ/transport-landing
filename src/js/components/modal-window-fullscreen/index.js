@@ -1,4 +1,5 @@
-import * as $  from 'jquery';
+import * as $                from 'jquery';
+import {lockBodyOnModalOpen} from "../helpers";
 export class ModalWindowFullScreen {
     constructor() {
         this.init();
@@ -41,6 +42,8 @@ export class ModalWindowFullScreen {
             $('html').addClass(effectClass);
             $(`[data-modal="${name}"]`).addClass(showClass);
             this.resizeModals();
+
+            lockBodyOnModalOpen(true)
         }, 5);
     }
 
@@ -60,6 +63,7 @@ export class ModalWindowFullScreen {
             $('html').removeClass('open-modal');
             // $(window).scrollTop(this.scrollTop);
             this.scrollTop = 0;
+            lockBodyOnModalOpen(false)
         }, 600);
     }
 

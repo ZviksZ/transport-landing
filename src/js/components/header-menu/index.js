@@ -1,5 +1,6 @@
-import * as $ from 'jquery';
-import {lockyOn} from 'dom-locky';
+import * as $                from 'jquery';
+import {lockyOn}             from 'dom-locky';
+import {lockBodyOnModalOpen} from "../helpers";
 
 export class HeaderMenu {
    constructor() {
@@ -14,17 +15,17 @@ export class HeaderMenu {
 
       $('.header__menu-nav .header__menu-link').on('click', () => {
          $('html').removeClass('header-menu-open');
-         this.lock()
+         lockBodyOnModalOpen(false)
       })
    };
 
    toggleMenu = () => {
       if (this.$html.hasClass('header-menu-open')) {
          this.$html.removeClass('header-menu-open');
-         this.lock()
+         lockBodyOnModalOpen(false)
       } else {
          this.$html.addClass('header-menu-open');
-         this.lock = lockyOn('#header');
+         lockBodyOnModalOpen(true)
       }
    };
 }
