@@ -329,6 +329,10 @@ function lockBodyOnModalOpen(isOpen) {
    const $body = document.querySelector('body');
    const $bodyTop = $body.dataset.top;
 
+   if (window.innerWidth >= 1000) {
+      return false
+   }
+
    if (isOpen) {
       scrollPositionLock = $bodyTop ? +$bodyTop : window.pageYOffset;
       $body.style.overflow = 'hidden';
