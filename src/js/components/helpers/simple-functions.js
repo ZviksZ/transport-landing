@@ -11,15 +11,18 @@ export function initInfoTabs() {
 
 export function initSmoothScrollToAnchor() {
    $(`a[href*="#"]`).click(function() {
-      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
-         && location.hostname == this.hostname) {
-         var $target = $(this.hash);
-         $target = $target.length && $target || $('[name=' + this.hash.slice(1) +']');
-         if ($target.length) {
-            var targetOffset = $target.offset().top - $('#header').height();
-            $('html,body').animate({scrollTop: targetOffset}, 1000);
-            return false;
+      if ($(this).attr('href').length > 1) {
+         if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+            && location.hostname == this.hostname) {
+            var $target = $(this.hash);
+            $target = $target.length && $target || $('[name=' + this.hash.slice(1) +']');
+            if ($target.length) {
+               var targetOffset = $target.offset().top - $('#header').height();
+               $('html,body').animate({scrollTop: targetOffset}, 1000);
+               return false;
+            }
          }
       }
+
    });
 }
