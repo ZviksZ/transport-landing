@@ -1,0 +1,156 @@
+.auth {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: $colorGrayExtraLight;
+    .auth__form {
+        position: relative;
+        padding: 40px 84px;
+        margin: 44px 0;
+        background: $colorWhite;
+        border-radius: 4px;
+        max-width: 656px;
+        width: 100%;
+
+        .auth__step {
+            position: relative;
+            z-index: 2;
+            display: none;
+
+            &.active {
+                display: block;
+            }
+        }
+
+        .auth__step-text {
+            font-size: 16px;
+            line-height: 28px;
+            color: $colorGray;
+
+            .auth__phone-text {
+                color: $colorText;
+            }
+        }
+
+        .auth__code {
+            display: flex;
+            justify-content: center;
+
+            .field {
+                margin: 0 8px;
+
+
+            }
+        }
+
+        .auth__loader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 8;
+            background: $colorWhite;
+            .loader {
+                width: 64px;
+                height: 64px;
+                background: url("../img/auth/loader.svg") no-repeat center center;
+                -webkit-background-size: cover;
+                background-size: cover;
+                animation-name: rotation;
+                animation-duration: 1.5s;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            }
+            @-webkit-keyframes rotation {
+                0% {-webkit-transform:rotate(0deg);
+                    -moz-transform:rotate(0deg);
+                    -o-transform:rotate(0deg);
+                    transform:rotate(0deg);}
+                100% {-webkit-transform:rotate(360deg);
+                    -moz-transform:rotate(360deg);
+                    -o-transform:rotate(360deg);
+                    transform:rotate(360deg);}
+            }
+            @-moz-keyframes rotation {
+                0% {-webkit-transform:rotate(0deg);
+                    -moz-transform:rotate(0deg);
+                    -o-transform:rotate(0deg);
+                    transform:rotate(0deg);}
+                100% {-webkit-transform:rotate(360deg);
+                    -moz-transform:rotate(360deg);
+                    -o-transform:rotate(360deg);
+                    transform:rotate(360deg);}
+            }
+            @-o-keyframes rotation {
+                0% {-webkit-transform:rotate(0deg);
+                    -moz-transform:rotate(0deg);
+                    -o-transform:rotate(0deg);
+                    transform:rotate(0deg);}
+                100% {-webkit-transform:rotate(360deg);
+                    -moz-transform:rotate(360deg);
+                    -o-transform:rotate(360deg);
+                    transform:rotate(360deg);}
+            }
+            @keyframes rotation {
+                0% {-webkit-transform:rotate(0deg);
+                    -moz-transform:rotate(0deg);
+                    -o-transform:rotate(0deg);
+                    transform:rotate(0deg);}
+                100% {-webkit-transform:rotate(360deg);
+                    -moz-transform:rotate(720deg);
+                    -o-transform:rotate(360deg);
+                    transform:rotate(360deg);}
+            }
+        }
+
+        .auth__tabs {
+            display: flex;
+            align-items: center;
+            border-radius: 4px;
+            overflow: hidden;
+
+            .item {
+                width: 50%;
+                min-width: 50%;
+                padding: 14px;
+                background: $colorWhite;
+                border: 1px solid $colorGrayMiddle;
+                text-align: center;
+                cursor: pointer;
+                text-transform: uppercase;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 28px;
+
+                &.active {
+                    background: $colorText;
+                    border: 1px solid $colorText;
+                    color: $colorWhite;
+                }
+            }
+        }
+
+        a {
+            color: $colorPrimary !important;
+            font-size: 16px;
+            line-height: 28px;
+            text-decoration: underline;
+        }
+
+        &.show-loading {
+            .auth__loader {
+                display: flex;
+            }
+        }
+
+        @include mobile {
+            padding: 20px 16px;
+            margin: 20px 0;
+            box-shadow: 0px 4px 8px rgba(0, 34, 66, 0.08);
+        }
+    }
+}

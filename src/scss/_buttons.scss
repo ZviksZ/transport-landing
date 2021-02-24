@@ -37,6 +37,10 @@
         }
     }
 
+    &[disabled] {
+        background: #ABCAE6;
+    }
+
     &.full-width {
         width: 100%;
     }
