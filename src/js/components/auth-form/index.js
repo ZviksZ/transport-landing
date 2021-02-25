@@ -8,7 +8,9 @@ export class InitAuthForm {
       if (this.$form.length === 0) return false;
 
       this.enteredPhone = null;
-      this.currentStep = '1';
+      this.isNumberRegistered = false;
+
+      this.progressInputsLength = this.$form.find('.auth__step-progress .field').length;
 
       this.init();
    }
@@ -18,19 +20,28 @@ export class InitAuthForm {
 
       this.$form.on('submit', this.onSubmit);
       this.$form.find('.auth__code-input').on('input', this.enterCode);
+      this.$form.find('.auth__step-progress .input-text').on('blur', this.setProgress);
       this.$form.find('.auth__step-disabled .input-text').on('input', this.checkDisabledBtn);
       this.$form.find('.auth__step-link').on('click', this.changeStep);
       this.$form.find('.auth__tabs .item').on('click', this.changeTab);
+      $('#auth__send-phone-repeat').on('click', this.sendPhoneNumberApi);
    };
 
-   changeTab = e => {
-      const activeTab = $(e.currentTarget).attr('data-tab')
+   setProgress = () => {
+      const successFields = this.$form.find('.auth__step-progress .field.success').length;
+      const progressWidth = (successFields / this.progressInputsLength) * 100 + '%';
 
-      this.$form.find('.auth__tabs .item').removeClass('active')
-      this.$form.find('.auth__tabs .item[data-tab="' + activeTab + '"]').addClass('active')
+      $('.auth__progress-container .auth__progress-line').css('width', progressWidth);
+   };
 
-      $('#auth-company-type').val(activeTab)
-   }
+   changeTab = (e) => {
+      const activeTab = $(e.currentTarget).attr('data-tab');
+
+      this.$form.find('.auth__tabs .item').removeClass('active');
+      this.$form.find('.auth__tabs .item[data-tab="' + activeTab + '"]').addClass('active');
+
+      $('#auth-company-type').val(activeTab);
+   };
 
    checkDisabledBtn = (e) => {
       const stepBlock = $(e.currentTarget).closest('.auth__step-disabled');
@@ -76,6 +87,13 @@ export class InitAuthForm {
 
       setTimeout(() => {
          this.removeLoader();
+
+         if (this.isNumberRegistered) {
+
+         } else {
+            this.toggleSteps('3')
+         }
+
       }, 1000);
    };
 
@@ -89,25 +107,93 @@ export class InitAuthForm {
          return false;
       }
 
+      if (+currentStep > +isNextStep) {
+         $('#auth__send-time').addClass('hide');
+         $('#auth__send-phone-repeat').removeClass('hide');
+      }
+
+      if (isNextStep !== '3') {
+         clearInterval(this.timer);
+         $('#auth__send-time span').text('');
+      }
+
       if ($(e.currentTarget).hasClass('auth__send-phone')) {
-         this.sendPhoneNumberApi();
+         this.sendPhoneNumberApi(e);
          this.setPhoneNumberText();
       }
 
+      this.toggleSteps(nextStep)
+
+   };
+
+   toggleSteps = (nextStep) => {
       this.$form.find('.auth__step').removeClass('active');
-      this.$form
-         .find('.auth__step[data-step="' + nextStep + '"] input').val('').closest('.field').addClass('empty')
+      if (nextStep === '2') {
+         this.$form
+            .find('.auth__step[data-step="' + nextStep + '"] input')
+            .val('')
+            .closest('.field')
+            .addClass('empty').removeClass('success error');
+      }
+
       this.$form
          .find('.auth__step[data-step="' + nextStep + '"]')
          .addClass('active')
          .find('input')
          .first()
          .focus();
+   }
+
+   initPhoneTimer = () => {
+      const display = $('#auth__send-time span');
+      let timeLeft = 60;
+
+      display.html(timeLeft);
+
+      $('#auth__send-time').removeClass('hide');
+      $('#auth__send-phone-repeat').addClass('hide');
+
+      this.timer = setInterval(() => {
+         if (--timeLeft >= 0) {
+            display.html(timeLeft);
+         } else {
+            $('#auth__send-time').addClass('hide');
+            $('#auth__send-phone-repeat').removeClass('hide');
+
+            clearInterval(this.timer);
+         }
+      }, 1000);
    };
 
-   sendPhoneNumberApi = () => {
+   sendPhoneNumberApi = (e) => {
+      e.preventDefault();
       const value = $('#auth-phone-number').val();
-   }
+
+      this.isNumberIsRegistered();
+      this.initPhoneTimer();
+
+
+      console.log(value);
+   };
+
+   isNumberIsRegistered = () => {
+      $.ajax({
+         url: '/checkRegister',
+         type: 'POST',
+         contentType: 'application/json',
+         data: {
+            phone: $('#auth-phone-number').val(),
+         },
+         success: (res) => {
+            this.isNumberRegistered = res.isAuth;
+         },
+         error: (res) => {
+            console.log('Раскомментировать')
+            /*this.$form.addClass('show-message');*/
+         },
+         timeout: 30000,
+      });
+   };
 
    setPhoneNumberText = () => {
       const value = $('#auth-phone-number').val();
@@ -118,6 +204,7 @@ export class InitAuthForm {
 
       const text = `+7 (${code}) ${phone1}-${phone2}-${phone3}`;
 
+      this.enteredPhone = text;
       $('#auth-phone-number-text').text(text);
    };
 
@@ -149,29 +236,17 @@ export class InitAuthForm {
             type: 'POST',
             dataType: 'text',
             data: data,
+            beforeSend: () => {
+               this.addLoader();
+            },
             success: (res) => {
-               this.clearForm(form);
-
-               form.find('.form-message .title').text('Успешно');
-               form.find('.form-message .text').text('Данные были успешно отправлены');
-
-               form.find('.close-form-message').show();
-
-               form.addClass('show-message success');
-
-               this.scrollToMessage(form);
+               alert('Sended form');
+               this.removeLoader();
             },
             error: (res) => {
-               form.find('.form-message .title').text('Ошибка');
-               form.find('.form-message .text').text('Отправка данных не удалась. Попробуйте повторить отправку формы.');
-
-               form.addClass('show-message error');
-
+               this.removeLoader();
+               form.addClass('show-message');
                this.scrollToMessage(form);
-
-               setTimeout(() => {
-                  form.removeClass('show-message error');
-               }, 2500);
             },
             timeout: 30000,
          });

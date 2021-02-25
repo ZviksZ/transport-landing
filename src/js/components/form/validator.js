@@ -97,11 +97,19 @@ function validateField($field, showError = true) {
 			}
 			break;
 
-		//радио кнопки - обязательно для выбора
+
 		case 'required_checkbox_radio':
 			if (!+$field.find('input:checked').length) {
 				error++;
-				message = 'Выберите хотя бы 1 вариант';
+				message = 'Согласие обязательно';
+			}
+			break;
+
+		//чекбокс - обязательно для выбора
+		case 'required_checkbox':
+			if (!$field.prop('checked')) {
+				error++;
+				message = 'Согласие обязательно';
 			}
 			break;
 
@@ -281,18 +289,18 @@ function initFormWithValidate($form) {
 
 	const $submit = $form.find('[type="submit"]');
 
-	checkDisabledSubmit();
+	//checkDisabledSubmit();
 
 	// инпаты
 	$form.find('.validate')
 		 .on('keyup', () => {
-			 checkDisabledSubmit();
+			 //checkDisabledSubmit();
 		 })
 		 .on('change', function () {
 			 validateForm($form, false);
 			 validateField($(this));
 
-			 checkDisabledSubmit();
+			 //checkDisabledSubmit();
 		 });
 
 	// чекбоксы/радио

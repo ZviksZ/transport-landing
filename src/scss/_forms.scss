@@ -144,7 +144,7 @@ input, textarea, select {
         font-size: 18px;
         line-height: 32px;
         color: $colorText;
-        padding: 28px 16px 4px;
+        padding: 28px 44px 4px 16px;
         box-sizing: border-box;
         font-family: $fontBase !important;
         border: 2px solid $colorGrayMiddle;
@@ -219,7 +219,7 @@ input, textarea, select {
         font-weight: 400;
         color: #FF0000;
         position: absolute;
-        bottom: -20px;
+        bottom: -16px;
         left: 0;
         margin: 0;
     }
@@ -293,6 +293,12 @@ input, textarea, select {
             }
         }
     }
+
+    &.field-no-icon {
+        &:before {
+            display: none;
+        }
+    }
 }
 
 input::-webkit-outer-spin-button,
@@ -332,9 +338,9 @@ input[type="checkbox"]:not(:checked) + label:before {
     position: absolute;
     left: 0;
     top: 1px;
-    width: 21px;
-    height: 21px;
-    border: 2px solid #DDDDDD;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #C2C8CD;
     background-color: #ffffff;
 }
 
@@ -344,8 +350,8 @@ input[type="checkbox"]:not(:checked) + label:before {
 }
 
 input[type="checkbox"]:checked + label:before {
-    background: $colorText;
-    border: 1px solid $colorText;
+    background: $colorPrimary;
+    border: 1px solid $colorPrimary;
 }
 
 
@@ -361,8 +367,8 @@ input[type="checkbox"]:not(:checked) + label:after {
 
 input[type="checkbox"]:checked + label:after,
 input[type="checkbox"]:not(:checked) + label:after {
-    left: 5px;
-    top: 6px;
+    left: 6px;
+    top: 7px;
     width: 10px;
     height: 5px;
     border-radius: 1px;

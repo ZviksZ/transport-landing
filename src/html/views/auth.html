@@ -2,7 +2,7 @@
 
 <section class="section auth">
     <form action="" class="auth__form" id="auth-form">
-        <div class="auth__step auth__step-disabled" data-step="1">
+        <div class="auth__step auth__step-disabled active" data-step="1">
             <h2 class="h2 margin-bottom-x2">Вход или регистрация</h2>
 
             <label class="field field-input margin-bottom">
@@ -17,6 +17,7 @@
 
             <a href="/">Вернуться назад</a>
         </div>
+
         <div class="auth__step" data-step="2">
             <h2 class="h2 text-align-center">Введите код из SMS</h2>
             <p class="auth__step-text text-align-center">
@@ -42,8 +43,10 @@
                            name="code-num-4" data-code="4" type="number"  maxlength="1">
                 </label>
             </div>
+
             <div class="text-align-center margin-bottom">
-                <a href="/" id="auth__send-phone-repeat">Получить новый код</a>
+                <p class="color-gray auth__text" id="auth__send-time">Получить новый код через <span>60</span> сек.</p>
+                <a href="/" class="hide" id="auth__send-phone-repeat">Получить новый код</a>
             </div>
             <div class="text-align-center margin-bottom">
                 <a href="/" class="tooltip"
@@ -54,12 +57,14 @@
             </div>
         </div>
 
-        <div class="auth__step active" data-step="3">
+        <div class="auth__step auth__step-progress" data-step="3">
             <h2 class="h2 margin-bottom-x2">Регистрация</h2>
 
             <div class="auth__progress">
                 <p>Шаг 1 из 2 – Данные вашей организации</p>
-                <div class="auth__progress-line"></div>
+                <div class="auth__progress-container">
+                    <div class="auth__progress-line"></div>
+                </div>
             </div>
 
             <div class="auth__tabs" id="company_type-tabs">
@@ -98,77 +103,76 @@
             </label>
 
 
-            <div class="auth__policy">
-                <input type="checkbox" id="policy" name="policy">
-                <label class="" for="policy">
-                    Я соглашаюсь с <a href="#">условиями</a> и даю свое <a href="#">согласие на обработку</a> и использование моих персональных данных
-                </label>
+            <div class="auth__policy margin-bottom-x2">
+                <div class="field field-no-icon no-margin-vertical">
+                    <input type="checkbox" id="policy" name="policy" class="validate" data-validate="required_checkbox">
+                    <label class="auth__policy-label" for="policy">
+                        Я соглашаюсь с <a href="#">условиями</a> и даю свое <a href="#">согласие на обработку</a> и использование моих персональных данных
+                    </label>
+                    <p class="error-message"></p>
+                </div>
+
             </div>
 
-            <button class="button full-width auth__step-link auth__step-link--next" data-step="4">Далее: паспортные данные</button>
+            <button class="button full-width auth__step-link auth__step-link--next margin-bottom" data-step="4">Далее: паспортные данные</button>
 
             <a href="/" class="auth__step-link" data-step="2">Вернуться назад</a>
         </div>
 
-        <div class="auth__step active" data-step="4">
+        <div class="auth__step auth__step-progress" data-step="4">
             <h2 class="h2 margin-bottom-x2">Регистрация</h2>
 
             <div class="auth__progress">
                 <p>Шаг 2 из 2 – Ваши паспортные данные</p>
-                <div class="auth__progress-line"></div>
+                <div class="auth__progress-container">
+                    <div class="auth__progress-line"></div>
+                </div>
             </div>
 
-            <div class="auth__tabs" id="company_type-tabs">
-                <div class="item active" data-tab="ИП">«ИП»</div>
-                <div class="item" data-tab="ООО">«ООО»</div>
-            </div>
-
-            <input type="hidden" id="auth-company-type" name="company_type" value="ИП">
-
             <label class="field field-input">
-                <input class="input-text placeholder validate" data-validate="required-min" placeholder="Введите название" data-placeholder="Название вашей организации"
-                       name="company_name" type="text">
-                <p class="error-message"></p>
-            </label>
-            <label class="field field-input">
-                <input class="input-text placeholder validate" data-validate="required-min-number" data-min-length="12" placeholder="Введите ИНН" data-placeholder="ИНН"
-                       name="inn"  type="text">
-                <p class="error-message"></p>
-            </label>
-            <label class="field field-input">
-                <input class="input-text placeholder validate" data-validate="required-min" placeholder="Введите Ваше ФИО" data-placeholder="Ваше ФИО"
-                       name="name"  type="text">
+                <input class="input-text placeholder validate" data-validate="passport_serial_number" placeholder="Введите серию и номер паспорта" data-placeholder="Серия и номер паспорта"
+                       name="passport" type="text">
                 <p class="error-message"></p>
             </label>
 
-            <label class="field field-input">
-                <input class="input-text placeholder validate" data-validate="required-min-number" placeholder="Введите код" data-placeholder="Код участника в АТИ"
-                       name="ati_code"  type="text">
-                <p class="error-message"></p>
-            </label>
-
-            <label class="field field-input">
-                <input class="input-text placeholder validate" data-validate="email" placeholder="Введите email" data-placeholder="Электронная почта"
-                       name="ati_code"  type="text">
-                <p class="error-message"></p>
-            </label>
-
-
-            <div class="auth__policy">
-                <input type="checkbox" id="policy" name="policy">
-                <label class="" for="policy">
-                    Я соглашаюсь с <a href="#">условиями</a> и даю свое <a href="#">согласие на обработку</a> и использование моих персональных данных
+            <div class="auth__field-row">
+                <label class="field field-input">
+                    <input class="input-text placeholder validate input-mask" data-validate="date" data-mask_tpl="date" placeholder="Введите дату выдачи" data-placeholder="Дата выдачи"
+                           name="passport_date"  type="text">
+                    <p class="error-message"></p>
+                </label>
+                <label class="field field-input">
+                    <input class="input-text placeholder validate" data-validate="number" placeholder="Введите код" data-placeholder="Код подразделения"
+                           name="name"  type="text">
+                    <p class="error-message"></p>
                 </label>
             </div>
 
-            <button class="button full-width auth__step-link auth__step-link--next" data-step="4">Далее: паспортные данные</button>
 
-            <a href="/" class="auth__step-link" data-step="2">Вернуться назад</a>
+
+            <label class="field field-input">
+                <textarea class="input-text placeholder validate" data-validate="required" placeholder="Введите кем выдан паспорт" data-placeholder="Кем выдан"
+                          name="name" ></textarea>
+                <p class="error-message"></p>
+            </label>
+
+            <button class="button full-width margin-bottom" type="submit">Завершить регистрацию</button>
+
+            <a href="/" class="auth__step-link" data-step="3">Вернуться назад</a>
         </div>
 
 
         <div class="auth__loader">
             <div class="loader"></div>
+        </div>
+
+        <div class="auth__message">
+            <img src="./img/auth/error.svg" alt="">
+            <h2 class="h2">Ошибка</h2>
+            <p class="color-gray auth__text">
+                Что-то пошло не так, попробуйте позже или напишите нам на <a href="mailto:support@example.ru">support@example.ru</a>, описав ситуацию, при которой возникает ошибка
+            </p>
+            <a href="/" class="button">Закрыть</a>
         </div>
     </form>
 </section>

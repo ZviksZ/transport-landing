@@ -26,6 +26,7 @@
                 <img src="./img/logo.svg" alt="Факторинг">
             </a>
 
+            <% if (!authPage) { %>
             <div class="header__menu">
                 <div class="header-margin hide-desktop"></div>
                 <div class="header__menu-nav">
@@ -33,12 +34,12 @@
                     <a href="#" class="header__menu-link color-gray">Стоимость</a>
                     <a href="#section-info" class="header__menu-link color-gray">Вопросы и ответы</a>
                     <a href="#" class="header__menu-link color-gray">О компании</a>
-                   <!-- <a href="#" class="header__menu-link header__menu-link&#45;&#45;account color-gray">
-                        <div class="header__menu-avatar" style="background-image: url('/img/avatar.png')">
-                            <span>AB</span>
-                        </div>
-                        <span>Личный кабинет</span>
-                    </a>-->
+                    <!-- <a href="#" class="header__menu-link header__menu-link&#45;&#45;account color-gray">
+                         <div class="header__menu-avatar" style="background-image: url('/img/avatar.png')">
+                             <span>AB</span>
+                         </div>
+                         <span>Личный кабинет</span>
+                     </a>-->
                 </div>
                 <div class="header__menu-buttons hide-mobile">
                     <a href="#" class="button small secondary">Войти</a>
@@ -56,6 +57,9 @@
             <div class="header__burger hide-desktop">
                 <span></span>
             </div>
+            <% } %>
+
+
         </div>
     </div>
 </div>
