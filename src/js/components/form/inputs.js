@@ -40,7 +40,7 @@ function initMaskedInput() {
                 break;
 
             case 'passport_serial_number':
-                mask = '9999 999999';
+                mask = '99 99 999999';
                 autoUnmask = true;
                 break;
 

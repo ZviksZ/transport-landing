@@ -16,22 +16,26 @@ export class InitAuthForm {
    }
 
    init = () => {
+      $('#auth-phone-number').val('')
       initFormWithValidate(this.$form);
 
       this.$form.on('submit', this.onSubmit);
       this.$form.find('.auth__code-input').on('input', this.enterCode);
       this.$form.find('.auth__step-progress .input-text').on('blur', this.setProgress);
-      this.$form.find('.auth__step-disabled .input-text').on('input', this.checkDisabledBtn);
+      this.$form.find('.auth__step-disabled .input-text').on('input change', this.checkDisabledBtn);
       this.$form.find('.auth__step-link').on('click', this.changeStep);
       this.$form.find('.auth__tabs .item').on('click', this.changeTab);
       $('#auth__send-phone-repeat').on('click', this.sendPhoneNumberApi);
    };
 
    setProgress = () => {
-      const successFields = this.$form.find('.auth__step-progress .field.success').length;
-      const progressWidth = (successFields / this.progressInputsLength) * 100 + '%';
+      setTimeout(() => {
+         const successFields = this.$form.find('.auth__step-progress .field.success').length;
+         const progressWidth = (successFields / this.progressInputsLength) * 100 + '%';
 
-      $('.auth__progress-container .auth__progress-line').css('width', progressWidth);
+         $('.auth__progress-container .auth__progress-line').animate({width: progressWidth}, 400);
+      }, 100)
+
    };
 
    changeTab = (e) => {
@@ -47,7 +51,7 @@ export class InitAuthForm {
       const stepBlock = $(e.currentTarget).closest('.auth__step-disabled');
       const step = stepBlock.attr('data-step');
 
-      if (this.validateStep(step)) {
+      if (this.validateStep(step, false)) {
          stepBlock.find('.auth__step-link--next').attr('disabled', false);
       } else {
          stepBlock.find('.auth__step-link--next').attr('disabled', true);
@@ -208,12 +212,12 @@ export class InitAuthForm {
       $('#auth-phone-number-text').text(text);
    };
 
-   validateStep = (step) => {
+   validateStep = (step, showError = true) => {
       let error = 0;
       let $fields = this.$form.find('.auth__step[data-step="' + step + '"] .validate');
 
       $fields.each(function () {
-         if (!validateField($(this), true)) {
+         if (!validateField($(this), showError)) {
             error++;
          }
       });
@@ -230,7 +234,11 @@ export class InitAuthForm {
 
       let data = form.serialize();
 
+      console.log('submit')
+
       if (validateForm(form, true)) {
+         console.log('submit validateForm')
+
          $.ajax({
             url: form.attr('action'),
             type: 'POST',
@@ -262,11 +270,5 @@ export class InitAuthForm {
             0
          );
       }
-   };
-
-   clearForm = (form) => {
-      form[0].reset();
-      form.find('.field').removeClass('success').addClass('empty');
-      form.find('.field input').val('');
    };
 }

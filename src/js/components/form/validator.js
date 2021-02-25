@@ -59,7 +59,7 @@ function validateField($field, showError = true) {
 	const plh = $field.attr('data-placeholder');
 	const type = $field.attr('data-validate');
 	const errorMessage = $field.attr('data-error_message');
-	const minLength = $field.attr('data-min-length') || 3;
+	const minLength = +$field.attr('data-min-length') || 3;
 
 	const mobilePhoneInvalidFirstSymbols = [ '0', '1', '2', '7' ];
 
@@ -75,6 +75,28 @@ function validateField($field, showError = true) {
 			break;
 
 		case 'required-min':
+			if (!val) {
+				error++;
+				message = 'Поле обязательно для заполнения';
+			} else if (val.length < minLength) {
+				error++;
+				message = `Минимальная длина ${minLength} ${declOfNum(minLength, ['символ', 'символа', 'символов'])}`;
+			}
+			break;
+
+			case 'required-max':
+			if (!val) {
+				error++;
+				message = 'Поле обязательно для заполнения';
+			} else if (val.length > valLength) {
+				error++;
+				message = `Максимальная длина ${valLength} ${declOfNum(valLength, ['символ', 'символа', 'символов'])}`;
+			}
+			break;
+
+		case 'required-min-code':
+			val = val.replace(/[_\s]/g, '');
+
 			if (!val) {
 				error++;
 				message = 'Поле обязательно для заполнения';
