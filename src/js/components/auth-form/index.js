@@ -16,11 +16,16 @@ export class InitAuthForm {
    }
 
    init = () => {
-      $('#auth-phone-number').val('')
+      this.initSmsFieldInput($('#auth__code'), (value) => {
+         if (value && value.length === 4) {
+            this.checkCode();
+         }
+      });
+
+      $('#auth-phone-number').val('');
       initFormWithValidate(this.$form);
 
       this.$form.on('submit', this.onSubmit);
-      this.$form.find('.auth__code-input').on('input', this.enterCode);
       this.$form.find('.auth__step-progress .input-text').on('blur', this.setProgress);
       this.$form.find('.auth__step-disabled .input-text').on('input change', this.checkDisabledBtn);
       this.$form.find('.auth__step-link').on('click', this.changeStep);
@@ -28,14 +33,104 @@ export class InitAuthForm {
       $('#auth__send-phone-repeat').on('click', this.sendPhoneNumberApi);
    };
 
+   initSmsFieldInput = ($field, callback) => {
+      let $inputs = $field.find('.sms-input');
+      $inputs
+         .on('input', function (e) {
+            onInputHandler($(this), e);
+         })
+         .on('change', function () {
+            if ($(this).val() !== '') {
+               $(this).removeClass('empty');
+            } else {
+               $(this).addClass('empty');
+            }
+         });
+
+      function onInputHandler($input, e) {
+         if (e.currentTarget.value.length === 4) {
+            setSMSFullValue();
+
+            return;
+         }
+
+         cleanSMSValue();
+
+         let thisVal = $input.val(),
+            inputIndex = +$input.attr('data-index'),
+            nextIndex = inputIndex + 1,
+            prevIndex = inputIndex - 1;
+
+         checkPrevNextInputStep($input);
+
+         /*Оцищаем от говна*/
+         function cleanSMSValue() {
+            $input.val($input.val().replace(/\D/g, ''));
+            $input.val($input.val().substr(0, 1));
+         }
+
+         /*Вставка*/
+         function setSMSFullValue() {
+            let smsFullVal = e.currentTarget.value || '';
+            smsFullVal = smsFullVal.replace(/\D/g, '');
+
+            let smsArr = smsFullVal.split('');
+
+            for (var i = 0; i < $inputs.length; i++) {
+               $inputs[i].value = smsArr[i];
+            }
+
+            getSMSFullvalue();
+
+            $inputs.trigger('change').trigger('blur');
+         }
+
+         /**/
+         function checkSMSValue(value) {
+            if (value.length === 4) {
+               $inputs.trigger('blur');
+               callback(value);
+            }
+         }
+
+         /*Сбор данных со всех инпатов*/
+         function getSMSFullvalue() {
+            let fullValue = '';
+
+            for (let i = 0; i < $inputs.length; i++) {
+               let itemValue = $inputs[i].value;
+               fullValue += itemValue;
+            }
+
+            checkSMSValue(fullValue);
+         }
+
+         /*Переключение менжду инпатами при изменении*/
+         function checkPrevNextInputStep() {
+            if (thisVal.length > 0) {
+               $('[data-index=' + nextIndex + ']').focus();
+            } else {
+               if (+thisVal.length === 0 && prevIndex !== 0) {
+                  $('[data-index=' + prevIndex + ']').focus();
+               }
+            }
+
+            if (thisVal.length === 4) {
+               $inputs.trigger('blur');
+            }
+
+            getSMSFullvalue();
+         }
+      }
+   };
+
    setProgress = () => {
       setTimeout(() => {
          const successFields = this.$form.find('.auth__step-progress .field.success').length;
          const progressWidth = (successFields / this.progressInputsLength) * 100 + '%';
 
-         $('.auth__progress-container .auth__progress-line').animate({width: progressWidth}, 400);
-      }, 100)
-
+         $('.auth__progress-container .auth__progress-line').animate({ width: progressWidth }, 400);
+      }, 100);
    };
 
    changeTab = (e) => {
@@ -66,26 +161,6 @@ export class InitAuthForm {
       this.$form.removeClass('show-loading');
    };
 
-   enterCode = (e) => {
-      const $this = $(e.currentTarget);
-      const count = +$this.attr('data-code');
-      const val = $this.val();
-
-      if (val.length > 1) {
-         $this.val($this.val().slice(0, 1));
-         $this.closest('.field').removeClass('empty');
-      } else if (val.length === 0) {
-         $this.closest('.field').addClass('empty');
-      }
-
-      if (val && count === 4) {
-         $this.closest('.field').removeClass('empty');
-         this.checkCode();
-      }
-
-      $this.closest('.field').next('.field').find('input').focus();
-   };
-
    checkCode = () => {
       this.addLoader();
 
@@ -93,11 +168,9 @@ export class InitAuthForm {
          this.removeLoader();
 
          if (this.isNumberRegistered) {
-
          } else {
-            this.toggleSteps('3')
+            this.toggleSteps('3');
          }
-
       }, 1000);
    };
 
@@ -126,8 +199,7 @@ export class InitAuthForm {
          this.setPhoneNumberText();
       }
 
-      this.toggleSteps(nextStep)
-
+      this.toggleSteps(nextStep);
    };
 
    toggleSteps = (nextStep) => {
@@ -137,7 +209,8 @@ export class InitAuthForm {
             .find('.auth__step[data-step="' + nextStep + '"] input')
             .val('')
             .closest('.field')
-            .addClass('empty').removeClass('success error');
+            .addClass('empty')
+            .removeClass('success error');
       }
 
       this.$form
@@ -146,7 +219,7 @@ export class InitAuthForm {
          .find('input')
          .first()
          .focus();
-   }
+   };
 
    initPhoneTimer = () => {
       const display = $('#auth__send-time span');
@@ -176,7 +249,6 @@ export class InitAuthForm {
       this.isNumberIsRegistered();
       this.initPhoneTimer();
 
-
       console.log(value);
    };
 
@@ -192,7 +264,7 @@ export class InitAuthForm {
             this.isNumberRegistered = res.isAuth;
          },
          error: (res) => {
-            console.log('Раскомментировать')
+            console.log('Раскомментировать');
             /*this.$form.addClass('show-message');*/
          },
          timeout: 30000,
@@ -234,10 +306,10 @@ export class InitAuthForm {
 
       let data = form.serialize();
 
-      console.log('submit')
+      console.log('submit');
 
       if (validateForm(form, true)) {
-         console.log('submit validateForm')
+         console.log('submit validateForm');
 
          $.ajax({
             url: form.attr('action'),

@@ -27,6 +27,40 @@
             </p>
             <div class="auth__code margin-bottom-x2 margin-top-x2" id="auth__code">
                 <label class="field field-small empty">
+                    <input class="sms-input input-text empty" type="tel"
+                           data-index="1"
+                           tabindex="0"
+                           autocomplete="one-time-code">
+                </label>
+
+                <label class="field field-small empty">
+                    <input class="sms-input input-text empty" type="tel"
+                           data-index="2"
+                           tabindex="0"
+                           autocomplete="one-time-code">
+                </label>
+
+                <label class="field field-small empty">
+                    <input class="sms-input input-text empty" type="tel"
+                           data-index="3"
+                           tabindex="0"
+                           autocomplete="one-time-code">
+                </label>
+
+                <label class="field field-small empty">
+                    <input class="sms-input input-text empty" type="tel"
+                           data-index="4"
+                           tabindex="0"
+                           autocomplete="one-time-code">
+                </label>
+
+                <input type="hidden" name="full_sms" id="full_sms" class="stats-input" data-field="130">
+
+            </div>
+
+
+            <!--<div class="auth__code margin-bottom-x2 margin-top-x2" id="auth__code">
+                <label class="field field-small empty">
                     <input class="input-text auth__code-input"
                            name="code-num-1" data-code="1" type="number"  maxlength="1">
                 </label>
@@ -42,7 +76,7 @@
                     <input class="input-text auth__code-input"
                            name="code-num-4" data-code="4" type="number"  maxlength="1">
                 </label>
-            </div>
+            </div>-->
 
             <div class="text-align-center margin-bottom">
                 <p class="color-gray auth__text" id="auth__send-time">Получить новый код через <span>60</span> сек.</p>
@@ -98,7 +132,7 @@
 
             <label class="field field-input">
                 <input class="input-text placeholder validate" data-validate="email" placeholder="Введите email" data-placeholder="Электронная почта"
-                       name="ati_code"  type="text">
+                       name="email"  type="email">
                 <p class="error-message"></p>
             </label>
 
@@ -152,7 +186,7 @@
 
 
             <label class="field field-input">
-                <textarea class="input-text placeholder validate" data-validate="required-max" maxlength="20" placeholder="Введите кем выдан паспорт" data-placeholder="Кем выдан"
+                <textarea class="input-text placeholder validate" data-validate="required-max" maxlength="10" placeholder="Введите кем выдан паспорт" data-placeholder="Кем выдан"
                           name="name"></textarea>
                 <p class="error-message"></p>
             </label>
