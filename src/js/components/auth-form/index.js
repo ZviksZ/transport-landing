@@ -135,9 +135,16 @@ export class InitAuthForm {
 
    changeTab = (e) => {
       const activeTab = $(e.currentTarget).attr('data-tab');
+      const innField = $('[name="inn"]')
 
       this.$form.find('.auth__tabs .item').removeClass('active');
       this.$form.find('.auth__tabs .item[data-tab="' + activeTab + '"]').addClass('active');
+
+      innField.attr('data-type', activeTab)
+
+      if (innField.closest('.field').hasClass('error') || innField.closest('.field').hasClass('success')) {
+         validateField(innField, true)
+      }
 
       $('#auth-company-type').val(activeTab);
    };
@@ -249,7 +256,7 @@ export class InitAuthForm {
       this.isNumberIsRegistered();
       this.initPhoneTimer();
 
-      console.log(value);
+
    };
 
    isNumberIsRegistered = () => {

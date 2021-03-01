@@ -219,13 +219,15 @@ input, textarea, select {
         font-weight: 400;
         color: #FF0000;
         position: absolute;
-        bottom: -16px;
+        bottom: 0;
+        transform: translateY(100%);
         left: 0;
         margin: 0;
+        padding-top: 2px;
     }
 
     &.error {
-        &:focus {
+        &:focus{
             border: 2px solid $colorDangerous;
         }
         &:before {
@@ -241,9 +243,18 @@ input, textarea, select {
             background-size: contain;
         }
 
+
+
         input, select, textarea {
             color: $colorText;
             border-color: $colorDangerous;
+        }
+
+        &:hover {
+            input, select, textarea {
+                color: $colorText;
+                border-color: $colorDangerous;
+            }
         }
 
         .error-message {

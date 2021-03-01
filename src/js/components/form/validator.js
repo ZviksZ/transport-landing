@@ -1,6 +1,6 @@
-import * as $      from 'jquery';
-import moment      from 'moment';
-import {declOfNum} from "../helpers";
+import * as $ from 'jquery';
+import moment from 'moment';
+import { declOfNum } from '../helpers';
 
 import { getMobilePhoneClearValue } from './inputs';
 
@@ -16,19 +16,19 @@ const regNum = /^\d+$/;
  * @return {boolean} результат проверки формы
  */
 function validateForm($form, showError = true) {
-	let error = 0;
+   let error = 0;
 
-	let $fields = $form.find('.validate');
+   let $fields = $form.find('.validate');
 
-	$fields.each(function () {
-		if (!validateField($(this), showError)) {
-			error++;
-		}
-	});
+   $fields.each(function () {
+      if (!validateField($(this), showError)) {
+         error++;
+      }
+   });
 
-	if (error > 0) return false;
+   if (error > 0) return false;
 
-	return true;
+   return true;
 }
 
 /**
@@ -38,268 +38,285 @@ function validateForm($form, showError = true) {
  * @return {boolean} результат проверки поля
  */
 function validateField($field, showError = true) {
-	if (!$field.hasClass('validate')) return true;
-	if ($field.hasClass('validate-disabled')) return true;
+   if (!$field.hasClass('validate')) return true;
+   if ($field.hasClass('validate-disabled')) return true;
 
-	if ($field.attr('type') == 'checkbox' && $field.attr('data-validate') == 'required') {
-		if (!$field.prop('checked')) {
-			return false
-		} else { return true }
+   if ($field.attr('type') == 'checkbox' && $field.attr('data-validate') == 'required') {
+      if (!$field.prop('checked')) {
+         return false;
+      } else {
+         return true;
+      }
+   }
 
-	}
+   const $fieldBlock = $field.parents('.field');
+   const $errorMessage = $fieldBlock.find('.error-message');
 
-	const $fieldBlock = $field.parents('.field');
-	const $errorMessage = $fieldBlock.find('.error-message');
+   let error = 0;
+   let message = '';
 
-	let error = 0;
-	let message = '';
+   let val = $.trim($field.val());
+   const valLength = +$field.attr('maxlength') || 0;
+   const plh = $field.attr('data-placeholder');
+   const type = $field.attr('data-validate');
+   const errorMessage = $field.attr('data-error_message');
+   const minLength = +$field.attr('data-min-length') || 3;
 
-	let val = $.trim($field.val());
-	const valLength = +$field.attr('maxlength') || 0;
-	const plh = $field.attr('data-placeholder');
-	const type = $field.attr('data-validate');
-	const errorMessage = $field.attr('data-error_message');
-	const minLength = +$field.attr('data-min-length') || 3;
+   const mobilePhoneInvalidFirstSymbols = ['0', '1', '2', '7'];
 
-	const mobilePhoneInvalidFirstSymbols = [ '0', '1', '2', '7' ];
+   let firstSymbol = val[0] || '';
 
-	let firstSymbol = val[0] || '';
+   switch (type) {
+      //обязательно для заполнения
+      case 'required':
+         if (!val) {
+            error++;
+            message = 'Поле обязательно для заполнения';
+         }
+         break;
 
-	switch (type) {
-		//обязательно для заполнения
-		case 'required':
-			if (!val) {
-				error++;
-				message = 'Поле обязательно для заполнения';
-			}
-			break;
+      case 'required-min':
+         if (!val) {
+            error++;
+            message = 'Поле обязательно для заполнения';
+         } else if (val.length < minLength) {
+            error++;
+            message = `Минимальная длина ${minLength} ${declOfNum(minLength, ['символ', 'символа', 'символов'])}`;
+         }
+         break;
 
-		case 'required-min':
-			if (!val) {
-				error++;
-				message = 'Поле обязательно для заполнения';
-			} else if (val.length < minLength) {
-				error++;
-				message = `Минимальная длина ${minLength} ${declOfNum(minLength, ['символ', 'символа', 'символов'])}`;
-			}
-			break;
+      case 'required-max':
+         if (!val) {
+            error++;
+            message = 'Поле обязательно для заполнения';
+         } else if (val.length > valLength) {
+            error++;
+            message = `Максимальная длина ${valLength} ${declOfNum(valLength, ['символ', 'символа', 'символов'])}`;
+         }
+         break;
 
-			case 'required-max':
-			if (!val) {
-				error++;
-				message = 'Поле обязательно для заполнения';
-			} else if (val.length > valLength) {
-				error++;
-				message = `Максимальная длина ${valLength} ${declOfNum(valLength, ['символ', 'символа', 'символов'])}`;
-			}
-			break;
+      case 'required-min-code':
+         val = val.replace(/[_\s]/g, '');
 
-		case 'required-min-code':
-			val = val.replace(/[_\s]/g, '');
+         if (!val) {
+            error++;
+            message = 'Поле обязательно для заполнения';
+         } else if (val.length < minLength) {
+            error++;
+            message = `Минимальная длина ${minLength} ${declOfNum(minLength, ['символ', 'символа', 'символов'])}`;
+         }
+         break;
 
-			if (!val) {
-				error++;
-				message = 'Поле обязательно для заполнения';
-			} else if (val.length < minLength) {
-				error++;
-				message = `Минимальная длина ${minLength} ${declOfNum(minLength, ['символ', 'символа', 'символов'])}`;
-			}
-			break;
+      case 'required-min-number':
+         if (!val) {
+            error++;
+            message = 'Поле обязательно для заполнения';
+         } else if (val.search(regNum) === -1) {
+            error++;
+            message = 'Только цифры';
+         } else if (val.length < minLength) {
+            error++;
+            message = `Минимальная длина ${minLength} ${declOfNum(minLength, ['символ', 'символа', 'символов'])}`;
+         }
+         break;
 
-		case 'required-min-number':
-			if (!val) {
-				error++;
-				message = 'Поле обязательно для заполнения';
-			} else if (val.search(regNum) === -1) {
-				error++;
-				message = 'Только цифры';
-			} else if (val.length < minLength) {
-				error++;
-				message = `Минимальная длина ${minLength} ${declOfNum(minLength, ['символ', 'символа', 'символов'])}`;
-			}
-			break;
+      case 'required-inn':
+         let typeInn = $field.attr('data-type')
+         let innLength = typeInn === 'ИП' ? 12 : 10
 
+         if (!val) {
+            error++;
+            message = 'Поле обязательно для заполнения';
+         } else if (val.search(regNum) === -1) {
+            error++;
+            message = 'Только цифры';
+         } else if (val.length !== innLength) {
+            error++;
+            message = `Для ${typeInn} ИНН должен состоять из ${innLength} цифр`;
+         }
+         break;
 
-		case 'required_checkbox_radio':
-			if (!+$field.find('input:checked').length) {
-				error++;
-				message = 'Согласие обязательно';
-			}
-			break;
+      case 'required_checkbox_radio':
+         if (!+$field.find('input:checked').length) {
+            error++;
+            message = 'Согласие обязательно';
+         }
+         break;
 
-		//чекбокс - обязательно для выбора
-		case 'required_checkbox':
-			if (!$field.prop('checked')) {
-				error++;
-				message = 'Согласие обязательно';
-			}
-			break;
+      //чекбокс - обязательно для выбора
+      case 'required_checkbox':
+         if (!$field.prop('checked')) {
+            error++;
+            message = 'Согласие обязательно';
+         }
+         break;
 
-		// число
-		case 'number':
-			val = val + '';
-			if (
-				!val ||
-				val.search(regNum) === -1 ||
-				(valLength && valLength !== val.length)
-			) {
-				error++;
-				message = 'Только цифры';
-			}
-			break;
+      // число
+      case 'number':
+         val = val + '';
+         if (!val || val.search(regNum) === -1 || (valLength && valLength !== val.length)) {
+            error++;
+            message = 'Только цифры';
+         }
+         break;
 
-		//номер телефона
-		case 'mobile_phone':
-			val = getMobilePhoneClearValue($field);
-			firstSymbol = val[0];
+      //номер телефона
+      case 'mobile_phone':
+         val = getMobilePhoneClearValue($field);
+         firstSymbol = val[0];
 
-			if (!val || val.search(regNum) === -1 || val.length !== 10 ||
-				mobilePhoneInvalidFirstSymbols.includes(firstSymbol)) {
-				error++;
-				message = 'Укажите корректный номер телефона';
-			}
-			break;
+         if (!val || val.search(regNum) === -1 || val.length !== 10 || mobilePhoneInvalidFirstSymbols.includes(firstSymbol)) {
+            error++;
+            message = 'Укажите корректный номер телефона';
+         }
+         break;
 
-		case 'number_phone-required':
-			val = val.replace('+7 ', '');
-			val = val.replace(/[()\_-\s]/g, '');
+      case 'number_phone-required':
+         val = val.replace('+7 ', '');
+         val = val.replace(/[()\_-\s]/g, '');
 
-			if (val === '') {
-				error++;
-				message = 'Поле обязательно для заполнения';
-			} else if (val.search(regNum) == -1 || val.length != 10) {
-				error++;
-				message = 'Укажите корректный номер телефона';
-			}
-			break;
+         if (val === '') {
+            error++;
+            message = 'Поле обязательно для заполнения';
+         } else if (val.search(regNum) == -1 || val.length != 10) {
+            error++;
+            message = 'Укажите корректный номер телефона';
+         }
+         break;
 
-		// серия и номер паспорта - 10 цифр
-		case 'passport_serial_number':
-			val = val + '';
-			if (!val || val.search(regNum) == -1 || val.length !== 10) {
-				error++;
-				message = 'Укажите корректные данные';
-			}
-			break;
+      case 'number_phone-required-codes':
+         val = val.replace('+7 ', '');
+         val = val.replace(/[()\_-\s]/g, '');
 
-		// фио в одном поле
-		case 'fio':
-			const fio = val.split(' ') || [];
-			const [ lastname, name, ...fioRest ] = fio;
-			const patronymic = (fioRest && fioRest.length) ? fioRest.join(' ') : '';
-			let checkLastname = true;
-			let checkName = true;
-			let checkPatronymic = true;
-			if (!lastname || lastname.search(regNameRus) === -1 || lastname.length > 50 || lastname.length < 2) {
-				checkLastname = false;
-			}
+         const availableCodes = ['3', '4', '5', '6', '8', '9'];
 
-			if (!name || name.search(regNameRus) === -1 || name.length > 50 || name.length < 2) {
-				checkName = false;
-			}
+         if (val === '') {
+            error++;
+            message = 'Поле обязательно для заполнения';
+         } else if (!availableCodes.includes(val[0])) {
+            error++;
+            message = 'Проверьте код оператора или региона — он может начинаться на 3, 4, 5, 6, 8, 9';
+         } else if (val.search(regNum) == -1 || val.length != 10) {
+            error++;
+            message = 'Укажите корректный номер телефона';
+         }
+         break;
 
-			if (
-				patronymic &&
-				(
-					patronymic.search(regNameRus) === -1 ||
-					patronymic.length > 50 ||
-					patronymic.length < 2
-				)
-			) {
-				checkPatronymic = false;
-			}
+      // серия и номер паспорта - 10 цифр
+      case 'passport_serial_number':
+         val = val + '';
+         if (!val || val.search(regNum) == -1 || val.length !== 10) {
+            error++;
+            message = 'Укажите корректные данные';
+         }
+         break;
 
-			if (!checkLastname || !checkName || !checkPatronymic) {
-				error++;
-				message = 'Укажите ФИО как в паспорте';
-			}
-			break;
+      // фио в одном поле
+      case 'fio':
+         const fio = val.split(' ') || [];
+         const [lastname, name, ...fioRest] = fio;
+         const patronymic = fioRest && fioRest.length ? fioRest.join(' ') : '';
+         let checkLastname = true;
+         let checkName = true;
+         let checkPatronymic = true;
+         if (!lastname || lastname.search(regNameRus) === -1 || lastname.length > 50 || lastname.length < 2) {
+            checkLastname = false;
+         }
 
-		//дата рождения
-		case 'date':
-			if (val.search(regDate) === -1) {
-				error++;
-				message = 'Дата в формате дд.мм.гггг';
+         if (!name || name.search(regNameRus) === -1 || name.length > 50 || name.length < 2) {
+            checkName = false;
+         }
 
-			} else {
-				const d = val.split('.');
-				//месяц с 0 поэтому вычитаем
-				const day = d[0] * 1;
-				const month = d[1] * 1 - 1;
-				const year = d[2] * 1;
+         if (patronymic && (patronymic.search(regNameRus) === -1 || patronymic.length > 50 || patronymic.length < 2)) {
+            checkPatronymic = false;
+         }
 
-				const dateCur = moment([ year, month, day ]);
-				const dateNow = moment();
+         if (!checkLastname || !checkName || !checkPatronymic) {
+            error++;
+            message = 'Укажите ФИО как в паспорте';
+         }
+         break;
 
-				//проверка на корректность даты
-				if (dateCur.isValid() == 'Invalid date' || dateCur.isValid() == false) {
-					error++;
-					message = 'Укажите верную дату';
+      //дата рождения
+      case 'date':
+         if (val.search(regDate) === -1) {
+            error++;
+            message = 'Дата в формате дд.мм.гггг';
+         } else {
+            const d = val.split('.');
+            //месяц с 0 поэтому вычитаем
+            const day = d[0] * 1;
+            const month = d[1] * 1 - 1;
+            const year = d[2] * 1;
 
-				}
-			}
+            const dateCur = moment([year, month, day]);
+            const dateNow = moment();
 
-			break;
+            //проверка на корректность даты
+            if (dateCur.isValid() == 'Invalid date' || dateCur.isValid() == false) {
+               error++;
+               message = 'Укажите верную дату';
+            }
+         }
 
-		//денежный формат
-		case 'money':
-			val = val + '';
-			if (!val || val.search(regNum) === -1) {
-				error++;
-				message = 'Только цифры';
-			}
-			break;
+         break;
 
-		//email
-		case 'email':
-			val = val.toLowerCase();
-			if (!val || val.search(regEmail) === -1 || val.length > 50 || val == 'mig@mig.mig' || val ==
-				'email@adress.ru') {
-				error++;
-				message = 'Укажите корректный адрес электронной почты';
-			}
-			break;
+      //денежный формат
+      case 'money':
+         val = val + '';
+         if (!val || val.search(regNum) === -1) {
+            error++;
+            message = 'Только цифры';
+         }
+         break;
 
-		case 'email-required':
-			val = val.toLowerCase();
+      //email
+      case 'email':
+         val = val.toLowerCase();
+         if (!val || val.search(regEmail) === -1 || val.length > 50 || val == 'mig@mig.mig' || val == 'email@adress.ru') {
+            error++;
+            message = 'Укажите корректный адрес электронной почты';
+         }
+         break;
 
-			if (val === '') {
-				error++;
-				message = 'Поле обязательно для заполнения';
-			} else if (val.search(regEmail) === -1 || val.length > 50 || val == 'mig@mig.mig' || val ==
-				'email@adress.ru') {
-				error++;
-				message = 'Укажите корректный адрес электронной почты';
-			}
-			break;
+      case 'email-required':
+         val = val.toLowerCase();
 
-		//СНИЛС
-		case 'snils':
-			if (!validateSnils(val)) {
-				error++;
-				message = 'Укажите корректный СНИЛС';
-			}
-			break;
-	}
+         if (val === '') {
+            error++;
+            message = 'Поле обязательно для заполнения';
+         } else if (val.search(regEmail) === -1 || val.length > 50 || val == 'mig@mig.mig' || val == 'email@adress.ru') {
+            error++;
+            message = 'Укажите корректный адрес электронной почты';
+         }
+         break;
 
-	// еслии задано кастомное сообщение об ошибке - выводим его
-	if (errorMessage) message = errorMessage;
+      //СНИЛС
+      case 'snils':
+         if (!validateSnils(val)) {
+            error++;
+            message = 'Укажите корректный СНИЛС';
+         }
+         break;
+   }
 
-	//если поле заполнено не корректно
-	//возвращаем
-	if (error > 0) {
-		if (showError) {
-			$errorMessage.html(message);
-			$fieldBlock.removeClass('success').addClass('error');
-		}
+   // еслии задано кастомное сообщение об ошибке - выводим его
+   if (errorMessage) message = errorMessage;
 
-		return false;
+   //если поле заполнено не корректно
+   //возвращаем
+   if (error > 0) {
+      if (showError) {
+         $errorMessage.html(message);
+         $fieldBlock.removeClass('success').addClass('error');
+      }
 
-	} else {
-		$errorMessage.html('');
-		$fieldBlock.removeClass('error').addClass('success');
-		return true;
-	}
+      return false;
+   } else {
+      $errorMessage.html('');
+      $fieldBlock.removeClass('error').addClass('success');
+      return true;
+   }
 }
 
 /**
@@ -307,38 +324,39 @@ function validateField($field, showError = true) {
  * @param {HTMLElement} $form - html объект формы
  */
 function initFormWithValidate($form) {
-	if (!$form) return;
+   if (!$form) return;
 
-	const $submit = $form.find('[type="submit"]');
+   const $submit = $form.find('[type="submit"]');
 
-	//checkDisabledSubmit();
+   //checkDisabledSubmit();
 
-	// инпаты
-	$form.find('.validate')
-		 .on('keyup', () => {
-			 //checkDisabledSubmit();
-		 })
-		 .on('change', function () {
-			 validateForm($form, false);
-			 validateField($(this));
+   // инпаты
+   $form
+      .find('.validate')
+      .on('keyup', () => {
+         //checkDisabledSubmit();
+      })
+      .on('change', function () {
+         validateForm($form, false);
+         validateField($(this));
 
-			 //checkDisabledSubmit();
-		 });
+         //checkDisabledSubmit();
+      });
 
-	// чекбоксы/радио
-	/*$form.find('div.validate input')
-		 .on('change', function () {
-			 validateForm($form, false);
-			 validateField($(this).parents('.validate'));
-		 });*/
+   // чекбоксы/радио
+   /*$form.find('div.validate input')
+       .on('change', function () {
+          validateForm($form, false);
+          validateField($(this).parents('.validate'));
+       });*/
 
-	function checkDisabledSubmit() {
-		if (validateForm($form, false)) {
-			$submit.removeAttr('disabled');
-		} else {
-			$submit.attr('disabled', 'disabled');
-		}
-	}
+   function checkDisabledSubmit() {
+      if (validateForm($form, false)) {
+         $submit.removeAttr('disabled');
+      } else {
+         $submit.attr('disabled', 'disabled');
+      }
+   }
 }
 
 /**
@@ -347,41 +365,37 @@ function initFormWithValidate($form) {
  * @return {Boolean} результат проверки
  */
 function validateSnils(snils = '') {
-	snils = snils.replace(/[-\s]/g, '');
+   snils = snils.replace(/[-\s]/g, '');
 
-	if (!snils || snils.search(regNum) === -1 || snils.length !== 11) return false;
+   if (!snils || snils.search(regNum) === -1 || snils.length !== 11) return false;
 
-	if (+snils <= 1001998) return true;
+   if (+snils <= 1001998) return true;
 
-	//расчитываем контрольное число
-	const snilsArray = snils.split('');
-	const snilsDigit = +snils.slice(-2);
+   //расчитываем контрольное число
+   const snilsArray = snils.split('');
+   const snilsDigit = +snils.slice(-2);
 
-	//контрольное число
-	let checkDigit = 0;
+   //контрольное число
+   let checkDigit = 0;
 
-	let sum = 0;
-	for (let i = 0; i < 9; i++) {
-		sum += snilsArray[i] * (9 - i);
-	}
+   let sum = 0;
+   for (let i = 0; i < 9; i++) {
+      sum += snilsArray[i] * (9 - i);
+   }
 
-	if (sum < 100) {
-		checkDigit = sum;
-	} else if (sum > 101) {
-		checkDigit = (sum % 101) * 1;
-	}
+   if (sum < 100) {
+      checkDigit = sum;
+   } else if (sum > 101) {
+      checkDigit = (sum % 101) * 1;
+   }
 
-	if (checkDigit === 100 || checkDigit === 101) {
-		checkDigit = 0;
-	}
+   if (checkDigit === 100 || checkDigit === 101) {
+      checkDigit = 0;
+   }
 
-	if (checkDigit != snilsDigit) return false;
+   if (checkDigit != snilsDigit) return false;
 
-	return true;
+   return true;
 }
 
-export {
-	validateForm,
-	validateField,
-	initFormWithValidate,
-};
+export { validateForm, validateField, initFormWithValidate };

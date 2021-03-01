@@ -6,12 +6,13 @@
             <h2 class="h2 margin-bottom-x2">Вход или регистрация</h2>
 
             <label class="field field-input margin-bottom">
-                <input class="input-text placeholder validate input-mask" data-mask_tpl="phone_plus7" data-validate="number_phone-required" placeholder="Введите телефон" data-placeholder="Номер телефона"
+                <input class="input-text placeholder validate input-mask" data-mask_tpl="phone_plus7" data-validate="number_phone-required-codes" placeholder="Введите телефон"
+                       data-placeholder="Номер телефона"
                        name="feedback_phone" id="auth-phone-number" type="text">
                 <p class="error-message"></p>
             </label>
 
-            <div class="text-align-center margin-top-x2 margin-bottom-x2">
+            <div class="text-align-center margin-top-x3 margin-bottom-x2">
                 <button class="auth__step-link auth__step-link--next auth__send-phone full-width button" data-step="2" disabled>Получить код в SMS</button>
             </div>
 
@@ -58,32 +59,12 @@
 
             </div>
 
-
-            <!--<div class="auth__code margin-bottom-x2 margin-top-x2" id="auth__code">
-                <label class="field field-small empty">
-                    <input class="input-text auth__code-input"
-                           name="code-num-1" data-code="1" type="number"  maxlength="1">
-                </label>
-                <label class="field field-small empty">
-                    <input class="input-text auth__code-input"
-                           name="code-num-2" data-code="2" type="number"  maxlength="1">
-                </label>
-                <label class="field field-small empty">
-                    <input class="input-text auth__code-input"
-                           name="code-num-3" data-code="3" type="number"  maxlength="1">
-                </label>
-                <label class="field field-small empty">
-                    <input class="input-text auth__code-input"
-                           name="code-num-4" data-code="4" type="number"  maxlength="1">
-                </label>
-            </div>-->
-
             <div class="text-align-center margin-bottom">
                 <p class="color-gray auth__text" id="auth__send-time">Получить новый код через <span>60</span> сек.</p>
                 <a href="/" class="hide" id="auth__send-phone-repeat">Получить новый код</a>
             </div>
             <div class="text-align-center margin-bottom">
-                <a href="/" class="tooltip"
+                <a href="/" onclick="event.preventDefault()" class="tooltip"
                    data-text='Если SMS не пришло в течение 5 минут, необходимо перезагрузить телефон. Если после перезагрузки SMS не пришло — воспользоваться опцией "Получить новый код”. В случае повторения проблемы сообщите нам на support@example.ru, указав ваш номер телефона и мобильного оператора.'>Вам не пришло SMS?</a>
             </div>
             <div class="text-align-center">
@@ -114,12 +95,12 @@
                 <p class="error-message"></p>
             </label>
             <label class="field field-input">
-                <input class="input-text placeholder validate" data-validate="required-min-number" data-min-length="12" placeholder="Введите ИНН" data-placeholder="ИНН"
-                       name="inn"  type="text">
+                <input class="input-text placeholder validate" data-validate="required-inn" placeholder="Введите ИНН" data-placeholder="ИНН"
+                       name="inn" data-type="ИП" type="text">
                 <p class="error-message"></p>
             </label>
             <label class="field field-input">
-                <input class="input-text placeholder validate" data-validate="required-min" placeholder="Введите Ваше ФИО" data-placeholder="Ваше ФИО"
+                <input class="input-text placeholder validate" data-validate="fio" placeholder="Введите Ваше ФИО" data-placeholder="Ваше ФИО"
                        name="name"  type="text">
                 <p class="error-message"></p>
             </label>
@@ -139,7 +120,7 @@
 
             <div class="auth__policy margin-bottom-x2">
                 <div class="field field-no-icon no-margin-vertical">
-                    <input type="checkbox" id="policy" name="policy" class="validate" data-validate="required_checkbox">
+                    <input type="checkbox" id="policy" checked name="policy" class="validate" data-validate="required_checkbox">
                     <label class="auth__policy-label" for="policy">
                         Я соглашаюсь с <a href="#">условиями</a> и даю свое <a href="#">согласие на обработку</a> и использование моих персональных данных
                     </label>
@@ -186,7 +167,7 @@
 
 
             <label class="field field-input">
-                <textarea class="input-text placeholder validate" data-validate="required-max" maxlength="10" placeholder="Введите кем выдан паспорт" data-placeholder="Кем выдан"
+                <textarea class="input-text placeholder validate" data-validate="required-min" data-min-length="10" placeholder="Введите кем выдан паспорт" data-placeholder="Кем выдан"
                           name="name"></textarea>
                 <p class="error-message"></p>
             </label>

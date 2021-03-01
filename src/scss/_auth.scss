@@ -242,16 +242,15 @@
             justify-content: center;
             transform: translateY(100%);
             opacity: 0;
-            transition: 0.2s ease;
             background: $colorWhite;
-            padding: 0 84px;
+            padding: 25px 84px;
 
             @include mobile {
-                padding: 0 16px;
+                padding: 5px 16px;
             }
 
             .h2 {
-                margin: 30px 0 4px;
+                margin: 20px 0 4px;
             }
 
             .h2, p {
@@ -259,7 +258,7 @@
             }
 
             .button {
-                margin-top: 30px;
+                margin-top: 20px;
             }
         }
 
