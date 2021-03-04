@@ -1,11 +1,12 @@
 import * as $                                                from 'jquery';
 import {InitAuthForm}                                        from "./components/auth-form";
-import { Calculator }                                        from './components/calculator';
-import { CustomSelect }                                      from './components/custom-select';
-import { CustomTabs }                                        from './components/custom-tabs';
-import { Effects }                                           from './components/effects';
-import { initMaskedInput, initMoneyInput, initPlaceholders } from './components/form';
+import { Calculator }                                                                        from './components/calculator';
+import { CustomSelect }                                                                      from './components/custom-select';
+import { CustomTabs }                                                                        from './components/custom-tabs';
+import { Effects }                                                                           from './components/effects';
+import { initMaskedInput, initMoneyInput, initPlaceholders }                                 from './components/form';
 import { HeaderMenu }                                                                        from './components/header-menu';
+import {initSubmenuMobileOpen}                                                               from "./components/helpers/simple-functions";
 import {initCloseMenuOnClick, initInfoTabs, initInteriorMobileBtn, initSmoothScrollToAnchor} from './components/helpers/simple-functions.js';
 import { ModalWindowFullScreen }                                                             from './components/modal-window-fullscreen';
 import { Parallax }                                                                          from './components/parallax';
@@ -46,6 +47,8 @@ $(function () {
    initInfoTabs();
 
    initSmoothScrollToAnchor();
+
+   initSubmenuMobileOpen();
 
    setTimeout(() => {
       $('.preloader').addClass('preloader-hide');

@@ -1,0 +1,114 @@
+<% var data = { title: "Личный кабинет | Факторинг", authPage: false }; %> <%= _.template(require('./../includes/lk/header-lk.html').default)(data) %>
+
+
+<section class="section  lk lk-main">
+    <div class="container">
+        <h3 class="h3">Получить деньги</h3>
+        <p class="color-gray">Оформите заявку и получите заработанные деньги в течении одного дня</p>
+
+        <div class="main__calculator main__calculator--lk lk-block" data-settings='{"default":{"price":20000},"values":{"minPrice":5000,"maxPrice":50000}}' id="calculator">
+            <div class="main__calculator-item">
+                <label class="field field-input margin-bottom">
+                    <input class="input-money input-text placeholder validate" data-currency=" ₽" data-placeholder="Выберите сумму" data-validate="required" id="calculator-input"
+                           name="calculator-input"
+                           placeholder="Введите значение" type="text">
+                    <input class="input-money" hidden id="calculator-range-value" type="text">
+                    <p class="error-message"></p>
+
+                    <input class="js-range-slider" name="mortgage_sum_range" type="text" value=""/>
+                </label>
+
+            </div>
+
+            <form action="/">
+                <input type="hidden" id="calculator-sum-finally">
+                <button class="button" type="submit">Получить деньги</button>
+            </form>
+
+
+
+            <div class="main__calculator-summary">
+                <div class="main__calculator-summary-block">
+                    <div class="main__calculator-summary-title">
+                        <span class="body12 color-gray">Первая выплата</span>
+
+                        <div class="main__calculator-summary-info tooltip" data-text="Закрывающая выплата — платеж, получаемый перевозчиком после оплаты заказчиком счета по перевозке.">
+                            <i class="icon-info"></i>
+                        </div>
+                    </div>
+                    <div class="main__calculator-summary-text">
+                        <span class="body14 bold-text" id="calc-first-paid">22 400 ₽</span>
+                        <span class="body14 color-gray">(70%)</span>
+                    </div>
+                </div>
+                <div class="main__calculator-summary-block">
+                    <div class="main__calculator-summary-title">
+                        <span class="body12 color-gray">Закрывающая выплата</span>
+
+                        <div class="main__calculator-summary-info tooltip" data-text="1Закрывающая выплата — платеж, получаемый перевозчиком после оплаты заказчиком счета по перевозке.">
+                            <i class="icon-info"></i>
+                        </div>
+                    </div>
+                    <div class="main__calculator-summary-text">
+                            <span class="body14 main__calculator-summary-cross">
+                                <span id="calc-close-paid-crossed">6 400 ₽</span><span class="body14 color-gray">(20%)</span>
+                            </span>
+                        <span class="body14 bold-text" id="calc-close-paid">9 600 ₽</span>
+                        <span class="body14 color-gray">(30%)</span>
+                    </div>
+                </div>
+                <div class="main__calculator-summary-block">
+                    <div class="main__calculator-summary-title">
+                        <span class="body12 color-gray">Комиссия</span>
+
+                        <div class="main__calculator-summary-info tooltip" data-text="2Закрывающая выплата — платеж, получаемый перевозчиком после оплаты заказчиком счета по перевозке.">
+                            <i class="icon-info"></i>
+                        </div>
+                    </div>
+                    <div class="main__calculator-summary-text">
+                            <span class="body14 main__calculator-summary-cross">
+                                <span id="calc-commission-paid">3 200 ₽</span> <span class="body14 color-gray">(10%)</span>
+                            </span>
+                        <span class="body14 bold-text">0 ₽</span>
+                        <span class="body14 color-gray">Первая сделка бесплатно!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="h3 margin-bottom">Баланс</h3>
+
+        <div class="lk-balance lk-block">
+            <div class="lk-balance__item">
+                <div class="lk-balance__top">
+                    <span class="body18 color-gray">Доступно:</span>
+
+                    <div class="lk-balance__info tooltip" data-text="Закрывающая выплата — платеж, получаемый перевозчиком после оплаты заказчиком счета по перевозке.">
+                        <i class="icon-info"></i>
+                    </div>
+                </div>
+                <div class="lk-balance__sum lk-balance__sum--blue">
+                    22 400 ₽
+                </div>
+            </div>
+            <div class="lk-balance__item">
+                <div class="lk-balance__top">
+                    <span class="body18 color-gray">Ожидается:</span>
+
+                    <div class="lk-balance__info tooltip" data-text="Закрывающая выплата — платеж, получаемый перевозчиком после оплаты заказчиком счета по перевозке.">
+                        <i class="icon-info"></i>
+                    </div>
+                </div>
+                <div class="lk-balance__sum">
+                    0 ₽
+                </div>
+            </div>
+
+            <a href="#" class="button">Снять</a>
+        </div>
+    </div>
+</section>
+
+
+
+<%= _.template(require('./../includes/lk/footer-lk.html').default)(data) %>

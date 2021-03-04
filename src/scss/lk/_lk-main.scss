@@ -1,0 +1,70 @@
+.lk-main {
+    padding: 40px 0;
+}
+
+.lk-balance {
+    display: flex;
+    align-items: center;
+    padding: 25px 46px;
+
+    .lk-balance__item {
+        .lk-balance__top {
+            display: flex;
+            align-items: center;
+
+            span, i {
+               color: $colorGray;
+            }
+
+            .lk-balance__info {
+                margin-left: 12px;
+                i {
+                    font-size: 15px;
+                    height: 17px;
+                }
+            }
+        }
+
+        .lk-balance__sum {
+            font-weight: 600;
+            font-size: 32px;
+            line-height: 40px;
+            color: $colorText;
+            &.lk-balance__sum--blue {
+                color: $colorPrimary;
+            }
+        }
+    }
+
+    .lk-balance__item + .lk-balance__item {
+        margin-left: 124px;
+    }
+
+    .button {
+        margin-left: auto;
+    }
+
+    @include mobile {
+        padding: 25px 16px;
+        flex-wrap: wrap;
+
+        .lk-balance__item {
+            width: 100%;
+            margin-bottom: 20px;
+
+            .lk-balance__sum {
+                font-size: 26px;
+                line-height: 34px;
+            }
+        }
+
+        .lk-balance__item + .lk-balance__item {
+            margin-left: 0;
+        }
+
+        .button {
+            margin-left: 0;
+            width: 100% !important;
+        }
+    }
+}

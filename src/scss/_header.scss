@@ -17,10 +17,41 @@
         display: flex;
         align-items: center;
         margin-left: auto;
+        @include desktop {
+            height: 100%;
+        }
+
 
         .header__menu-nav {
             display: flex;
             align-items: center;
+            @include desktop {
+                height: 100%;
+            }
+
+            .header__menu-divider {
+                width: 1px;
+                height: 37px;
+                background: $colorGrayExtraLight;
+                margin: 0 26px;
+
+                @include mobile {
+                    display: none;
+                }
+            }
+
+            .header__menu--balance {
+                margin-right: 21px;
+
+                .item + .item {
+                    margin-top: 3px;
+                }
+
+                @include mobile {
+                    margin: 15px 0;
+                    border-top: 1px solid $colorGrayExtraLight;
+                }
+            }
 
             .header__menu-link {
                 position: relative;
@@ -33,16 +64,17 @@
                 }
 
                 &.header__menu-link--account {
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+
                     .header__menu-avatar {
+                        position: relative;
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         width: 44px;
                         height: 44px;
-                        background-repeat: no-repeat;
-                        background-position: center center;
-                        -webkit-background-size: cover;
-                        background-size: cover;
                         font-size: 18px;
                         line-height: 32px;
                         color: $colorWhite;
@@ -51,6 +83,39 @@
                         @include mobile {
                             margin-right: 14px;
                         }
+
+                        .bg {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-repeat: no-repeat;
+                            background-position: center center;
+                            -webkit-background-size: cover;
+                            background-size: cover;
+                        }
+
+                        @include desktop {
+                            span {
+                                display: inline-block !important;
+                            }
+                        }
+                    }
+
+                    img {
+                        width: 13px;
+                        display: block;
+                        margin-left: 15px;
+
+                        @include mobile {
+                            display: none;
+                        }
+                    }
+
+                    span {
+                        font-size: 14px;
+                        line-height: 24px;
                     }
 
                     @include desktop {
@@ -60,7 +125,90 @@
                     }
                 }
 
+                .header-submenu {
+                    display: none;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    background: $colorWhite;
+                    box-shadow: 1px 4px 12px rgba(0, 0, 0, 0.1);
+                    border-radius: 8px;
+                    width: 212px;
+                    flex-direction: column;
+                    padding: 14px 18px;
+
+                    .header-submenu__item {
+                        font-size: 16px;
+                        line-height: 28px;
+                        color: $colorText;
+                    }
+
+                    .header__menu-link + .header__menu-link {
+                        margin-left: 0;
+                    }
+
+                    .header-submenu__item + .header-submenu__item {
+                        @include desktop {
+                            margin-top: 14px;
+                        }
+
+                    }
+                }
+
+                @include desktop {
+                    &:hover {
+                        .header-submenu {
+                            display: flex;
+                        }
+                    }
+                }
+
+                @include mobile {
+                    .header-submenu {
+                        width: 100%;
+                        padding: 0;
+                        .header-submenu__item {
+                            color: $colorGray;
+                            font-size: 14px;
+                            line-height: 28px;
+                            width: 100%;
+                            padding: 16px 0;
+                            border-top: 1px solid $colorGrayLight;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+
+                            &:last-child {
+                                border-bottom: 1px solid $colorGrayLight;
+                            }
+
+                            &:after {
+                                font-family: "factoring";
+                                display: block;
+                                content: '\6a';
+                                color: $colorGray;
+                                font-size: 25px;
+                                margin-left: 4px;
+                            }
+                        }
+                        .header-submenu__item + .header-submenu__item {
+                            margin-top: 0;
+                            margin-left: 0;
+                        }
+                    }
+                    &.show-submenu {
+                        &:after {
+                            transform: rotate(90deg);
+                        }
+                        .header-submenu {
+                            display: flex;
+                            box-shadow: none;
+                            border-radius: 0;
+                        }
+                    }
+                }
             }
+
 
             .header__menu-link + .header__menu-link {
                 margin-left: 24px;
@@ -84,6 +232,7 @@
                         justify-content: flex-start;
                         align-items: center;
                         padding: 10px 0;
+
                         &:after {
                             margin-left: auto;
                         }
@@ -118,6 +267,7 @@
     .header__menu-buttons {
         display: flex;
         align-items: center;
+
         .button + .button {
             margin-left: 20px;
         }

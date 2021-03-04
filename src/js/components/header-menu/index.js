@@ -13,7 +13,7 @@ export class HeaderMenu {
    init = () => {
       this.$burgerBtn.on('click', this.toggleMenu);
 
-      $('.header__menu-nav .header__menu-link').on('click', () => {
+      $('.header__menu-nav .header__menu-link:not(.with-submenu)').on('click', () => {
          $('html').removeClass('header-menu-open');
          lockBodyOnModalOpen(false)
       })
