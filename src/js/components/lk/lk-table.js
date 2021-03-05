@@ -121,7 +121,7 @@ export class LkTable {
          : '';
 
       return `
-         <tr>
+         <tr data-id='${item.id}'>
             <td>
                 <div class="title nowrap">№ операции</div>
                 <div class="value">${item.number}</div>
