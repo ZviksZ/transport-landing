@@ -67,11 +67,11 @@ export class LkTable {
 
    filterData = () => {
       const { dateFrom, dateTo, status } = this.filter;
-      const parsedDateFrom = this.getParsedDate(dateFrom)
-      const parsedDateTo = this.getParsedDate(dateTo)
+      const parsedDateFrom = this.getParsedDate(dateFrom) ? new Date(this.getParsedDate(dateFrom)) : null
+      const parsedDateTo = this.getParsedDate(dateTo) ? new Date(this.getParsedDate(dateTo)) : null
 
       this.filteredData = this.data.filter((item) => {
-         const parsedDate = this.getParsedDate(item.date);
+         const parsedDate = new Date(this.getParsedDate(item.date));
 
          if ((!parsedDateFrom || parsedDate >= parsedDateFrom) && (!parsedDateTo || parsedDate <= parsedDateTo) && (!status || status === 'all' || item.status === status)) {
             return item;

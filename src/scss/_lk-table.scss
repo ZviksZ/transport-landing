@@ -74,15 +74,15 @@
                     margin-top: -2px;
 
                     &.success {
-                        background: url("../../img/lk/status-success.svg") no-repeat center;
+                        background: url("../img/lk/status-success.svg") no-repeat center;
                     }
 
                     &.error {
-                        background: url("../../img/lk/status-error.svg") no-repeat center;
+                        background: url("../img/lk/status-error.svg") no-repeat center;
                     }
 
                     &.process {
-                        background: url("../../img/lk/status-process.svg") no-repeat center;
+                        background: url("../img/lk/status-process.svg") no-repeat center;
                     }
                 }
             }
