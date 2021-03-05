@@ -21,6 +21,7 @@ export class CustomSelect {
       removeItems: true,
       itemSelectText: '',
       renderSelectedChoices: 'always',
+       shouldSort: false,
       classNames: {
         containerOuter: 'choices choices-custom',
       },

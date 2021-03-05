@@ -1,0 +1,202 @@
+.ui-datepicker {
+    width: auto !important;
+    font-size: 2em !important;
+    z-index: 999 !important;
+
+    .ui-state-highlight {
+        background: $colorGray !important;
+        border-color: $colorGray !important;
+        color: $colorWhite !important;
+    }
+
+    .ui-state-active {
+        background: $colorPrimary !important;
+        border-color: $colorPrimary !important;
+    }
+}
+
+
+.lk-table__wrapper {
+    padding: 34px 24px 8px;
+    margin: 25px 0;
+
+    .lk-table__text {
+        font-size: 12px;
+        line-height: 24px;
+        letter-spacing: 0.12em;
+        color: #000;
+        text-transform: uppercase;
+    }
+
+    .lk-table-scroll {
+        @include mobile {
+            overflow-x: scroll;
+        }
+    }
+
+    .lk-table {
+        border-collapse: collapse;
+        width: 100%;
+        border-radius: 4px;
+        min-width: 980px;
+
+        tr {
+            border-top: 1px solid $colorGrayExtraLight;
+        }
+
+        td {
+            padding: 23px 15px;
+            vertical-align: top;
+
+            .title {
+                font-size: 12px;
+                line-height: 24px;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: $colorGray;
+            }
+
+            .value {
+                font-size: 14px;
+                line-height: 24px;
+                color: #000;
+                display: flex;
+                align-items: center;
+
+                .status {
+                    display: block;
+                    width: 12px;
+                    height: 12px;
+                    margin-right: 10px;
+                    -webkit-background-size: contain !important;
+                    background-size: contain !important;
+                    border-radius: 50%;
+                    margin-top: -2px;
+
+                    &.success {
+                        background: url("../../img/lk/status-success.svg") no-repeat center;
+                    }
+
+                    &.error {
+                        background: url("../../img/lk/status-error.svg") no-repeat center;
+                    }
+
+                    &.process {
+                        background: url("../../img/lk/status-process.svg") no-repeat center;
+                    }
+                }
+            }
+        }
+    }
+
+    .lk-table__filter {
+        display: flex;
+        align-items: center;
+        padding-bottom: 36px;
+
+        .lk-table__filter-date {
+            display: flex;
+            align-items: center;
+            margin: 0 30px 0 18px;
+
+            .divider {
+                display: block;
+                width: 15px;
+                height: 1px;
+                background: $colorText;
+                margin: 0 10px;
+            }
+        }
+
+        .lk-table__filter-sort {
+            display: flex;
+            align-items: center;
+            margin: 0 24px 0 28px;
+
+            span {
+                margin-right: 28px;
+            }
+        }
+
+        .lk-table__filter-direction {
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+
+            .item {
+                width: 45px;
+                height: 45px;
+                min-width: 45px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid #E9E9E9;
+                cursor: pointer;
+
+                svg {
+                    rect {
+                        fill: #C4C4C4;
+                    }
+                }
+
+                &:first-child {
+                    border-radius: 4px 0 0 4px;
+                }
+
+                &:last-child {
+                    border-radius: 0 4px 4px 0;
+                }
+
+                &.active {
+                    background: #A6A6A6;
+                    border: 1px solid #A6A6A6;
+
+                    svg {
+                        rect {
+                            fill: $colorWhite;
+                        }
+                    }
+                }
+
+                &:not(:last-child) {
+                    border-right: 0;
+                }
+            }
+
+            .item.active + .item {
+                border-left: 0;
+            }
+        }
+
+
+    }
+
+    .choices-custom {
+        width: 246px;
+    }
+
+    input {
+        width: 130px;
+        padding: 9px 14px;
+        height: 45px;
+        border: 1px solid #E9E9E9;
+        box-sizing: border-box;
+        border-radius: 4px;
+        font-size: 16px;
+        line-height: 28px;
+    }
+}
+
+
+.lk-table__history {
+    .lk-table__filter {
+        justify-content: space-between;
+    }
+
+    .choices-custom {
+        width: 280px;
+
+
+    }
+}

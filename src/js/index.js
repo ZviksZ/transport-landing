@@ -1,4 +1,5 @@
 import * as $                                                from 'jquery';
+import 'jquery-ui';
 import {InitAuthForm}                                        from "./components/auth-form";
 import { Calculator }                                                                        from './components/calculator';
 import { CustomSelect }                                                                      from './components/custom-select';
@@ -8,6 +9,7 @@ import { initMaskedInput, initMoneyInput, initPlaceholders }                    
 import { HeaderMenu }                                                                        from './components/header-menu';
 import {initSubmenuMobileOpen}                                                               from "./components/helpers/simple-functions";
 import {initCloseMenuOnClick, initInfoTabs, initInteriorMobileBtn, initSmoothScrollToAnchor} from './components/helpers/simple-functions.js';
+import {LkTable}                                                                             from "./components/lk";
 import { ModalWindowFullScreen }                                                             from './components/modal-window-fullscreen';
 import { Parallax }                                                                          from './components/parallax';
 import { ReviewsSlider }                                                                     from './components/reviews-slider';
@@ -36,6 +38,10 @@ $(function () {
 
    new TooltipCustom();
 
+
+   //Личный кабинет
+   new LkTable();
+
    // инициализация функционала модальных окон
    let modal = new ModalWindowFullScreen();
 
@@ -49,6 +55,9 @@ $(function () {
    initSmoothScrollToAnchor();
 
    initSubmenuMobileOpen();
+
+
+
 
    setTimeout(() => {
       $('.preloader').addClass('preloader-hide');

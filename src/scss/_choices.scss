@@ -18,32 +18,31 @@
     .choices__inner {
         width: 100%;
         position: relative;
-        background: $colorGray;
+        background: $colorWhite;
         box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.15);
-        border-radius: 6px;
+        border-radius: 4px;
         color: $colorText;
         white-space: nowrap;
-        padding: 10px 30px 10px 17px;
-        font-size: 17px;
-        line-height: 29px;
-        font-weight: 700;
-        height: 49px;
+        padding: 9px 32px 9px 18px;
+        font-size: 16px;
+        line-height: 28px;
+        height: 45px;
         min-height: auto;
         border: 0;
         overflow-x: hidden;
         display: flex;
         align-items: center;
         &:after{
-            font-family: "factoring" !important;
+            display: block;
+            content: '';
             position: absolute;
-            top: 12px;
+            top: 19px;
             right: 17px;
-            content: "\61";
-            color: $colorText;
-            border: 0;
-            font-size: 18px;
-            width: 10px;
-            height: 10px;
+            background: url("../img/lk/arrow.svg") no-repeat center;
+            -webkit-background-size: contain;
+            background-size: contain;
+            width: 13px;
+            height: 8px;
         }
     }
     .choices__list--single {
@@ -94,32 +93,28 @@
         background: $colorWhite;
         border: 0;
         box-sizing: border-box;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 0px 0px 6px 6px;
+        box-shadow: 1px 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 0px 0px 8px 8px;
         .choices__item {
             display: flex;
             align-items: center;
-            font-size: 17px;
-            line-height: 29px;
-            padding-left: 17px;
-            font-weight: 700;
+            font-size: 16px;
+            line-height: 28px;
             color: $colorText;
-            height: 49px;
+            padding-left: 18px;
+            height: 45px;
             background: $colorWhite;
             @include desktop {
                 &:hover {
-                    background: $colorGray;
+                    background: $colorGrayLight;
                 }
             }
         }
         .is-selected {
-            background: $colorGray;
+            background: $colorGrayExtraLight;
         }
         .choices__list {
-            max-height: 240px;
-        }
-        .choices__item + .choices__item {
-            border-top: 1px solid $colorGray;
+            max-height: 280px;
         }
     }
 

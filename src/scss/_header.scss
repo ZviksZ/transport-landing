@@ -173,10 +173,13 @@
                             line-height: 28px;
                             width: 100%;
                             padding: 16px 0;
-                            border-top: 1px solid $colorGrayLight;
                             display: flex;
                             justify-content: space-between;
                             align-items: center;
+                            border-top: 1px solid $colorGrayLight;
+                            &:first-child {
+                                margin-top: 14px;
+                            }
 
                             &:last-child {
                                 border-bottom: 1px solid $colorGrayLight;
@@ -197,10 +200,16 @@
                         }
                     }
                     &.show-submenu {
+                        flex-wrap: wrap;
+                        border-bottom: 0 !important;
+                        padding-bottom: 0;
                         &:after {
                             transform: rotate(90deg);
                         }
                         .header-submenu {
+                            position: relative;
+                            top: auto;
+                            left: auto;
                             display: flex;
                             box-shadow: none;
                             border-radius: 0;
@@ -243,6 +252,9 @@
                     }
 
                     &:after {
+                        position: absolute;
+                        right: 0;
+                        top: 15px;
                         font-family: "factoring";
                         display: block;
                         content: '\6a';

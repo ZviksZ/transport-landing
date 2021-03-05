@@ -19,6 +19,7 @@
     "jquery": "^3.5.1",
     "jquery-lazy": "^1.7.10",
     "jquery-ui": "^1.12.1",
+    "lodash": "^4.17.21",
     "lozad": "^1.14.0",
     "moment": "^2.24.0",
     "swiper": "^5.3.7",
