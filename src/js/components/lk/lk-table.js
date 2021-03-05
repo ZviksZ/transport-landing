@@ -102,6 +102,10 @@ export class LkTable {
          template += this.getTableRowTemplate(item);
       });
 
+      if (!this.filteredData.length) {
+         template += `<tr><td colspan="300" class="text-align-center"><p class="body18 color-gray">По данному фильтру ничего не найдено</p></td></tr>`
+      }
+
       this.$tableWrapper.find('.lk-table tbody').html(template);
    };
 
