@@ -145,42 +145,6 @@
             }
         }
 
-        .auth__tabs {
-            display: flex;
-            align-items: center;
-            border-radius: 4px;
-            overflow: hidden;
-            margin: 0 0 24px;
-
-            .item {
-                width: 50%;
-                min-width: 50%;
-                padding: 14px;
-                background: $colorWhite;
-                border: 1px solid $colorGrayMiddle;
-                text-align: center;
-                cursor: pointer;
-                text-transform: uppercase;
-                font-weight: 600;
-                font-size: 16px;
-                line-height: 28px;
-
-                &:first-child {
-                    border-radius: 4px 0 0 4px;
-                }
-
-                &:last-child {
-                    border-radius: 0 4px 4px 0;
-                }
-
-                &.active {
-                    background: $colorText;
-                    border: 1px solid $colorText;
-                    color: $colorWhite;
-                }
-            }
-        }
-
         .auth__policy-label {
             font-size: 16px;
             line-height: 28px;
@@ -280,6 +244,52 @@
             padding: 20px 16px;
             margin: 20px 0;
             box-shadow: 0px 4px 8px rgba(0, 34, 66, 0.08);
+        }
+    }
+}
+
+
+.auth__tabs {
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0 0 24px;
+
+    .item {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        min-width: 50%;
+        padding: 14px;
+        background: $colorWhite;
+        border: 1px solid $colorGrayMiddle;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 28px;
+        color: $colorText;
+
+        @include desktop {
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+        &:first-child {
+            border-radius: 4px 0 0 4px;
+        }
+
+        &:last-child {
+            border-radius: 0 4px 4px 0;
+        }
+
+        &.active {
+            background: $colorText;
+            border: 1px solid $colorText;
+            color: $colorWhite;
         }
     }
 }
