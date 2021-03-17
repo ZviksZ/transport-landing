@@ -29,8 +29,12 @@ export class LkTable {
 
       this.resizeHandlers();
 
-      this.sortSelectChoices = new CustomSelect(true, 'lk-table__filter-sort');
-      this.statusSelectChoices = new CustomSelect(true, 'lk-table__filter-status');
+      if ($('#lk-table__filter-sort').length > 0) {
+         this.sortSelectChoices = new CustomSelect(true, 'lk-table__filter-sort');
+      }
+      if ($('#lk-table__filter-status').length > 0) {
+         this.statusSelectChoices = new CustomSelect(true, 'lk-table__filter-status');
+      }
 
       $(window).on('resize', this.resizeHandlers);
 
@@ -90,16 +94,36 @@ export class LkTable {
 
    setStateInOpen = () => {
       console.log(this.stateInOpen);
-      this.$tableWrapper.find('#date-from').val(this.stateInOpen.dateFrom || '');
-      this.$tableWrapper.find('#date-to').val(this.stateInOpen.dateTo || '');
-      this.sortSelectChoices.getInstance().setChoiceByValue(this.stateInOpen.sortBy);
-      this.statusSelectChoices.getInstance().setChoiceByValue(this.stateInOpen.status);
-      this.$tableWrapper.find('#lk-table__filter-direction .item').removeClass('active');
+      if (this.stateInOpen.dateFrom) {
+         this.$tableWrapper.find('#date-from').val(this.stateInOpen.dateFrom || '');
+      }
+      if (this.stateInOpen.dateTo) {
+         this.$tableWrapper.find('#date-to').val(this.stateInOpen.dateTo || '');
+      }
+      if (this.stateInOpen.sortBy) {
+         console.log(this.sortSelectChoices.getInstance())
+         this.sortSelectChoices.getInstance().setChoiceByValue(this.stateInOpen.sortBy);
+      }
+      if (this.stateInOpen.status) {
+         console.log(this.statusSelectChoices.getInstance())
+         this.statusSelectChoices.getInstance().setChoiceByValue(this.stateInOpen.status);
+      }
+
+
+
+    /*  if ($('#lk-table__filter-sort').length > 0) {
+
+      }
+      if ($('#lk-table__filter-status').length > 0) {
+
+
+      }*/
+
+
 
       if (this.stateInOpen.direction) {
+         this.$tableWrapper.find('#lk-table__filter-direction .item').removeClass('active');
          this.$tableWrapper.find('#lk-table__filter-direction .item[data-sort="' + this.stateInOpen.direction + '"]').addClass('active');
-      } else {
-         this.$tableWrapper.find('#lk-table__filter-direction .item[data-sort="asc"]').addClass('active');
       }
    };
 

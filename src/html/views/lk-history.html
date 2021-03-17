@@ -45,35 +45,44 @@
    }
 ]'>
             <div class="lk-table__filter">
-
-                <div class="lk-table__filter-sort">
-                    <span class="lk-table__text">Сортировать</span>
-                    <select name="" class="custom-select" id="lk-table__filter-sort">
-                        <option value="date">По дате</option>
-                        <option value="number">По номеру</option>
-                        <option value="contractor">По контрагенту</option>
-                        <option value="amount">По сумме</option>
-                        <option value="status">По статусу</option>
-                        <option value="operation">По операции</option>
-                    </select>
+                <div class="lk-table__filter-btn-mob hide-desktop" data-filter="sort">
+                    <span>Сортировать</span>
                 </div>
-                <div class="lk-table__filter-direction" id="lk-table__filter-direction">
-                    <div class="item active" data-sort="asc">
-                        <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="2" height="16" transform="matrix(-1.19249e-08 -1 -1 1.19249e-08 16 12)" fill="#191C1F"/>
-                            <rect width="2" height="11" transform="matrix(-1.19249e-08 -1 -1 1.19249e-08 11 7)" fill="#191C1F"/>
-                            <rect width="2" height="7" transform="matrix(-1.19249e-08 -1 -1 1.19249e-08 7 2)" fill="#191C1F"/>
-                        </svg>
+                <div class="lk-table__filter__block" data-filter="sort">
+                    <div class="lk-table__filter__title">
+                        <span class="lk-table__text">Сортировать</span>
+                        <img class="close-icon hide-desktop" src="/img/lk/close.svg" alt="">
                     </div>
-                    <div class="item" data-sort="desc">
-                        <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="16" width="2" height="16" transform="rotate(90 16 0)" fill="#83898F"/>
-                            <rect x="11" y="5" width="2" height="11" transform="rotate(90 11 5)" fill="#83898F"/>
-                            <rect x="7" y="10" width="2" height="7" transform="rotate(90 7 10)" fill="#83898F"/>
-                        </svg>
+                    <div class="lk-table__filter-sort">
+                        <select name="" class="custom-select loaded-select" id="lk-table__filter-sort">
+                            <option value="date">По дате</option>
+                            <option value="number">По номеру</option>
+                            <option value="contractor">По контрагенту</option>
+                            <option value="amount">По сумме</option>
+                            <option value="status">По статусу</option>
+                            <option value="operation">По операции</option>
+                        </select>
+                    </div>
+                    <div class="lk-table__filter-direction" id="lk-table__filter-direction">
+                        <div class="item active" data-sort="asc">
+                            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="2" height="16" transform="matrix(-1.19249e-08 -1 -1 1.19249e-08 16 12)" fill="#191C1F"/>
+                                <rect width="2" height="11" transform="matrix(-1.19249e-08 -1 -1 1.19249e-08 11 7)" fill="#191C1F"/>
+                                <rect width="2" height="7" transform="matrix(-1.19249e-08 -1 -1 1.19249e-08 7 2)" fill="#191C1F"/>
+                            </svg>
+                        </div>
+                        <div class="item" data-sort="desc">
+                            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="16" width="2" height="16" transform="rotate(90 16 0)" fill="#83898F"/>
+                                <rect x="11" y="5" width="2" height="11" transform="rotate(90 11 5)" fill="#83898F"/>
+                                <rect x="7" y="10" width="2" height="7" transform="rotate(90 7 10)" fill="#83898F"/>
+                            </svg>
 
+                        </div>
                     </div>
+                    <button class="button full-width hide-desktop filter-btn">Сохранить</button>
                 </div>
+
             </div>
 
             <div class="lk-table">

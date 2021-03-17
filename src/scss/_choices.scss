@@ -96,22 +96,41 @@
         box-shadow: 1px 4px 12px rgba(0, 0, 0, 0.1);
         border-radius: 0px 0px 8px 8px;
         .choices__item {
+            position: relative;
             display: flex;
             align-items: center;
             font-size: 16px;
             line-height: 28px;
             color: $colorText;
             padding-left: 18px;
-            height: 45px;
+            height: 42px;
             background: $colorWhite;
             @include desktop {
                 &:hover {
-                    background: $colorGrayLight;
+                    background: $colorGrayExtraLight;
                 }
             }
         }
+        .choices__item + .choices__item {
+            border-top: 1px solid #ECEFF2;
+        }
         .is-selected {
-            background: $colorGrayExtraLight;
+            &:after {
+                position: absolute;
+                right: 16px;
+                top: 18px;
+                display: block;
+                content: '';
+                width: 14px;
+                height: 10px;
+                background: url("../img/checked.svg") no-repeat center;
+                -webkit-background-size: contain;
+                background-size: contain;
+                opacity: 1;
+                @include mobile {
+                    top: 15px;
+                }
+            }
         }
         .choices__list {
             max-height: 280px;

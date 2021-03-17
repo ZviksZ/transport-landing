@@ -244,10 +244,6 @@
             display: flex;
             align-items: center;
             margin: 0 24px 0 28px;
-
-            span {
-                margin-right: 28px;
-            }
         }
 
         .lk-table__filter-direction {
@@ -425,8 +421,12 @@
         justify-content: space-between;
     }
 
-    .lk-table__filter-sort {
-        margin-left: 0 !important;
+    .lk-table__filter__block {
+        width: 100%;
+
+        .lk-table__filter-direction {
+            margin-left: auto;
+        }
     }
 
     .choices-custom {
