@@ -49,7 +49,7 @@
         flex-wrap: wrap;
 
         .lk-balance__item {
-            width: 100%;
+            width: 50%;
             margin-bottom: 20px;
 
             .lk-balance__sum {
@@ -68,3 +68,11 @@
         }
     }
 }
+
+@include desktop {
+    .lk-big-button {
+        width: 264px;
+    }
+}
+
+

@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
+import { CustomSelect } from '../custom-select';
 import { initRangePicker } from '../form';
-import { toCurrency } from '../helpers';
+import { lockBodyOnModalOpen, toCurrency } from '../helpers';
 import * as _ from 'lodash';
 
 export class LkTable {
@@ -26,18 +27,89 @@ export class LkTable {
    init = () => {
       this.initDateInputs();
 
-      this.$tableWrapper.find('select').on('change', this.getFilteredTemplates);
-      this.$tableWrapper.find('input').on('change', this.getFilteredTemplates);
+      this.resizeHandlers();
+
+      this.sortSelectChoices = new CustomSelect(true, 'lk-table__filter-sort');
+      this.statusSelectChoices = new CustomSelect(true, 'lk-table__filter-status');
+
+      $(window).on('resize', this.resizeHandlers);
+
+      this.initMobileFilter();
+      this.getFilteredTemplates();
+   };
+
+   resizeHandlers = () => {
+      if ($(window).width() < 1000) {
+         this.$tableWrapper.find('.filter-btn').on('click', this.filterBtnHandler);
+         this.$tableWrapper.find('select').off('change', this.getFilteredTemplates);
+         this.$tableWrapper.find('input').off('change', this.getFilteredTemplates);
+      } else {
+         this.$tableWrapper.find('.filter-btn').off('click', this.filterBtnHandler);
+         this.$tableWrapper.find('select').on('change', this.getFilteredTemplates);
+         this.$tableWrapper.find('input').on('change', this.getFilteredTemplates);
+      }
+
+      this.$tableWrapper.find('#lk-table__filter-direction .item').off('click', this.changeDirection);
       this.$tableWrapper.find('#lk-table__filter-direction .item').on('click', this.changeDirection);
+   };
+
+   filterBtnHandler = () => {
+      $('.lk-table__filter__block').removeClass('open-filter');
+      lockBodyOnModalOpen(false);
+      $('.body').removeClass('z-index-high');
 
       this.getFilteredTemplates();
+   };
+
+   initMobileFilter = () => {
+      this.$tableWrapper.find('.lk-table__filter-btn-mob').on('click', this.openMobileFilter);
+      this.$tableWrapper.find('.lk-table__filter__block .close-icon').on('click', this.closeMobileFilter);
+   };
+
+   openMobileFilter = (e) => {
+      $('.lk-table__filter__block[data-filter="' + $(e.currentTarget).attr('data-filter') + '"]').addClass('open-filter');
+      lockBodyOnModalOpen(true);
+      $('.body').addClass('z-index-high');
+
+      this.getStateInOpen();
+   };
+
+   closeMobileFilter = (e) => {
+      $(e.currentTarget).closest('.lk-table__filter__block').removeClass('open-filter');
+      lockBodyOnModalOpen(false);
+      $('.body').removeClass('z-index-high');
+
+      this.setStateInOpen();
+   };
+
+   getStateInOpen = () => {
+      this.getFilter();
+
+      this.stateInOpen = this.filter;
+   };
+
+   setStateInOpen = () => {
+      console.log(this.stateInOpen);
+      this.$tableWrapper.find('#date-from').val(this.stateInOpen.dateFrom || '');
+      this.$tableWrapper.find('#date-to').val(this.stateInOpen.dateTo || '');
+      this.sortSelectChoices.getInstance().setChoiceByValue(this.stateInOpen.sortBy);
+      this.statusSelectChoices.getInstance().setChoiceByValue(this.stateInOpen.status);
+      this.$tableWrapper.find('#lk-table__filter-direction .item').removeClass('active');
+
+      if (this.stateInOpen.direction) {
+         this.$tableWrapper.find('#lk-table__filter-direction .item[data-sort="' + this.stateInOpen.direction + '"]').addClass('active');
+      } else {
+         this.$tableWrapper.find('#lk-table__filter-direction .item[data-sort="asc"]').addClass('active');
+      }
    };
 
    changeDirection = (e) => {
       this.$tableWrapper.find('#lk-table__filter-direction .item').removeClass('active');
       $(e.currentTarget).addClass('active');
 
-      this.getFilteredTemplates();
+      if ($(window).width() >= 1000) {
+         this.getFilteredTemplates();
+      }
    };
 
    initDateInputs = () => {
@@ -67,8 +139,8 @@ export class LkTable {
 
    filterData = () => {
       const { dateFrom, dateTo, status } = this.filter;
-      const parsedDateFrom = this.getParsedDate(dateFrom) ? new Date(this.getParsedDate(dateFrom)) : null
-      const parsedDateTo = this.getParsedDate(dateTo) ? new Date(this.getParsedDate(dateTo)) : null
+      const parsedDateFrom = this.getParsedDate(dateFrom) ? new Date(this.getParsedDate(dateFrom)) : null;
+      const parsedDateTo = this.getParsedDate(dateTo) ? new Date(this.getParsedDate(dateTo)) : null;
 
       this.filteredData = this.data.filter((item) => {
          const parsedDate = new Date(this.getParsedDate(item.date));
@@ -80,9 +152,12 @@ export class LkTable {
    };
 
    sortData = () => {
-      const sortedField = this.filter.sortBy === 'date' ? (item) => {
-         return new Date(this.getParsedDate(item.date));
-      } : this.filter.sortBy
+      const sortedField =
+         this.filter.sortBy === 'date'
+            ? (item) => {
+                 return new Date(this.getParsedDate(item.date));
+              }
+            : this.filter.sortBy;
 
       this.filteredData = _.orderBy(this.filteredData, [sortedField], [this.filter.direction]);
    };
@@ -90,7 +165,7 @@ export class LkTable {
    getParsedDate = (date) => {
       if (!date) return null;
       if (!date.split(',')[1]) {
-         return date.split('.').reverse().join('.')
+         return date.split('.').reverse().join('.');
       }
       return date.split(',')[0].split('.').reverse().join('.') + ' ' + date.split(',')[1];
    };
@@ -103,50 +178,50 @@ export class LkTable {
       });
 
       if (!this.filteredData.length) {
-         template += `<tr><td colspan="300" class="text-align-center"><p class="body18 color-gray">По данному фильтру ничего не найдено</p></td></tr>`
+         template += `<div class="lk-table__row"><p class="body18 color-gray">По данному фильтру ничего не найдено</p></div>`;
       }
 
-      this.$tableWrapper.find('.lk-table tbody').html(template);
+      this.$tableWrapper.find('.lk-table').html(template);
    };
 
    getTableRowTemplate = (item) => {
       const statusText = item.status === 'success' ? 'Исполнена' : item.status === 'error' ? 'Ошибка' : 'В процессе';
       const operationBlock = item.operation
          ? `
-         <td>
+         <div class="item operation">
                 <div class="title nowrap">Операция</div>
                 <div class="value">${item.operation}</div>
-            </td>
+            </div>
       `
          : '';
 
       return `
-         <tr data-id='${item.id}'>
-            <td>
+         <div class="lk-table__row" data-id='${item.id}'>
+            <div class="item number">
                 <div class="title nowrap">№ операции</div>
                 <div class="value">${item.number}</div>
-            </td>
-            <td>
+            </div>
+            <div class="item date">
                 <div class="title nowrap">дата и время</div>
                 <div class="value nowrap">${item.date}</div>
-            </td>
+            </div>
             ${operationBlock}
-            <td>
+            <div class="item contractor">
                 <div class="title nowrap">контрагент</div>
                 <div class="value">${item.contractor}</div>
-            </td>
-            <td>
+            </div>
+            <div class="item amount">
                 <div class="title nowrap">Сумма</div>
                 <div class="value nowrap">${toCurrency(item.amount)}</div>
-            </td>
-            <td>
+            </div>
+            <div class="item status">
                 <div class="title nowrap">Статус</div>
                 <div class="value">
                     <span class="status ${item.status}"></span>
                     <span>${statusText}</span>
                 </div>
-            </td>
-        </tr>
+            </div>
+        </div>
       `;
    };
 }

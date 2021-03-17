@@ -3,8 +3,9 @@
 
 <section class="section  lk lk-table__apps">
     <div class="container">
-        <h3 class="h3">Заявки</h3>
-
+        <h2 class="h2">Заявки</h2>
+    </div>
+    <div class="container no-padding-mobile">
         <div class="lk-table__wrapper lk-block" data-json='[
    {
       "id":1,
@@ -40,82 +41,101 @@
    }
 ]'>
             <div class="lk-table__filter">
-                <span class="lk-table__text">Фильтр</span>
-
-                <div class="lk-table__filter-date">
-                    <input class="date-from" id="date-from" autocomplete="off" placeholder="ДД.ММ.ГГГГ" data-validate="date"
-                           name="date-start" type="text">
-                    <span class="divider"></span>
-                    <input class="date-to" id="date-to" autocomplete="off" placeholder="ДД.ММ.ГГГГ" data-validate="date"
-                           name="date-end" type="text">
-
+                <div class="lk-table__filter-btn-mob hide-desktop" data-filter="filter">
+                    <span>Фильтр</span>
                 </div>
-                <div class="lk-table__filter-status">
-                    <select name="" class="custom-select" id="lk-table__filter-status">
-                        <option value="all">Все статусы</option>
-                        <option value="success">Успешные</option>
-                        <option value="process">В процессе</option>
-                        <option value="error">Ошибки</option>
-                    </select>
+                <div class="lk-table__filter-btn-mob hide-desktop" data-filter="sort">
+                    <span>Сортировать</span>
                 </div>
-                <div class="lk-table__filter-sort">
-                    <span class="lk-table__text">Сортировать</span>
-                    <select name="" class="custom-select" id="lk-table__filter-sort">
-                        <option value="date">По дате</option>
-                        <option value="number">По номеру</option>
-                        <option value="contractor">По контрагенту</option>
-                        <option value="amount">По сумме</option>
-                        <option value="status">По статусу</option>
-                    </select>
-                </div>
-                <div class="lk-table__filter-direction" id="lk-table__filter-direction">
-                    <div class="item active" data-sort="asc">
-                        <svg width="18" height="21" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="4" height="21" transform="matrix(-1 0 0 1 18 0)" fill="white"/>
-                            <rect width="4" height="15" transform="matrix(-1 0 0 1 11 6)" fill="white"/>
-                            <rect width="4" height="9" transform="matrix(-1 0 0 1 4 12)" fill="white"/>
-                        </svg>
+                <div class="lk-table__filter__block" data-filter="filter">
+                    <div class="lk-table__filter__title">
+                        <span class="lk-table__text">Фильтр</span>
+                        <img class="close-icon hide-desktop" src="/img/lk/close.svg" alt="">
                     </div>
-                    <div class="item" data-sort="desc">
-                        <svg width="18" height="21" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="4" height="21" fill="#C4C4C4"/>
-                            <rect x="7" y="6" width="4" height="15" fill="#C4C4C4"/>
-                            <rect x="14" y="12" width="4" height="9" fill="#C4C4C4"/>
-                        </svg>
+
+
+                    <div class="lk-table__filter-date">
+                        <input class="date-from" id="date-from" autocomplete="off" placeholder="ДД.ММ.ГГГГ" data-validate="date"
+                               name="date-start" type="text">
+                        <span class="divider"></span>
+                        <input class="date-to" id="date-to" autocomplete="off" placeholder="ДД.ММ.ГГГГ" data-validate="date"
+                               name="date-end" type="text">
+
                     </div>
+                    <div class="lk-table__filter-status">
+                        <select name="" class="custom-select loaded-select" id="lk-table__filter-status">
+                            <option value="all">Все статусы</option>
+                            <option value="success">Успешные</option>
+                            <option value="process">В процессе</option>
+                            <option value="error">Ошибки</option>
+                        </select>
+                    </div>
+                    <button class="button full-width hide-desktop filter-btn">Сохранить</button>
                 </div>
+
+                <div class="lk-table__filter__block" data-filter="sort">
+                    <div class="lk-table__filter__title">
+                        <span class="lk-table__text">Сортировать</span>
+                        <img class="close-icon hide-desktop" src="/img/lk/close.svg" alt="">
+                    </div>
+                    <div class="lk-table__filter-sort">
+                        <select name="" class="custom-select loaded-select" id="lk-table__filter-sort">
+                            <option value="date">По дате</option>
+                            <option value="number">По номеру</option>
+                            <option value="contractor">По контрагенту</option>
+                            <option value="amount">По сумме</option>
+                            <option value="status">По статусу</option>
+                        </select>
+                    </div>
+                    <div class="lk-table__filter-direction" id="lk-table__filter-direction">
+                        <div class="item active" data-sort="asc">
+                            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="2" height="16" transform="matrix(-1.19249e-08 -1 -1 1.19249e-08 16 12)" fill="#191C1F"/>
+                                <rect width="2" height="11" transform="matrix(-1.19249e-08 -1 -1 1.19249e-08 11 7)" fill="#191C1F"/>
+                                <rect width="2" height="7" transform="matrix(-1.19249e-08 -1 -1 1.19249e-08 7 2)" fill="#191C1F"/>
+                            </svg>
+                        </div>
+                        <div class="item" data-sort="desc">
+                            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="16" width="2" height="16" transform="rotate(90 16 0)" fill="#83898F"/>
+                                <rect x="11" y="5" width="2" height="11" transform="rotate(90 11 5)" fill="#83898F"/>
+                                <rect x="7" y="10" width="2" height="7" transform="rotate(90 7 10)" fill="#83898F"/>
+                            </svg>
+
+                        </div>
+                    </div>
+                    <button class="button full-width hide-desktop filter-btn">Сохранить</button>
+                </div>
+
+
             </div>
 
-            <div class="lk-table-scroll">
-                <table class="lk-table lk-table__apps">
-                    <tbody>
-                    <!--<tr>
-                        <td>
-                            <div class="title">№ операции</div>
-                            <div class="value">99494</div>
-                        </td>
-                        <td>
-                            <div class="title">дата и время</div>
-                            <div class="value">09.02.2021, 00:00</div>
-                        </td>
-                        <td>
-                            <div class="title">контрагент</div>
-                            <div class="value">Управление Федерального казначейства по г. Москве</div>
-                        </td>
-                        <td>
-                            <div class="title">Сумма</div>
-                            <div class="value">32 000 ₽</div>
-                        </td>
-                        <td>
-                            <div class="title">Статус</div>
-                            <div class="value">
-                                <span class="status success"></span>
-                                <span>Исполнена</span>
-                            </div>
-                        </td>
-                    </tr>-->
-                    </tbody>
-                </table>
+            <div class="lk-table lk-table__apps">
+                <!--<div class="lk-table__row">
+                    <div class="item number">
+                        <div class="title">№ операции</div>
+                        <div class="value">99494</div>
+                    </div>
+                    <div class="item date">
+                        <div class="title">дата и время</div>
+                        <div class="value">09.02.2021, 00:00</div>
+                    </div>
+                    <div class="item contractor">
+                        <div class="title">контрагент</div>
+                        <div class="value">Управление Федерального казначейства по г. Москве</div>
+                    </div>
+                    <div class="item amount">
+                        <div class="title">Сумма</div>
+                        <div class="value">32 000 ₽</div>
+                    </div>
+                    <div class="item status">
+                        <div class="title">Статус</div>
+                        <div class="value">
+                            <span class="status success"></span>
+                            <span>Исполнена</span>
+                        </div>
+                    </div>
+                </div>-->
             </div>
         </div>
     </div>

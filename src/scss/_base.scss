@@ -38,6 +38,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    overflow: hidden;
 }
 
 .container {
@@ -52,5 +53,11 @@ body {
     }
     @include mobile {
         padding: 1px 17px;
+    }
+
+    @include only-mobile {
+        &.no-padding-mobile {
+            padding: 1px 0 !important;
+        }
     }
 }

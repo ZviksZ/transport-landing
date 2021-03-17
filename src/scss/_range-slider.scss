@@ -133,7 +133,7 @@
     left: 0;
     width: 1px;
     height: 8px;
-    background: #000;
+    background: $colorBlack;
 
     &.small {
         height: 4px;
@@ -149,7 +149,7 @@
     font-size: 9px;
     line-height: 9px;
     padding: 0 3px;
-    color: #000;
+    color: $colorBlack;
 }
 
 .irs-disable-mask {
@@ -165,7 +165,7 @@
 }
 
 .lt-ie9 .irs-disable-mask {
-    background: #000;
+    background: $colorBlack;
     filter: alpha(opacity=0);
     cursor: not-allowed;
 }
@@ -219,7 +219,7 @@
         top: 50%;
         margin-top: 0;
         height: 2px;
-        background-color: #000;
+        background-color: $colorBlack;
     }
 
     .irs-bar--single {
