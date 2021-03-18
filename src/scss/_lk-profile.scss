@@ -1,0 +1,217 @@
+.lk__profile-block {
+    display: none;
+
+    &.active {
+        display: block;
+    }
+}
+
+.lk-info {
+    margin: 25px 0;
+    padding: 40px;
+
+    @include mobile {
+        padding: 25px 16px;
+    }
+
+    .auth__tabs {
+        margin-bottom: 48px;
+
+        .item {
+            white-space: nowrap;
+        }
+    }
+}
+
+.lk-user {
+    display: flex;
+    align-items: center;
+    background: #F6F8FA;
+    border-radius: 4px;
+    padding: 27px 40px;
+    margin-bottom: 48px;
+
+    @include mobile {
+        padding: 16px;
+    }
+
+    .lk-user__avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        min-width: 56px;
+        height: 56px;
+        background: $colorGray;
+        border-radius: 50%;
+        font-size: 22px;
+        line-height: 32px;
+        color: $colorWhite;
+        margin-right: 40px;
+
+        @include mobile {
+            width: 46px;
+            min-width: 46px;
+            height: 46px;
+            font-size: 19px;
+            line-height: 27px;
+            margin-right: 20px;
+        }
+    }
+}
+
+
+.lk__profile-section {
+    .lk__profile-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 24px;
+        border-bottom: 1px solid $colorGrayLight;
+
+        .lk__profile-title-edit {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            span {
+                display: inline-block;
+                margin-left: 9px;
+                font-size: 16px;
+                line-height: 28px;
+                color: $colorDarkGray;
+                transition: 0.2s;
+            }
+
+            svg {
+                transition: 0.2s;
+
+                circle {
+                    fill: $colorDarkGray;
+                }
+            }
+
+            @include desktop {
+                &:hover {
+                    span {
+                        color: $colorPrimary;
+                    }
+
+                    svg {
+                        circle {
+                            fill: $colorPrimary;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .lk__profile-list {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -16px 24px;
+        padding: 20px 0;
+
+        .lk__profile-item {
+            width: calc(50% - 32px);
+            margin: 0 16px 20px;
+
+            .lk__profile-item-title {
+                letter-spacing: 0.12em;
+            }
+        }
+
+        @include only-mobile {
+            margin: 0 0 24px;
+
+            .lk__profile-item {
+                width: 100%;
+                margin: 0 0 20px;
+            }
+        }
+    }
+
+    .lk__profile-docs {
+        display: flex;
+        flex-direction: column;
+        padding: 22px 0;
+
+        .lk__profile-docs-item {
+            background: $colorGrayExtraLight;
+            border-radius: 8px;
+            padding: 16px 18px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            img {
+                display: block;
+                width: 20px;
+                height: 20px;
+                margin-right: 13px;
+            }
+
+            .text {
+                transition: 0.2s ease;
+                margin: 0;
+            }
+
+            @include desktop {
+                &:hover {
+                    opacity: 1;
+                    .text {
+                        color: $colorPrimary;
+                    }
+                }
+            }
+        }
+
+        .lk__profile-docs-item + .lk__profile-docs-item {
+            margin-top: 22px;
+        }
+    }
+
+    .lk__profile-cards-list {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 20px -16px 0;
+
+        .lk__profile-card {
+            width: calc(50% - 32px);
+            margin: 0 16px 20px;
+            display: flex;
+            align-items: center;
+            border: 2px solid #ECEFF2;
+            box-sizing: border-box;
+            border-radius: 4px;
+            padding: 17px;
+            cursor: pointer;
+
+            .card-icon {
+                width: 50px;
+                height: 32px;
+                display: block;
+                margin-right: 17px;
+            }
+
+            svg {
+                margin-left: auto;
+                path {
+                    fill: $colorGray;
+                }
+            }
+
+            @include desktop {
+                &:hover {
+                    svg {
+                        path {
+                            fill: $colorDangerous;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}

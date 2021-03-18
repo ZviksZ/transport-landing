@@ -9,7 +9,7 @@ import { initMaskedInput, initMoneyInput, initPlaceholders }                    
 import { HeaderMenu }                                                                        from './components/header-menu';
 import {initSubmenuMobileOpen}                                                               from "./components/helpers/simple-functions";
 import {initCloseMenuOnClick, initInfoTabs, initInteriorMobileBtn, initSmoothScrollToAnchor} from './components/helpers/simple-functions.js';
-import {LkTable}                                                                             from "./components/lk";
+import {LkProfile, LkTable}                                                                  from "./components/lk";
 import { ModalWindowFullScreen }                                                             from './components/modal-window-fullscreen';
 import { Parallax }                                                                          from './components/parallax';
 import { ReviewsSlider }                                                                     from './components/reviews-slider';
@@ -41,6 +41,7 @@ $(function () {
 
    //Личный кабинет
    new LkTable();
+   new LkProfile();
 
    // инициализация функционала модальных окон
    let modal = new ModalWindowFullScreen();

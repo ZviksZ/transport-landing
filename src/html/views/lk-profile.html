@@ -1,0 +1,205 @@
+<% var data = { title: "Профиль | Факторинг", authPage: false }; %> <%= _.template(require('./../includes/lk/header-lk.html').default)(data) %>
+
+
+<section class="section  lk lk-profile">
+    <div class="container">
+        <h3 class="h3">Профиль</h3>
+    </div>
+    <div class="container no-padding-mobile">
+        <div class="lk-info lk-block">
+            <div class="auth__tabs">
+                <div class="item" data-tab="data">Мои данные</div>
+                <div class="item" data-tab="cards">Счета и карты</div>
+            </div>
+            <div class="lk__profile-block" data-tab="data">
+                <div class="lk-user">
+                    <div class="lk-user__avatar">AB</div>
+                    <div class="lk-user__text">
+                        <h5 class="h5">Моргунов Константин Константинович</h5>
+                        <p class="color-gray body16 no-margin-vertical">+7 (987) 788-66-98</p>
+                    </div>
+                </div>
+
+                <div class="lk__profile-section">
+                    <div class="lk__profile-title">
+                        <h4 class="h4">Данные анкеты</h4>
+                        <div class="lk__profile-title-edit">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="12" fill="#5E646A"/>
+                                <g clip-path="url(#clip0)">
+                                    <path d="M5.68367 16.1527C5.24605 16.5902 5.00013 17.1836 5 17.8024V19H6.19758C6.81637 18.9999 7.40977 18.7539 7.84725 18.3163L15.6307 10.5329L13.4671 8.36932L5.68367 16.1527Z" fill="white"/>
+                                    <path d="M18.5011 5.49878C18.359 5.35658 18.1904 5.24378 18.0047 5.16681C17.819 5.08985 17.62 5.05023 17.419 5.05023C17.218 5.05023 17.019 5.08985 16.8333 5.16681C16.6476 5.24378 16.479 5.35658 16.3369 5.49878L14.2917 7.54453L16.4553 9.70811L18.5011 7.66294C18.6433 7.52089 18.7561 7.35221 18.833 7.16654C18.91 6.98087 18.9496 6.78185 18.9496 6.58086C18.9496 6.37987 18.91 6.18085 18.833 5.99518C18.7561 5.80951 18.6433 5.64082 18.5011 5.49878Z" fill="white"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0">
+                                        <rect width="14" height="14" fill="white" transform="translate(5 5)"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <span>Редактировать</span>
+                        </div>
+                    </div>
+                    <div class="lk__profile-list">
+                        <div class="lk__profile-item">
+                            <div class="body12 color-gray text-uppercase lk__profile-item-title">ФИО</div>
+                            <div class="body18">Моргунов Константин Константинович</div>
+                        </div>
+                        <div class="lk__profile-item">
+                            <div class="body12 color-gray text-uppercase lk__profile-item-title">номер телефона</div>
+                            <div class="body18">+7 (987) 788-66-98</div>
+                        </div>
+                        <div class="lk__profile-item">
+                            <div class="body12 color-gray text-uppercase lk__profile-item-title">Электронная почта</div>
+                            <div class="body18">example@mail.ru</div>
+                        </div>
+                        <div class="lk__profile-item">
+                            <div class="body12 color-gray text-uppercase lk__profile-item-title">Название организации</div>
+                            <div class="body18">ИП Моргунов</div>
+                        </div>
+                        <div class="lk__profile-item">
+                            <div class="body12 color-gray text-uppercase lk__profile-item-title">ИНН</div>
+                            <div class="body18">1159848464</div>
+                        </div>
+                        <div class="lk__profile-item">
+                            <div class="body12 color-gray text-uppercase lk__profile-item-title">Код участника в АТИ</div>
+                            <div class="body18">123456789</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lk__profile-section">
+                    <div class="lk__profile-title">
+                        <h4 class="h4">Паспортные данные</h4>
+                        <div class="lk__profile-title-edit">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="12" fill="#5E646A"/>
+                                <g clip-path="url(#clip0)">
+                                    <path d="M5.68367 16.1527C5.24605 16.5902 5.00013 17.1836 5 17.8024V19H6.19758C6.81637 18.9999 7.40977 18.7539 7.84725 18.3163L15.6307 10.5329L13.4671 8.36932L5.68367 16.1527Z" fill="white"/>
+                                    <path d="M18.5011 5.49878C18.359 5.35658 18.1904 5.24378 18.0047 5.16681C17.819 5.08985 17.62 5.05023 17.419 5.05023C17.218 5.05023 17.019 5.08985 16.8333 5.16681C16.6476 5.24378 16.479 5.35658 16.3369 5.49878L14.2917 7.54453L16.4553 9.70811L18.5011 7.66294C18.6433 7.52089 18.7561 7.35221 18.833 7.16654C18.91 6.98087 18.9496 6.78185 18.9496 6.58086C18.9496 6.37987 18.91 6.18085 18.833 5.99518C18.7561 5.80951 18.6433 5.64082 18.5011 5.49878Z" fill="white"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0">
+                                        <rect width="14" height="14" fill="white" transform="translate(5 5)"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <span>Редактировать</span>
+                        </div>
+                    </div>
+                    <div class="lk__profile-list">
+                        <div class="lk__profile-item">
+                            <div class="body12 color-gray text-uppercase lk__profile-item-title">Серия и номер паспорта</div>
+                            <div class="body18">7070 602060</div>
+                        </div>
+                        <div class="lk__profile-item">
+                            <div class="body12 color-gray text-uppercase lk__profile-item-title">Дата выдачи</div>
+                            <div class="body18">16.02.2005</div>
+                        </div>
+                        <div class="lk__profile-item">
+                            <div class="body12 color-gray text-uppercase lk__profile-item-title">Код подразделения</div>
+                            <div class="body18">480-848</div>
+                        </div>
+                        <div class="lk__profile-item">
+                            <div class="body12 color-gray text-uppercase lk__profile-item-title">Кем выдан</div>
+                            <div class="body18">ОТДЕЛОМ УФМС РОССИИ ПО МОСКОВСКОЙ ОБЛАСТИ В МОСКОВСКОМ РАЙОНЕ ГОР. МОСКВЫ</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lk__profile-section">
+                    <div class="lk__profile-title">
+                        <h4 class="h4">Документы</h4>
+                    </div>
+                    <div class="lk__profile-docs">
+                        <a href="#" download target="_blank" class="lk__profile-docs-item">
+                            <img src="/img/lk/file.svg" alt="">
+                            <p class="text body18">Инструкция по получению денег.pdf</p>
+                        </a>
+                        <a href="#" download target="_blank" class="lk__profile-docs-item">
+                            <img src="/img/lk/file.svg" alt="">
+                            <p class="text body18">Инструкция по заполнению заявки.pdf</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="lk__profile-block" data-tab="cards">
+                <div class="lk__profile-section margin-bottom-x4">
+                    <div class="lk__profile-title">
+                        <h4 class="h4">Сохраненные карты</h4>
+                    </div>
+                    <div class="lk__profile-cards-list">
+                        <div class="lk__profile-card">
+                            <img src="/img/lk/mastercard.svg" alt="">
+                            <p class="body18 no-margin-vertical">MasterCard •• 4484</p>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0)">
+                                    <path d="M12 0C9.62663 0 7.30655 0.703788 5.33316 2.02236C3.35977 3.34094 1.8217 5.21509 0.913451 7.4078C0.00519943 9.60051 -0.232441 12.0133 0.230582 14.3411C0.693605 16.6689 1.83649 18.8071 3.51472 20.4853C5.19295 22.1635 7.33115 23.3064 9.65892 23.7694C11.9867 24.2324 14.3995 23.9948 16.5922 23.0866C18.7849 22.1783 20.6591 20.6402 21.9776 18.6668C23.2962 16.6935 24 14.3734 24 12C23.9966 8.81846 22.7312 5.76821 20.4815 3.51852C18.2318 1.26883 15.1815 0.00344108 12 0V0ZM16 14.587C16.0992 14.6783 16.1789 14.7887 16.2343 14.9116C16.2898 15.0345 16.3198 15.1673 16.3226 15.3021C16.3254 15.4369 16.3009 15.5708 16.2506 15.6959C16.2003 15.821 16.1252 15.9346 16.0299 16.0299C15.9346 16.1252 15.821 16.2003 15.6959 16.2506C15.5708 16.3009 15.4369 16.3254 15.3021 16.3226C15.1673 16.3198 15.0345 16.2898 14.9116 16.2343C14.7887 16.1789 14.6783 16.0992 14.587 16L12 13.414L9.41401 16C9.2254 16.1822 8.9728 16.283 8.7106 16.2807C8.44841 16.2784 8.1976 16.1732 8.01219 15.9878C7.82678 15.8024 7.72161 15.5516 7.71933 15.2894C7.71705 15.0272 7.81785 14.7746 8.00001 14.586L10.586 12L8.00001 9.414C7.81785 9.2254 7.71705 8.9728 7.71933 8.7106C7.72161 8.4484 7.82678 8.19759 8.01219 8.01218C8.1976 7.82677 8.44841 7.7216 8.7106 7.71933C8.9728 7.71705 9.2254 7.81784 9.41401 8L12 10.586L14.587 8C14.6783 7.90081 14.7887 7.8211 14.9116 7.76567C15.0345 7.71023 15.1673 7.68022 15.3021 7.67743C15.4369 7.67463 15.5708 7.69912 15.6959 7.74942C15.821 7.79972 15.9346 7.87478 16.0299 7.97011C16.1252 8.06543 16.2003 8.17904 16.2506 8.30412C16.3009 8.42919 16.3254 8.56315 16.3226 8.69793C16.3198 8.83271 16.2898 8.96553 16.2343 9.08841C16.1789 9.2113 16.0992 9.32171 16 9.413L13.414 12L16 14.587Z" fill="#83898F"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0">
+                                        <rect width="24" height="24" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+
+                        </div>
+                        <div class="lk__profile-card">
+                            <img src="/img/lk/mastercard.svg" alt="">
+                            <p class="body18 no-margin-vertical">MasterCard •• 3321</p>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0)">
+                                    <path d="M12 0C9.62663 0 7.30655 0.703788 5.33316 2.02236C3.35977 3.34094 1.8217 5.21509 0.913451 7.4078C0.00519943 9.60051 -0.232441 12.0133 0.230582 14.3411C0.693605 16.6689 1.83649 18.8071 3.51472 20.4853C5.19295 22.1635 7.33115 23.3064 9.65892 23.7694C11.9867 24.2324 14.3995 23.9948 16.5922 23.0866C18.7849 22.1783 20.6591 20.6402 21.9776 18.6668C23.2962 16.6935 24 14.3734 24 12C23.9966 8.81846 22.7312 5.76821 20.4815 3.51852C18.2318 1.26883 15.1815 0.00344108 12 0V0ZM16 14.587C16.0992 14.6783 16.1789 14.7887 16.2343 14.9116C16.2898 15.0345 16.3198 15.1673 16.3226 15.3021C16.3254 15.4369 16.3009 15.5708 16.2506 15.6959C16.2003 15.821 16.1252 15.9346 16.0299 16.0299C15.9346 16.1252 15.821 16.2003 15.6959 16.2506C15.5708 16.3009 15.4369 16.3254 15.3021 16.3226C15.1673 16.3198 15.0345 16.2898 14.9116 16.2343C14.7887 16.1789 14.6783 16.0992 14.587 16L12 13.414L9.41401 16C9.2254 16.1822 8.9728 16.283 8.7106 16.2807C8.44841 16.2784 8.1976 16.1732 8.01219 15.9878C7.82678 15.8024 7.72161 15.5516 7.71933 15.2894C7.71705 15.0272 7.81785 14.7746 8.00001 14.586L10.586 12L8.00001 9.414C7.81785 9.2254 7.71705 8.9728 7.71933 8.7106C7.72161 8.4484 7.82678 8.19759 8.01219 8.01218C8.1976 7.82677 8.44841 7.7216 8.7106 7.71933C8.9728 7.71705 9.2254 7.81784 9.41401 8L12 10.586L14.587 8C14.6783 7.90081 14.7887 7.8211 14.9116 7.76567C15.0345 7.71023 15.1673 7.68022 15.3021 7.67743C15.4369 7.67463 15.5708 7.69912 15.6959 7.74942C15.821 7.79972 15.9346 7.87478 16.0299 7.97011C16.1252 8.06543 16.2003 8.17904 16.2506 8.30412C16.3009 8.42919 16.3254 8.56315 16.3226 8.69793C16.3198 8.83271 16.2898 8.96553 16.2343 9.08841C16.1789 9.2113 16.0992 9.32171 16 9.413L13.414 12L16 14.587Z" fill="#83898F"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0">
+                                        <rect width="24" height="24" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+
+                        </div>
+                        <div class="lk__profile-card">
+                            <img src="/img/lk/mastercard.svg" alt="">
+                            <p class="body18 no-margin-vertical">MasterCard •• 9976</p>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0)">
+                                    <path d="M12 0C9.62663 0 7.30655 0.703788 5.33316 2.02236C3.35977 3.34094 1.8217 5.21509 0.913451 7.4078C0.00519943 9.60051 -0.232441 12.0133 0.230582 14.3411C0.693605 16.6689 1.83649 18.8071 3.51472 20.4853C5.19295 22.1635 7.33115 23.3064 9.65892 23.7694C11.9867 24.2324 14.3995 23.9948 16.5922 23.0866C18.7849 22.1783 20.6591 20.6402 21.9776 18.6668C23.2962 16.6935 24 14.3734 24 12C23.9966 8.81846 22.7312 5.76821 20.4815 3.51852C18.2318 1.26883 15.1815 0.00344108 12 0V0ZM16 14.587C16.0992 14.6783 16.1789 14.7887 16.2343 14.9116C16.2898 15.0345 16.3198 15.1673 16.3226 15.3021C16.3254 15.4369 16.3009 15.5708 16.2506 15.6959C16.2003 15.821 16.1252 15.9346 16.0299 16.0299C15.9346 16.1252 15.821 16.2003 15.6959 16.2506C15.5708 16.3009 15.4369 16.3254 15.3021 16.3226C15.1673 16.3198 15.0345 16.2898 14.9116 16.2343C14.7887 16.1789 14.6783 16.0992 14.587 16L12 13.414L9.41401 16C9.2254 16.1822 8.9728 16.283 8.7106 16.2807C8.44841 16.2784 8.1976 16.1732 8.01219 15.9878C7.82678 15.8024 7.72161 15.5516 7.71933 15.2894C7.71705 15.0272 7.81785 14.7746 8.00001 14.586L10.586 12L8.00001 9.414C7.81785 9.2254 7.71705 8.9728 7.71933 8.7106C7.72161 8.4484 7.82678 8.19759 8.01219 8.01218C8.1976 7.82677 8.44841 7.7216 8.7106 7.71933C8.9728 7.71705 9.2254 7.81784 9.41401 8L12 10.586L14.587 8C14.6783 7.90081 14.7887 7.8211 14.9116 7.76567C15.0345 7.71023 15.1673 7.68022 15.3021 7.67743C15.4369 7.67463 15.5708 7.69912 15.6959 7.74942C15.821 7.79972 15.9346 7.87478 16.0299 7.97011C16.1252 8.06543 16.2003 8.17904 16.2506 8.30412C16.3009 8.42919 16.3254 8.56315 16.3226 8.69793C16.3198 8.83271 16.2898 8.96553 16.2343 9.08841C16.1789 9.2113 16.0992 9.32171 16 9.413L13.414 12L16 14.587Z" fill="#83898F"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0">
+                                        <rect width="24" height="24" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+
+                        </div>
+                    </div>
+
+                    <a href="" class="button secondary small">Добавить карту</a>
+                </div>
+
+                <div class="lk__profile-section">
+                    <div class="lk__profile-title">
+                        <h4 class="h4">Счета</h4>
+                    </div>
+                    <div class="lk__profile-account lk__profile-list no-padding-bottom no-margin-bottom">
+                        <div class="lk__profile-item">
+                            <div class="body12 color-gray text-uppercase lk__profile-item-title">Наименование банка</div>
+                            <div class="body18">ФИЛИАЛ ЦЕНТРАЛЬНЫЙ ПАО БАНКА "ФК ОТКРЫТИЕ"</div>
+                        </div>
+                        <div class="lk__profile-item">
+                            <div class="body12 color-gray text-uppercase lk__profile-item-title">Расчетный счёт</div>
+                            <div class="body18">40603401781903999328</div>
+                        </div>
+                    </div>
+
+                    <a href="" class="button secondary small">Добавить счет</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<%= _.template(require('./../includes/lk/footer-lk.html').default)(data) %>
