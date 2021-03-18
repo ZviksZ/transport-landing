@@ -108,9 +108,15 @@
                         height: 8px;
                         display: block;
                         margin-left: 15px;
+                    }
 
-                        @include mobile {
-                            display: none;
+                    .header-exit {
+                        margin-left: auto;
+
+                        img {
+                            display: block;
+                            width: 24px;
+                            height: 24px;
                         }
                     }
 

@@ -19,7 +19,7 @@
 </head>
 <body>
 <div class="preloader"></div>
-<div class="header" id="header">
+<div class="header lk-header" id="header">
     <div class="container">
         <div class="header__wrap">
             <a href="/" class="header__logo">
@@ -50,14 +50,16 @@
                          <div class="header__menu-avatar">
                              <span>AB</span>
                          </div>
-                         <img src="./img/lk/arrow.svg" alt="">
-                         <span>Личный кабинет</span>
-
-                        <div class="header-submenu">
+                         <img class="hide-mobile" src="./img/lk/arrow.svg" alt="">
+                        <div class="header-submenu hide-mobile">
                             <a href="#" class="header-submenu__item">Мои данные</a>
                             <a href="#" class="header-submenu__item">Счета и карты</a>
                             <a href="#" class="header-submenu__item">Выйти</a>
                         </div>
+                        <a href="#" class="header-avatar-link color-gray hide-desktop">Мой профиль</a>
+                        <a href="" class="hide-desktop header-exit">
+                            <img src="/img/lk/sign-out.svg" alt="">
+                        </a>
                      </div>
                 </div>
                 <div class="header__menu-buttons hide-mobile">
