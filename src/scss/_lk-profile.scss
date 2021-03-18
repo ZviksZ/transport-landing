@@ -177,6 +177,10 @@
         flex-wrap: wrap;
         margin: 20px -16px 0;
 
+        @include mobile {
+            margin: 20px 0 0;
+        }
+
         .lk__profile-card {
             width: calc(50% - 32px);
             margin: 0 16px 20px;
@@ -187,6 +191,12 @@
             border-radius: 4px;
             padding: 17px;
             cursor: pointer;
+
+            @include mobile {
+                width: 100%;
+                margin: 0 0 20px;
+                padding: 17px 12px;
+            }
 
             .card-icon {
                 width: 50px;
