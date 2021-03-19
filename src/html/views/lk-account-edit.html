@@ -1,36 +1,39 @@
 <% var data = { title: "Личный кабинет | Факторинг", authPage: false }; %> <%= _.template(require('./../includes/lk/header-lk.html').default)(data) %>
 
 <section class="section auth">
-    <form action="" class="auth__form" id="auth-form">
+    <form action="" class="auth__form with-success" id="auth-form">
 
         <div class="auth__step  active" data-step="1">
             <h2 class="h2 margin-bottom-x2">Добавление счёта</h2>
 
             <label class="field field-input">
-                <input class="input-text placeholder validate input-mask" data-mask_tpl="passport_serial_number" data-validate="passport_serial_number" placeholder="Введите номер и серию" data-placeholder="Серия и номер паспорта"
-                       name="passport" type="text">
+                <input class="input-text placeholder validate" data-validate="required-min" placeholder="Введите наименование" data-placeholder="Наименование организации"
+                       name="company_name" type="text">
                 <p class="error-message"></p>
             </label>
-
-            <div class="auth__field-row">
-                <label class="field field-input">
-                    <input class="input-text placeholder validate input-mask" data-validate="date" data-mask_tpl="date" placeholder="Введите дату выдачи" data-placeholder="Дата выдачи"
-                           name="passport_date"  type="text">
-                    <p class="error-message"></p>
-                </label>
-                <label class="field field-input">
-                    <input class="input-text placeholder validate input-mask" data-mask_tpl="passport_code" data-validate="required-min-code" data-min-length="7" placeholder="Введите код"
-                           data-placeholder="Код подразделения"
-                           name="name"  type="text">
-                    <p class="error-message"></p>
-                </label>
-            </div>
-
-
-
             <label class="field field-input">
-                <textarea class="input-text placeholder validate" data-validate="required-min" data-min-length="10" placeholder="Введите кем выдан паспорт" data-placeholder="Кем выдан"
-                          name="name"></textarea>
+                <input class="input-text placeholder validate" data-validate="required-inn" placeholder="Введите ИНН" data-placeholder="ИНН"
+                       name="inn" data-type="ИП" type="text">
+                <p class="error-message"></p>
+            </label>
+            <label class="field field-input">
+                <input class="input-text placeholder validate" data-validate="number" placeholder="Введите номер" data-placeholder="Номер счёта"
+                       name="account_number" type="text">
+                <p class="error-message"></p>
+            </label>
+            <label class="field field-input">
+                <input class="input-text placeholder validate" data-validate="required-min-number" placeholder="Введите БИК" data-placeholder="БИК"
+                       name="bik" type="text">
+                <p class="error-message"></p>
+            </label>
+            <label class="field field-input">
+                <input class="input-text placeholder validate" data-validate="required-min" placeholder="Введите наименование" data-placeholder="Наименование банка"
+                       name="bank_name" type="text">
+                <p class="error-message"></p>
+            </label>
+            <label class="field field-input">
+                <input class="input-text placeholder validate" data-validate="required-min-number" placeholder="Введите номер счета" data-placeholder="Корреспондентский счёт"
+                       name="correspondent_account" type="text">
                 <p class="error-message"></p>
             </label>
 
@@ -45,12 +48,7 @@
         </div>
 
         <div class="auth__message">
-            <img src="./img/auth/error.svg" alt="">
-            <h2 class="h2">Ошибка</h2>
-            <p class="color-gray auth__text">
-                Что-то пошло не так, попробуйте позже или напишите нам на <a href="mailto:support@example.ru">support@example.ru</a>, описав ситуацию, при которой возникает ошибка
-            </p>
-            <a href="/" class="button">Закрыть</a>
+
         </div>
     </form>
 </section>

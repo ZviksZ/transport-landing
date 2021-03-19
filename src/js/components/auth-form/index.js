@@ -327,11 +327,18 @@ export class InitAuthForm {
                this.addLoader();
             },
             success: (res) => {
-               alert('Sended form');
                this.removeLoader();
+
+               if(this.$form.hasClass('with-success')) {
+                  form.find('.auth__message').html(this.getSuccessMessage())
+                  form.addClass('show-message');
+               } else {
+
+               }
             },
             error: (res) => {
                this.removeLoader();
+               form.find('.auth__message').html(this.getErrorMessage())
                form.addClass('show-message');
                this.scrollToMessage(form);
             },
@@ -339,6 +346,28 @@ export class InitAuthForm {
          });
       }
    };
+
+   getSuccessMessage = () => {
+      return `
+         <img src="./img/auth/success.svg" alt="">
+            <h2 class="h2">Отлично</h2>
+            <p class="color-gray auth__text">
+                Ваша заявка отправлена. Следите за статусом в личном кабинете
+            </p>
+            <a href="/profile" class="button">Личный кабинет</a>
+      `
+   }
+
+   getErrorMessage = () => {
+      return `
+         <img src="./img/auth/error.svg" alt="">
+            <h2 class="h2">Ошибка</h2>
+            <p class="color-gray auth__text">
+                Что-то пошло не так, попробуйте позже или напишите нам на <a href="mailto:support@example.ru">support@example.ru</a>, описав ситуацию, при которой возникает ошибка
+            </p>
+            <a href="/" class="button">Закрыть</a>
+      `
+   }
 
    scrollToMessage = (form) => {
       if (!$('html').hasClass('open-modal') && $(window).width() < 1000) {
