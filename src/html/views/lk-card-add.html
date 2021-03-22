@@ -1,0 +1,33 @@
+<% var data = { title: "Профиль | Факторинг", authPage: false }; %> <%= _.template(require('./../includes/lk/header-lk.html').default)(data) %>
+
+<section class="section auth">
+    <form action="" class="auth__form with-files with-success lk-request-form" id="auth-form">
+
+        <div class="auth__step active auth__step-progress" data-step="1">
+            <h2 class="h2 margin-bottom-x2">Добавление карты</h2>
+
+            <label class="field field-input">
+                <input class="input-text placeholder validate input-mask" data-mask_tpl="bank_card" data-validate="required-min-code" data-min-length="16" placeholder="Введите номер"
+                       data-placeholder="Номер карты"
+                       name="name"  type="text">
+                <p class="error-message"></p>
+            </label>
+
+            <button class="button full-width margin-bottom" type="submit">Добавить карту</button>
+
+            <a href="/" class="auth__step-link" data-step="1">Вернуться назад</a>
+        </div>
+
+
+        <div class="auth__loader">
+            <div class="loader"></div>
+        </div>
+
+        <div class="auth__message">
+
+        </div>
+    </form>
+</section>
+
+
+<%= _.template(require('./../includes/lk/footer-lk.html').default)(data) %>

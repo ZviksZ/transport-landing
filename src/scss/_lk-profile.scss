@@ -210,14 +210,10 @@
                 path {
                     fill: $colorGray;
                 }
-            }
 
-            @include desktop {
                 &:hover {
-                    svg {
-                        path {
-                            fill: $colorDangerous;
-                        }
+                    path {
+                        fill: $colorDangerous;
                     }
                 }
             }

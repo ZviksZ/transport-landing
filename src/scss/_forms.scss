@@ -436,3 +436,19 @@ input[type="checkbox"]:checked + label:after {
     font-size: 22px;
     line-height: 33px;
 }
+
+
+
+.form-file-block {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    .data {
+
+    }
+
+    .button {
+        margin-left: 10px;
+    }
+}

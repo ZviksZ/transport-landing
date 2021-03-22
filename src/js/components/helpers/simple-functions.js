@@ -31,3 +31,38 @@ export function initSubmenuMobileOpen() {
       }
    });
 }
+
+export function initFileInputBlock() {
+   $('.form-file-block .button').on('click', function (e) {
+      e.preventDefault();
+      $(e.currentTarget).closest('.form-file-block').find('input').click();
+   });
+
+   $('.form-file-block input').on('change', function (e) {
+      let file = e.target.value;
+
+      let fileName = file.split('\\');
+
+      $(e.currentTarget)
+         .closest('.form-file-block')
+         .find('.filename')
+         .text(fileName[fileName.length - 1]);
+   });
+}
+
+export function initCardRemoveModal() {
+   $('.lk__profile-card svg').on('click', function (e) {
+      let cardId = $(e.currentTarget).closest('.lk__profile-card').attr('data-card-id')
+
+      $('#card_remove_id').val(cardId)
+   })
+
+   $('.card-modal .button[type="submit"]').on('click', function (e) {
+      if (location.href.includes('tab=cards')) {
+         location.reload()
+      } else {
+         location.href += '?tab=cards'
+      }
+
+   })
+}

@@ -32,3 +32,41 @@
         }
     }
 }
+
+
+.card-modal {
+    .auth__form {
+        background: $colorWhite;
+        width: 100%;
+        max-width: 616px;
+        padding: 29px 32px;
+    }
+
+    .card-modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 4px;
+
+        .close {
+            display: block;
+            width: 24px;
+            height: 24px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    }
+
+    .card-modal-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 18px -16px 0;
+
+        .button {
+            width: calc(50% - 32px);
+            margin: 0 16px;
+
+        }
+    }
+}

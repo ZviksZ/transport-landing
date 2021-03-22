@@ -29,6 +29,10 @@ function initMaskedInput() {
                 mask = '999 999 99 99';
                 break;
 
+            case 'bank_card':
+                mask = '9999 9999 9999 9999';
+                break;
+
             case 'date':
                 mask = '99.99.9999';
                 autoUnmask = false;

@@ -1,79 +1,10 @@
-<% var data = { title: "Авторизация | Факторинг", authPage: true }; %> <%= _.template(require('./../includes/header.html').default)(data) %>
+<% var data = { title: "Профиль | Факторинг", authPage: false }; %> <%= _.template(require('./../includes/lk/header-lk.html').default)(data) %>
 
 <section class="section auth">
-    <form action="" class="auth__form" id="auth-form">
-        <div class="auth__step auth__step-disabled active" data-step="1">
-            <h2 class="h2 margin-bottom-x2">Вход или регистрация</h2>
+    <form action="" class="auth__form with-files with-success lk-request-form" id="auth-form">
 
-            <label class="field field-input margin-bottom">
-                <input class="input-text placeholder validate input-mask" data-mask_tpl="phone_plus7" data-validate="number_phone-required-codes" placeholder="Введите телефон"
-                       data-placeholder="Номер телефона"
-                       name="feedback_phone" id="auth-phone-number" type="text">
-                <p class="error-message"></p>
-            </label>
-
-            <div class="text-align-center margin-top-x3 margin-bottom-x2">
-                <button class="auth__step-link auth__step-link--next auth__send-phone full-width button" data-step="2" disabled>Получить код в SMS</button>
-            </div>
-
-            <a href="/">Вернуться назад</a>
-        </div>
-
-        <div class="auth__step" data-step="2">
-            <h2 class="h2 text-align-center">Введите код из SMS</h2>
-            <p class="auth__step-text text-align-center">
-                Мы отправили код подтверждения на номер <br>
-                <span class="auth__phone-text bold-text" id="auth-phone-number-text"></span>
-                <a href="#" class="auth__step-link" data-step="1">Изменить</a>
-            </p>
-            <div class="auth__code margin-bottom-x2 margin-top-x2" id="auth__code">
-                <label class="field field-small empty">
-                    <input class="sms-input input-text empty" type="tel"
-                           data-index="1"
-                           tabindex="0"
-                           autocomplete="one-time-code">
-                </label>
-
-                <label class="field field-small empty">
-                    <input class="sms-input input-text empty" type="tel"
-                           data-index="2"
-                           tabindex="0"
-                           autocomplete="one-time-code">
-                </label>
-
-                <label class="field field-small empty">
-                    <input class="sms-input input-text empty" type="tel"
-                           data-index="3"
-                           tabindex="0"
-                           autocomplete="one-time-code">
-                </label>
-
-                <label class="field field-small empty">
-                    <input class="sms-input input-text empty" type="tel"
-                           data-index="4"
-                           tabindex="0"
-                           autocomplete="one-time-code">
-                </label>
-
-                <input type="hidden" name="full_sms" id="full_sms" class="stats-input" data-field="130">
-
-            </div>
-
-            <div class="text-align-center margin-bottom">
-                <p class="color-gray auth__text" id="auth__send-time">Получить новый код через <span>60</span> сек.</p>
-                <a href="/" class="hide" id="auth__send-phone-repeat">Получить новый код</a>
-            </div>
-            <div class="text-align-center margin-bottom">
-                <a href="/" onclick="event.preventDefault()" class="tooltip"
-                   data-text='Если SMS не пришло в течение 5 минут, необходимо перезагрузить телефон. Если после перезагрузки SMS не пришло — воспользоваться опцией "Получить новый код”. В случае повторения проблемы сообщите нам на support@example.ru, указав ваш номер телефона и мобильного оператора.'>Вам не пришло SMS?</a>
-            </div>
-            <div class="text-align-center">
-                <a href="/" class="auth__step-link" data-step="1">Вернуться назад</a>
-            </div>
-        </div>
-
-        <div class="auth__step auth__step-progress" data-step="3">
-            <h2 class="h2 margin-bottom-x2">Регистрация</h2>
+        <div class="auth__step active auth__step-progress" data-step="1">
+            <h2 class="h2 margin-bottom-x2">Создание заявки</h2>
 
             <div class="auth__progress">
                 <p>Шаг 1 из 2 – Данные вашей организации</p>
@@ -82,32 +13,115 @@
                 </div>
             </div>
 
-            <div class="auth__tabs" id="company_type-tabs">
-                <div class="item active" data-tab="ИП">«ИП»</div>
-                <div class="item" data-tab="ООО">«ООО»</div>
+            <div class="main__calculator margin-bottom-x2" id="lk-request-form-calc">
+                <label class="field field-input">
+                    <input class="input-text input-money placeholder validate" data-validate="required-min" data-min="4" placeholder="Введите сумму" data-placeholder="Стоимость выполненного заказа"
+                           name="sum"  type="text">
+                    <p class="error-message"></p>
+                </label>
+                <div class="auth__policy margin-bottom">
+                    <div class="field field-not-progress field-no-icon no-margin-vertical">
+                        <input type="checkbox" id="vat" checked name="vat">
+                        <label class="auth__policy-label" for="vat">
+                            Включая НДС
+                        </label>
+                        <p class="error-message"></p>
+                    </div>
+
+                </div>
+                <div class="main__calculator-summary">
+                    <h6 class="h6 margin-bottom">Сколько вы получите</h6>
+                    <div class="main__calculator-summary-block">
+                        <div class="main__calculator-summary-title">
+                            <span class="body12 color-gray">Первая выплата</span>
+
+                            <div class="main__calculator-summary-info tooltip" data-text="Закрывающая выплата — платеж, получаемый перевозчиком после оплаты заказчиком счета по перевозке.">
+                                <i class="icon-info"></i>
+                            </div>
+                        </div>
+                        <div class="main__calculator-summary-text">
+                            <span class="body14 bold-text" id="calc-first-paid">22 400 ₽</span>
+                            <span class="body14 color-gray">(70%)</span>
+                        </div>
+                    </div>
+                    <div class="main__calculator-summary-block">
+                        <div class="main__calculator-summary-title">
+                            <span class="body12 color-gray">Закрывающая выплата</span>
+
+                            <div class="main__calculator-summary-info tooltip" data-text="1Закрывающая выплата — платеж, получаемый перевозчиком после оплаты заказчиком счета по перевозке.">
+                                <i class="icon-info"></i>
+                            </div>
+                        </div>
+                        <div class="main__calculator-summary-text">
+                            <span class="body14 main__calculator-summary-cross">
+                                <span id="calc-close-paid-crossed">6 400 ₽</span><span class="body14 color-gray">(20%)</span>
+                            </span>
+                            <span class="body14 bold-text" id="calc-close-paid">9 600 ₽</span>
+                            <span class="body14 color-gray">(30%)</span>
+                        </div>
+                    </div>
+                    <div class="main__calculator-summary-block">
+                        <div class="main__calculator-summary-title">
+                            <span class="body12 color-gray">Комиссия</span>
+
+                            <div class="main__calculator-summary-info tooltip" data-text="2Закрывающая выплата — платеж, получаемый перевозчиком после оплаты заказчиком счета по перевозке.">
+                                <i class="icon-info"></i>
+                            </div>
+                        </div>
+                        <div class="main__calculator-summary-text">
+                            <span class="body14 main__calculator-summary-cross">
+                                <span id="calc-commission-paid">3 200 ₽</span> <span class="body14 color-gray">(10%)</span>
+                            </span>
+                            <span class="body14 bold-text">0 ₽</span>
+                            <span class="body14 color-gray">Первая сделка бесплатно!</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <input type="hidden" id="auth-company-type" name="company_type" value="ИП">
+
+
+            <button class="button full-width auth__step-link auth__step-link--next margin-bottom" data-step="2">Далее</button>
+
+            <a href="/lk-profile.html">Вернуться назад</a>
+        </div>
+
+        <div class="auth__step  auth__step-progress no-focus-step" data-step="2">
+            <h2 class="h2 margin-bottom-x2">Создание заявки</h2>
+
+            <div class="auth__progress">
+                <p>Шаг 2 из 2 – Данные вашей организации</p>
+                <div class="auth__progress-container">
+                    <div class="auth__progress-line"></div>
+                </div>
+            </div>
+
+            <label class="field field-input field-select">
+                <select name="" id="" class="custom-select validate" data-validate="required">
+                    <option value="">Выбор площадки</option>
+                    <option value="1">Площадка 1</option>
+                    <option value="2">Площадка 2</option>
+                    <option value="3">Площадка 3</option>
+                </select>
+                <p class="error-message"></p>
+            </label>
 
             <label class="field field-input">
-                <input class="input-text placeholder validate" data-validate="required-min" placeholder="Введите название" data-placeholder="Название вашей организации"
+                <input class="input-text placeholder validate" data-validate="required-min" placeholder="Введите название" data-placeholder="Название организации"
                        name="company_name" type="text">
                 <p class="error-message"></p>
             </label>
+
             <label class="field field-input">
-                <input class="input-text placeholder validate" data-validate="required-inn" placeholder="Введите ИНН" data-placeholder="ИНН"
-                       name="inn" data-type="ИП" type="text">
-                <p class="error-message"></p>
-            </label>
-            <label class="field field-input">
-                <input class="input-text placeholder validate" data-validate="fio" placeholder="Введите Ваше ФИО" data-placeholder="Ваше ФИО"
-                       name="name"  type="text">
+                <input class="input-text placeholder validate input-mask" data-validate="date" data-mask_tpl="date" placeholder="Введите дату выдачи" data-placeholder="Дата выдачи"
+                       name="passport_date"  type="text">
                 <p class="error-message"></p>
             </label>
 
-            <label class="field field-input">
-                <input class="input-text placeholder validate" data-validate="required-min-number" placeholder="Введите код" data-placeholder="Код участника в АТИ"
-                       name="ati_code"  type="text">
+            <label class="field field-input margin-bottom">
+                <input class="input-text placeholder validate input-mask" data-mask_tpl="phone_plus7" data-validate="number_phone-required-codes" placeholder="Введите телефон"
+                       data-placeholder="Телефон менеджера"
+                       name="feedback_phone" id="auth-phone-number" type="text">
                 <p class="error-message"></p>
             </label>
 
@@ -117,64 +131,55 @@
                 <p class="error-message"></p>
             </label>
 
+            <h6 class="h6 margin-bottom">Прикрепите документы</h6>
 
-            <div class="auth__policy margin-bottom-x2">
-                <div class="field field-no-icon no-margin-vertical">
-                    <input type="checkbox" id="policy" checked name="policy" class="validate" data-validate="required_checkbox">
-                    <label class="auth__policy-label" for="policy">
-                        Я соглашаюсь с <a href="#">условиями</a> и даю свое <a href="#">согласие на обработку</a> и использование моих персональных данных
-                    </label>
-                    <p class="error-message"></p>
+
+            <div class="form-file-block">
+                <div class="data">
+                    <div class="title body16">Договор-заявка</div>
+                    <div class="filename body12 color-gray">Не загружен</div>
+                    <input type="file" class="file-input" hidden name="contract">
                 </div>
-
+                <a href="#" class="button secondary small">Загрузить</a>
             </div>
-
-            <button class="button full-width auth__step-link auth__step-link--next margin-bottom" data-step="4">Далее: паспортные данные</button>
-
-            <a href="/" class="auth__step-link" data-step="2">Вернуться назад</a>
-        </div>
-
-        <div class="auth__step auth__step-progress " data-step="4">
-            <h2 class="h2 margin-bottom-x2">Регистрация</h2>
-
-            <div class="auth__progress">
-                <p>Шаг 2 из 2 – Ваши паспортные данные</p>
-                <div class="auth__progress-container">
-                    <div class="auth__progress-line"></div>
+            <div class="form-file-block">
+                <div class="data">
+                    <div class="title body16">Счет</div>
+                    <div class="filename body12 color-gray">Не загружен</div>
+                    <input type="file" class="file-input" hidden name="bill">
                 </div>
+                <a href="#" class="button secondary small">Загрузить</a>
+            </div>
+            <div class="form-file-block">
+                <div class="data">
+                    <div class="title body16">Акт выполненных работ</div>
+                    <div class="filename body12 color-gray">Не загружен</div>
+                    <input type="file" class="file-input" hidden name="act">
+                </div>
+                <a href="#" class="button secondary small">Загрузить</a>
+            </div>
+            <div class="form-file-block">
+                <div class="data">
+                    <div class="title body16">Счет фактура</div>
+                    <div class="filename body12 color-gray">Не загружен</div>
+                    <input type="file" class="file-input" hidden name="invoice">
+                </div>
+                <a href="#" class="button secondary small">Загрузить</a>
+            </div>
+            <div class="form-file-block">
+                <div class="data">
+                    <div class="title body16">Транспортные документы</div>
+                    <div class="filename body12 color-gray">Не загружен</div>
+                    <input type="file" class="file-input" hidden name="transport_docs">
+                </div>
+                <a href="#" class="button secondary small">Загрузить</a>
             </div>
 
-            <label class="field field-input">
-                <input class="input-text placeholder validate input-mask" data-mask_tpl="passport_serial_number" data-validate="passport_serial_number" placeholder="Введите номер и серию" data-placeholder="Серия и номер паспорта"
-                       name="passport" type="text">
-                <p class="error-message"></p>
-            </label>
-
-            <div class="auth__field-row">
-                <label class="field field-input">
-                    <input class="input-text placeholder validate input-mask" data-validate="date" data-mask_tpl="date" placeholder="Введите дату выдачи" data-placeholder="Дата выдачи"
-                           name="passport_date"  type="text">
-                    <p class="error-message"></p>
-                </label>
-                <label class="field field-input">
-                    <input class="input-text placeholder validate input-mask" data-mask_tpl="passport_code" data-validate="required-min-code" data-min-length="7" placeholder="Введите код"
-                           data-placeholder="Код подразделения"
-                           name="name"  type="text">
-                    <p class="error-message"></p>
-                </label>
-            </div>
 
 
+            <button class="button full-width margin-bottom" type="submit">Далее</button>
 
-            <label class="field field-input">
-                <textarea class="input-text placeholder validate" data-validate="required-min" data-min-length="10" placeholder="Введите кем выдан паспорт" data-placeholder="Кем выдан"
-                          name="name"></textarea>
-                <p class="error-message"></p>
-            </label>
-
-            <button class="button full-width margin-bottom" type="submit">Завершить регистрацию</button>
-
-            <a href="/" class="auth__step-link" data-step="3">Вернуться назад</a>
+            <a href="/" class="auth__step-link" data-step="1">Вернуться назад</a>
         </div>
 
 
@@ -189,5 +194,4 @@
 </section>
 
 
-
-<%= _.template(require('./../includes/footer.html').default)(data) %>
+<%= _.template(require('./../includes/lk/footer-lk.html').default)(data) %>

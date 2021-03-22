@@ -39,6 +39,7 @@ export class CustomSelect {
          shouldSort: false,
          classNames: {
             containerOuter: 'choices choices-custom',
+            containerInner: 'choices__inner choices-custom-inner',
          },
          /*sorter: function(a, b) {
             return +b.value - +a.value;

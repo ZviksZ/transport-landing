@@ -18,6 +18,24 @@
 
 
 </div>
+
+<div class="modal-window fade-in card-modal" data-modal="card-modal">
+    <form action="" class="auth__form with-files with-success" id="auth-form">
+        <div class="card-modal-header">
+            <h4 class="h4">Удаление карты</h4>
+            <img data-close-modal-button="card-modal" data-effect-type="open-modal-fade-effect" class="close" src="/img/lk/close.svg" alt="">
+        </div>
+        <p class="body18 color-gray">Вы действительно хотите удалить карту?</p>
+
+        <input type="text" hidden name="user_id" value="1">
+        <input type="text" hidden name="card_id" id="card_remove_id" value="1">
+        <div class="card-modal-footer">
+            <button type="submit" class="button secondary">Удалить</button>
+            <button class="button" data-close-modal-button="card-modal" data-effect-type="open-modal-fade-effect">Не удалять</button>
+        </div>
+    </form>
+</div>
+
 <div class="modal-window-pxl"></div>
 
 

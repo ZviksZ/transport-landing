@@ -10,7 +10,7 @@ export class InitAuthForm {
       this.enteredPhone = null;
       this.isNumberRegistered = false;
 
-      this.progressInputsLength = this.$form.find('.auth__step-progress .field').length;
+      this.progressInputsLength = this.$form.find('.auth__step-progress .field:not(.field-not-progress)').length;
 
       this.init();
    }
@@ -27,6 +27,7 @@ export class InitAuthForm {
 
       this.$form.on('submit', this.onSubmit);
       this.$form.find('.auth__step-progress .input-text').on('blur', this.setProgress);
+      this.$form.find('.auth__step-progress select').on('change', this.setProgress);
       this.$form.find('.auth__step-disabled .input-text').on('input change', this.checkDisabledBtn);
       this.$form.find('.auth__step-link').on('click', this.changeStep);
       this.$form.find('.auth__tabs .item').on('click', this.changeTab);
@@ -222,10 +223,16 @@ export class InitAuthForm {
 
       this.$form
          .find('.auth__step[data-step="' + nextStep + '"]')
-         .addClass('active')
-         .find('input')
-         .first()
-         .focus();
+         .addClass('active');
+
+      if (!this.$form
+         .find('.auth__step[data-step="' + nextStep + '"]').hasClass('no-focus-step')) {
+         this.$form
+            .find('.auth__step[data-step="' + nextStep + '"]')
+            .find('input')
+            .first()
+            .focus();
+      }
    };
 
    initPhoneTimer = () => {
@@ -271,8 +278,7 @@ export class InitAuthForm {
             this.isNumberRegistered = res.isAuth;
          },
          error: (res) => {
-            console.log('Раскомментировать');
-            /*this.$form.addClass('show-message');*/
+            this.$form.addClass('show-message');
          },
          timeout: 30000,
       });
@@ -310,18 +316,21 @@ export class InitAuthForm {
       e.preventDefault();
 
       const form = $(e.currentTarget);
+      let data;
 
-      let data = form.serialize();
-
-      console.log('submit');
+      if (form.hasClass('with-files')) {
+        data = new FormData( e.currentTarget )
+      } else {
+         data = form.serialize();
+      }
 
       if (validateForm(form, true)) {
-         console.log('submit validateForm');
-
          $.ajax({
             url: form.attr('action'),
             type: 'POST',
             dataType: 'text',
+            processData: false,
+            contentType: false,
             data: data,
             beforeSend: () => {
                this.addLoader();

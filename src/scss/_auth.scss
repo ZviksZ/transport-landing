@@ -188,6 +188,10 @@
             margin-bottom: 24px !important;
         }
 
+        .field-select {
+            z-index: 1001;
+        }
+
         .auth__text {
             font-size: 16px;
             line-height: 28px;
@@ -226,6 +230,131 @@
             }
         }
 
+        .field.error {
+            .choices-custom {
+                .choices__inner {
+                    border: 2px solid $colorDangerous;
+                }
+            }
+        }
+
+        .field.success {
+            .choices-custom {
+                .choices__inner {
+                    border: 2px solid $colorGrayLight;
+                    color: $colorText;
+                    background: $colorWhite;
+                    &:after{
+                        position: absolute;
+                        right: 22px;
+                        top: 20px;
+                        display: block;
+                        content: '';
+                        width: 20px;
+                        height: 20px;
+                        background: url("../img/success.svg") no-repeat center center;
+                        -webkit-background-size: contain;
+                        background-size: contain;
+                    }
+                }
+            }
+        }
+
+        .choices-custom {
+            border: 0px;
+            &.is-open {
+                z-index: 1001;
+            }
+
+            .choices__inner {
+                width: 100%;
+                position: relative;
+                background: $colorWhite;
+                white-space: nowrap;
+                height: 64px;
+                min-height: auto;
+                overflow-x: hidden;
+                display: flex;
+                align-items: center;
+                font-size: 18px;
+                line-height: 32px;
+                color: $colorDarkGray;
+                background: $colorGrayExtraLight;
+                padding: 16px 44px 16px 16px;
+                border: 2px solid $colorGrayExtraLight;
+                border-radius: 4px;
+                box-shadow: none;
+
+                .choices__placeholder {
+                    opacity: 1;
+                }
+
+                &:after{
+                    font-family: "factoring" !important;
+                    display: block;
+                    content: '\68';
+                    position: absolute;
+                    top: 22px;
+                    right: 22px;
+                    line-height: 1;
+                    font-size: 20px;
+                    background: none;
+                    color: $colorDarkGray;
+                }
+            }
+
+            .choices__list--dropdown {
+                width: 100%;
+                background: $colorWhite;
+                border: 0;
+                box-sizing: border-box;
+                box-shadow: 1px 4px 12px rgba(0, 0, 0, 0.1);
+                border-radius: 0px 0px 8px 8px;
+                z-index: 77;
+                margin-top: 0;
+                .choices__item {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    font-size: 16px;
+                    line-height: 28px;
+                    color: $colorText;
+                    padding-left: 18px;
+                    height: 64px;
+                    background: $colorWhite;
+                    @include desktop {
+                        &:hover {
+                            background: $colorGrayExtraLight;
+                        }
+                    }
+                }
+                .choices__item + .choices__item {
+                    border-top: 1px solid #ECEFF2;
+                }
+                .is-selected {
+                    &:after {
+                        position: absolute;
+                        right: 22px;
+                        top: 30px;
+                        display: block;
+                        content: '';
+                        width: 14px;
+                        height: 10px;
+                        background: url("../img/checked.svg") no-repeat center;
+                        -webkit-background-size: contain;
+                        background-size: contain;
+                        opacity: 1;
+                        @include mobile {
+                            top: 15px;
+                        }
+                    }
+                }
+                .choices__list {
+                    max-height: 280px;
+                }
+            }
+        }
+
         &.show-loading {
             .auth__loader {
                 display: flex;
@@ -237,6 +366,7 @@
                 transform: translateY(0);
                 opacity: 1;
                 z-index: 30;
+                min-height: 50vh;
             }
         }
 

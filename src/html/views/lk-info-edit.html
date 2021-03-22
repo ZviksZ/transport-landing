@@ -1,0 +1,71 @@
+<% var data = { title: "Профиль | Факторинг", authPage: false }; %> <%= _.template(require('./../includes/lk/header-lk.html').default)(data) %>
+
+<section class="section auth">
+    <form action="" class="auth__form with-success" id="auth-form">
+
+        <div class="auth__step  active" data-step="1">
+            <h2 class="h2 margin-bottom-x2">Редактировать профиль</h2>
+
+            <div class="auth__tabs" id="company_type-tabs">
+                <div class="item active" data-tab="ИП">«ИП»</div>
+                <div class="item" data-tab="ООО">«ООО»</div>
+            </div>
+
+            <input type="hidden" id="auth-company-type" name="company_type" value="ИП">
+
+            <label class="field field-input">
+                <input class="input-text placeholder validate" data-validate="required-min" placeholder="Введите название" data-placeholder="Название вашей организации"
+                       name="company_name" type="text">
+                <p class="error-message"></p>
+            </label>
+            <label class="field field-input">
+                <input class="input-text placeholder validate" data-validate="required-inn" placeholder="Введите ИНН" data-placeholder="ИНН"
+                       name="inn" data-type="ИП" type="text">
+                <p class="error-message"></p>
+            </label>
+            <label class="field field-input">
+                <input class="input-text placeholder validate" data-validate="fio" placeholder="Введите Ваше ФИО" data-placeholder="Ваше ФИО"
+                       name="name"  type="text">
+                <p class="error-message"></p>
+            </label>
+
+            <label class="field field-input">
+                <input class="input-text placeholder validate" data-validate="required-min-number" placeholder="Введите код" data-placeholder="Код участника в АТИ"
+                       name="ati_code"  type="text">
+                <p class="error-message"></p>
+            </label>
+
+            <label class="field field-input">
+                <input class="input-text placeholder validate" data-validate="email" placeholder="Введите email" data-placeholder="Электронная почта"
+                       name="email"  type="email">
+                <p class="error-message"></p>
+            </label>
+
+            <!-- Добавить класс success - чтобы была галочка у поля-->
+            <label class="field field-input margin-bottom success">
+                <input class="input-text placeholder validate input-mask" data-mask_tpl="phone_plus7" data-validate="number_phone-required-codes" placeholder="Введите телефон"
+                       data-placeholder="Номер телефона"
+                       name="feedback_phone" type="text" value="4568997654">
+                <p class="error-message"></p>
+            </label>
+
+            <button class="button full-width margin-bottom" type="submit">Сохранить</button>
+
+            <a href="/lk-profile.html">Вернуться назад</a>
+        </div>
+
+
+        <div class="auth__loader">
+            <div class="loader"></div>
+        </div>
+
+        <div class="auth__message">
+
+        </div>
+    </form>
+</section>
+
+
+
+
+<%= _.template(require('./../includes/lk/footer-lk.html').default)(data) %>

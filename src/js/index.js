@@ -7,9 +7,9 @@ import { CustomTabs }                                                           
 import { Effects }                                                                           from './components/effects';
 import { initMaskedInput, initMoneyInput, initPlaceholders }                                 from './components/form';
 import { HeaderMenu }                                                                        from './components/header-menu';
-import {initSubmenuMobileOpen}                                                               from "./components/helpers/simple-functions";
+import {initCardRemoveModal, initFileInputBlock, initSubmenuMobileOpen}                      from "./components/helpers/simple-functions";
 import {initCloseMenuOnClick, initInfoTabs, initInteriorMobileBtn, initSmoothScrollToAnchor} from './components/helpers/simple-functions.js';
-import {LkProfile, LkTable}                                                                  from "./components/lk";
+import {LkFormCalc, LkProfile, LkTable}                                                      from "./components/lk";
 import { ModalWindowFullScreen }                                                             from './components/modal-window-fullscreen';
 import { Parallax }                                                                          from './components/parallax';
 import { ReviewsSlider }                                                                     from './components/reviews-slider';
@@ -42,6 +42,10 @@ $(function () {
    //Личный кабинет
    new LkTable();
    new LkProfile();
+   new LkFormCalc();
+
+   initFileInputBlock();
+   initCardRemoveModal();
 
    // инициализация функционала модальных окон
    let modal = new ModalWindowFullScreen();
