@@ -175,10 +175,7 @@ export class InitAuthForm {
       setTimeout(() => {
          this.removeLoader();
 
-         if (this.isNumberRegistered) {
-         } else {
-            this.toggleSteps('3');
-         }
+         this.isNumberIsRegistered();
       }, 1000);
    };
 
@@ -260,7 +257,7 @@ export class InitAuthForm {
       e.preventDefault();
       const value = $('#auth-phone-number').val();
 
-      this.isNumberIsRegistered();
+
       this.initPhoneTimer();
 
 
@@ -276,6 +273,12 @@ export class InitAuthForm {
          },
          success: (res) => {
             this.isNumberRegistered = res.isAuth;
+
+            if (this.isNumberRegistered) {
+
+            } else {
+               this.toggleSteps('3');
+            }
          },
          error: (res) => {
             this.$form.addClass('show-message');

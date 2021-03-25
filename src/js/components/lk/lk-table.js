@@ -202,7 +202,7 @@ export class LkTable {
       });
 
       if (!this.filteredData.length) {
-         template += `<div class="lk-table__row"><p class="body18 color-gray">По данному фильтру ничего не найдено</p></div>`;
+         template += `<div class="body18 color-gray text-align-center">По данному фильтру ничего не найдено</div>`;
       }
 
       this.$tableWrapper.find('.lk-table').html(template);
