@@ -18,7 +18,7 @@ export class InitAuthForm {
    init = () => {
       this.initSmsFieldInput($('#auth__code'), (value) => {
          if (value && value.length === 4) {
-            this.checkCode();
+            this.checkCode(value);
          }
       });
 
@@ -169,16 +169,6 @@ export class InitAuthForm {
       this.$form.removeClass('show-loading');
    };
 
-   checkCode = () => {
-      this.addLoader();
-
-      setTimeout(() => {
-         this.removeLoader();
-
-         this.isNumberIsRegistered();
-      }, 1000);
-   };
-
    changeStep = (e) => {
       e.preventDefault();
       const nextStep = $(e.currentTarget).attr('data-step');
@@ -253,38 +243,78 @@ export class InitAuthForm {
       }, 1000);
    };
 
-   sendPhoneNumberApi = (e) => {
+   sendPhoneNumberApi = async (e) => {
       e.preventDefault();
-      const value = $('#auth-phone-number').val();
 
+      const data =  {
+         phone: $('#auth-phone-number').val(),
+      }
 
-      this.initPhoneTimer();
-
-
-   };
-
-   isNumberIsRegistered = () => {
       $.ajax({
-         url: '/checkRegister',
+         url: '/authSms',
          type: 'POST',
-         contentType: 'application/json',
-         data: {
-            phone: $('#auth-phone-number').val(),
-         },
+         accepts:"application/json",
+         contentType: "application/json; charset=utf-8",
+         dataType: "json",
+         data: JSON.stringify(data),
          success: (res) => {
-            this.isNumberRegistered = res.isAuth;
-
-            if (this.isNumberRegistered) {
-
-            } else {
-               this.toggleSteps('3');
-            }
+            this.initPhoneTimer();
          },
          error: (res) => {
+            this.$form.find('.auth__message').html(this.getErrorMessage())
             this.$form.addClass('show-message');
          },
          timeout: 30000,
       });
+   };
+
+   checkCode = (value) => {
+      this.addLoader();
+
+      const data =  {
+         phone: $('#auth-phone-number').val(),
+         code: value,
+      }
+
+      $.ajax({
+         url: '/checkAuthSms',
+         type: 'POST',
+         accepts:"application/json",
+         contentType: "application/json; charset=utf-8",
+         dataType: "json",
+         data: JSON.stringify(data),
+         success: (res) => {
+
+
+            if (!res.check) {
+               return false
+            }
+
+            if (res.action === 'login') {
+               $.ajax({
+                  url: '/login',
+                  type: 'POST',
+                  contentType: 'application/json',
+                  data: {
+                     phone: $('#auth-phone-number').val(),
+                     code: value,
+                  },
+               })
+            } else if (res.action === 'registration') {
+               this.toggleSteps('3');
+            }
+
+            this.removeLoader();
+         },
+         error: (res) => {
+            this.removeLoader();
+            this.$form.find('.auth__message').html(this.getErrorMessage())
+            this.$form.addClass('show-message');
+         },
+         timeout: 30000,
+      });
+
+
    };
 
    setPhoneNumberText = () => {
@@ -310,9 +340,7 @@ export class InitAuthForm {
          }
       });
 
-      if (error > 0) return false;
-
-      return true;
+      return error <= 0
    };
 
    onSubmit = (e) => {
