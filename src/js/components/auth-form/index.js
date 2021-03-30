@@ -1,5 +1,6 @@
-import * as $ from 'jquery';
+import * as $                                                from 'jquery';
 import { initFormWithValidate, validateField, validateForm } from '../form';
+import {imitateFormSubmit}                                   from "../helpers";
 
 export class InitAuthForm {
    constructor() {
@@ -284,27 +285,47 @@ export class InitAuthForm {
          dataType: "json",
          data: JSON.stringify(data),
          success: (res) => {
-
-
             if (!res.check) {
+               this.removeLoader();
+               this.$form.find('.auth__message').html(this.getErrorMessage())
+               this.$form.addClass('show-message');
+
                return false
             }
 
             if (res.action === 'login') {
-               $.ajax({
-                  url: '/login',
-                  type: 'POST',
-                  contentType: 'application/json',
-                  data: {
-                     phone: $('#auth-phone-number').val(),
-                     code: value,
+               /*imitateFormSubmit('/login', [
+                  {
+                     name: "phone",
+                     value: data.phone
                   },
-               })
+                  {
+                     name: "code",
+                     value: data.code
+                  }
+               ])*/
+
+               location.href = '/'
             } else if (res.action === 'registration') {
+               this.$form.attr('action', 'register')
+
+               $('<input>').attr({
+                  type: "hidden",
+                  name: "code",
+                  value: data.code
+               }).appendTo(this.$form.find('[data-step="4"]'));
+
+               $('<input>').attr({
+                  type: "hidden",
+                  name: "phone",
+                  value: data.phone
+               }).appendTo(this.$form.find('[data-step="4"]'));
+
                this.toggleSteps('3');
+               this.removeLoader();
             }
 
-            this.removeLoader();
+
          },
          error: (res) => {
             this.removeLoader();
@@ -343,25 +364,54 @@ export class InitAuthForm {
       return error <= 0
    };
 
+   getRegisterFormData = () => {
+      let data = {}
+
+      this.$form.find('.auth__step-progress input, .auth__step-progress textarea').each(function () {
+         const name = $(this).attr('name')
+
+         data[name] = $(this).val()
+      })
+      return data
+   }
+
+   getAllFormData = () => {
+      let data = {}
+
+      this.$form.find('input, textarea').each(function () {
+         const name = $(this).attr('name')
+
+         data[name] = $(this).val()
+      })
+      return data
+   }
+
    onSubmit = (e) => {
       e.preventDefault();
 
       const form = $(e.currentTarget);
       let data;
 
-      if (form.hasClass('with-files')) {
-        data = new FormData( e.currentTarget )
+      const isWithFiles = form.hasClass('with-files')
+
+      if (isWithFiles) {
+         data = new FormData( e.currentTarget )
+      } else if (form.attr('action') === 'register') {
+         data = JSON.stringify(this.getRegisterFormData())
       } else {
-         data = form.serialize();
+         //data = form.serialize();
+
+         data = JSON.stringify(this.getAllFormData())
       }
 
       if (validateForm(form, true)) {
          $.ajax({
             url: form.attr('action'),
             type: 'POST',
-            dataType: 'text',
+            /*accepts: isWithFiles ? false : "application/json",*/
+            contentType: isWithFiles ? false : "application/json; charset=utf-8",
+            dataType: isWithFiles ? "text" : "json",
             processData: false,
-            contentType: false,
             data: data,
             beforeSend: () => {
                this.addLoader();

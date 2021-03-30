@@ -1,4 +1,4 @@
-import { getParameterByName, lockBodyOnModalOpen, toCurrency, transformDate, declOfNum, kFormatter, numberFormat, parseGets, initToggleBlock, formatDate, getGenderByFIO, highlightSomeText, getIdFromURL } from './helpers';
+import { imitateFormSubmit, getParameterByName, lockBodyOnModalOpen, toCurrency, transformDate, declOfNum, kFormatter, numberFormat, parseGets, initToggleBlock, formatDate, getGenderByFIO, highlightSomeText, getIdFromURL } from './helpers';
 
 export {
 	declOfNum,
@@ -13,5 +13,6 @@ export {
 	transformDate,
 	toCurrency,
 	lockBodyOnModalOpen,
-	getParameterByName
+	getParameterByName,
+	imitateFormSubmit
 };

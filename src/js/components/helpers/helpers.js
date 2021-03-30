@@ -359,6 +359,24 @@ function getParameterByName(name, url = window.location.href) {
    return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+
+function imitateFormSubmit(url, fields) {
+   let $form = $('<form>', {
+      action: url,
+      method: 'post'
+   });
+   $.each(fields, function(key, val) {
+      $('<input>').attr({
+         type: "hidden",
+         name: val.name,
+         value: val.value
+      }).appendTo($form);
+   });
+   $form.appendTo('body').submit();
+}
+
+
+
 export {
    numberFormat,
    declOfNum,
@@ -372,5 +390,6 @@ export {
    transformDate,
    toCurrency,
    lockBodyOnModalOpen,
-   getParameterByName
+   getParameterByName,
+   imitateFormSubmit
 };
