@@ -1,6 +1,6 @@
-import * as $                                                from 'jquery';
-import { initFormWithValidate, validateField, validateForm } from '../form';
-import {imitateFormSubmit}                                   from "../helpers";
+import * as $                                              from 'jquery';
+import {initFormWithValidate, validateField, validateForm} from '../form';
+import {imitateFormSubmit}                                 from "../helpers";
 
 export class InitAuthForm {
    constructor() {
@@ -131,7 +131,7 @@ export class InitAuthForm {
          const successFields = this.$form.find('.auth__step-progress .field.success').length;
          const progressWidth = (successFields / this.progressInputsLength) * 100 + '%';
 
-         $('.auth__progress-container .auth__progress-line').animate({ width: progressWidth }, 400);
+         $('.auth__progress-container .auth__progress-line').animate({width: progressWidth}, 400);
       }, 100);
    };
 
@@ -247,14 +247,14 @@ export class InitAuthForm {
    sendPhoneNumberApi = async (e) => {
       e.preventDefault();
 
-      const data =  {
+      const data = {
          phone: $('#auth-phone-number').val(),
       }
 
       $.ajax({
          url: '/authSms',
          type: 'POST',
-         accepts:"application/json",
+         accepts: "application/json",
          contentType: "application/json; charset=utf-8",
          dataType: "json",
          data: JSON.stringify(data),
@@ -272,7 +272,7 @@ export class InitAuthForm {
    checkCode = (value) => {
       this.addLoader();
 
-      const data =  {
+      const data = {
          phone: $('#auth-phone-number').val(),
          code: value,
       }
@@ -280,7 +280,7 @@ export class InitAuthForm {
       $.ajax({
          url: '/checkAuthSms',
          type: 'POST',
-         accepts:"application/json",
+         accepts: "application/json",
          contentType: "application/json; charset=utf-8",
          dataType: "json",
          data: JSON.stringify(data),
@@ -393,10 +393,11 @@ export class InitAuthForm {
       let data;
 
       const isWithFiles = form.hasClass('with-files')
+      const isRegisterForm = form.attr('action') === 'register'
 
       if (isWithFiles) {
-         data = new FormData( e.currentTarget )
-      } else if (form.attr('action') === 'register') {
+         data = new FormData(e.currentTarget)
+      } else if (isRegisterForm) {
          data = JSON.stringify(this.getRegisterFormData())
       } else {
          //data = form.serialize();
@@ -417,20 +418,26 @@ export class InitAuthForm {
                this.addLoader();
             },
             success: (res) => {
+               console.log('SUCCESS', res)
+               if (isRegisterForm && res.status === 'OK') {
+                  location.href = '/'
+               }
+
+
                this.removeLoader();
 
-               if(this.$form.hasClass('with-success')) {
+               if (this.$form.hasClass('with-success')) {
                   form.find('.auth__message').html(this.getSuccessMessage())
                   form.addClass('show-message');
-               } else {
-
                }
             },
             error: (res) => {
                this.removeLoader();
-               form.find('.auth__message').html(this.getErrorMessage())
-               form.addClass('show-message');
-               this.scrollToMessage(form);
+               if (res.statusText !== 'OK') {
+                  form.find('.auth__message').html(this.getErrorMessage())
+                  form.addClass('show-message');
+                  this.scrollToMessage(form);
+               }
             },
             timeout: 30000,
          });
