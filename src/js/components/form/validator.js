@@ -204,7 +204,8 @@ function validateField($field, showError = true) {
 
       // серия и номер паспорта - 10 цифр
       case 'passport_serial_number':
-         val = val + '';
+         val = val.replace(/\s/g, '')
+
          if (!val || val.search(regNum) == -1 || val.length !== 10) {
             error++;
             message = 'Укажите корректные данные';

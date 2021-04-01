@@ -395,16 +395,27 @@ export class InitAuthForm {
       const isWithFiles = form.hasClass('with-files')
       const formRedirect = form.attr('data-redirect')
       const isRegisterForm = form.attr('action') === 'register'
+      const sumInput = $('input[name="sum"]')
+      const sumInputVal = sumInput.val()
 
       if (isWithFiles) {
+         if (sumInput.length > 0) {
+            sumInput.remove()
+            $('<input>').attr({
+               type: "hidden",
+               name: "sum",
+               value: sumInputVal
+            }).appendTo(form);
+         }
          data = new FormData(e.currentTarget)
+
       } else if (isRegisterForm) {
          data = JSON.stringify(this.getRegisterFormData())
       } else {
          data = JSON.stringify(this.getAllFormData())
       }
 
-      if (validateForm(form, true)) {
+      if (validateForm(form, true) && $('.form-file-block .error').length === 0) {
          $.ajax({
             url: form.attr('action'),
             type: 'POST',
@@ -419,17 +430,16 @@ export class InitAuthForm {
             success: (res) => {
                this.removeLoader();
 
-               if (res.status !== 'OK') {
-                  form.find('.auth__message').html(this.getErrorMessage())
-                  form.addClass('show-message');
-                  this.scrollToMessage(form);
-               }
-
-
                if (isRegisterForm) {
                   location.href = '/'
                } else if (formRedirect) {
-                  location.href = formRedirect
+                  form.find('.auth__message').html(this.getSuccessMessage(false))
+                  form.addClass('show-message');
+
+                  setTimeout(() => {
+                     location.href = formRedirect
+                  }, 3000)
+
                } else if (this.$form.hasClass('with-success')) {
                   form.find('.auth__message').html(this.getSuccessMessage())
                   form.addClass('show-message');
@@ -448,25 +458,27 @@ export class InitAuthForm {
       }
    };
 
-   getSuccessMessage = () => {
+   getSuccessMessage = (withButton = true) => {
+      const btn = withButton ? ` <a href="/profile" class="button">Личный кабинет</a>` : ''
       return `
-         <img src="./img/auth/success.svg" alt="">
+         <img src="/img/auth/success.svg" alt="">
             <h2 class="h2">Отлично</h2>
             <p class="color-gray auth__text">
-                Ваша заявка отправлена. Следите за статусом в личном кабинете
+                Форма успешно отправлена
             </p>
-            <a href="/profile" class="button">Личный кабинет</a>
+           ${btn}
       `
    }
 
-   getErrorMessage = () => {
+   getErrorMessage = (withButton = true) => {
+      const btn = withButton ? `<a href="/" class="button">Закрыть</a>` : ''
       return `
-         <img src="./img/auth/error.svg" alt="">
+         <img src="/img/auth/error.svg" alt="">
             <h2 class="h2">Ошибка</h2>
             <p class="color-gray auth__text">
                 Что-то пошло не так, попробуйте позже или напишите нам на <a href="mailto:support@example.ru">support@example.ru</a>, описав ситуацию, при которой возникает ошибка
             </p>
-            <a href="/" class="button">Закрыть</a>
+            ${btn}
       `
    }
 

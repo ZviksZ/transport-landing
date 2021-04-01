@@ -60,6 +60,7 @@ export class Calculator {
       $('#calc-close-paid').text(toCurrency(closePaid))
       $('#calc-close-paid-crossed').text(toCurrency(closePaidCrossed))
       $('#calc-commission-paid').text(toCurrency(commissionPaid))
+      $('#calculator-sum-finally').val(enteredSum)
    };
 
    initSumRangeSlider = () => {

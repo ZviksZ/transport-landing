@@ -1,0 +1,193 @@
+<% var data = { title: "Профиль | Факторинг", authPage: false }; %> <%= _.template(require('./../includes/lk/header-lk.html').default)(data) %>
+
+<section class="section auth">
+    <form action="" class="auth__form with-files with-success lk-request-form" id="auth-form">
+
+        <div class="auth__step active auth__step-progress" data-step="1">
+            <h2 class="h2 margin-bottom-x2">Создание заявки</h2>
+
+            <div class="auth__progress">
+                <p>Шаг 1 из 2 – Данные вашей организации</p>
+                <div class="auth__progress-container">
+                    <div class="auth__progress-line"></div>
+                </div>
+            </div>
+
+            <div class="main__calculator margin-bottom-x2" id="lk-request-form-calc">
+                <label class="field field-input">
+                    <input class="input-text input-money placeholder validate" data-validate="required-min" data-min="4" placeholder="Введите сумму" data-placeholder="Стоимость выполненного заказа"
+                           name="sum"  type="text">
+                    <p class="error-message"></p>
+                </label>
+                <div class="auth__policy margin-bottom">
+                    <div class="field field-not-progress field-no-icon no-margin-vertical">
+                        <input type="checkbox" id="vat" checked name="vat">
+                        <label class="auth__policy-label" for="vat">
+                            Включая НДС
+                        </label>
+                        <p class="error-message"></p>
+                    </div>
+
+                </div>
+                <div class="main__calculator-summary">
+                    <h6 class="h6 margin-bottom">Сколько вы получите</h6>
+                    <div class="main__calculator-summary-block">
+                        <div class="main__calculator-summary-title">
+                            <span class="body12 color-gray">Первая выплата</span>
+
+                            <div class="main__calculator-summary-info tooltip" data-text="Закрывающая выплата — платеж, получаемый перевозчиком после оплаты заказчиком счета по перевозке.">
+                                <i class="icon-info"></i>
+                            </div>
+                        </div>
+                        <div class="main__calculator-summary-text">
+                            <span class="body14 bold-text" id="calc-first-paid">22 400 ₽</span>
+                            <span class="body14 color-gray">(70%)</span>
+                        </div>
+                    </div>
+                    <div class="main__calculator-summary-block">
+                        <div class="main__calculator-summary-title">
+                            <span class="body12 color-gray">Закрывающая выплата</span>
+
+                            <div class="main__calculator-summary-info tooltip" data-text="1Закрывающая выплата — платеж, получаемый перевозчиком после оплаты заказчиком счета по перевозке.">
+                                <i class="icon-info"></i>
+                            </div>
+                        </div>
+                        <div class="main__calculator-summary-text">
+                            <span class="body14">
+                                <span class="bold-text" id="calc-close-paid-crossed">6 400 ₽</span><span class="body14 color-gray">(20%)</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="main__calculator-summary-block">
+                        <div class="main__calculator-summary-title">
+                            <span class="body12 color-gray">Комиссия</span>
+
+                            <div class="main__calculator-summary-info tooltip" data-text="2Закрывающая выплата — платеж, получаемый перевозчиком после оплаты заказчиком счета по перевозке.">
+                                <i class="icon-info"></i>
+                            </div>
+                        </div>
+                        <div class="main__calculator-summary-text">
+                            <span class="body14 ">
+                                <span class="bold-text" id="calc-commission-paid">3 200 ₽</span> <span class="body14 color-gray">(10%)</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <button class="button full-width auth__step-link auth__step-link--next margin-bottom" data-step="2">Далее</button>
+
+            <a href="/lk-profile.html">Вернуться назад</a>
+        </div>
+
+        <div class="auth__step  auth__step-progress no-focus-step" data-step="2">
+            <h2 class="h2 margin-bottom-x2">Создание заявки</h2>
+
+            <div class="auth__progress">
+                <p>Шаг 2 из 2 – Данные вашей организации</p>
+                <div class="auth__progress-container">
+                    <div class="auth__progress-line"></div>
+                </div>
+            </div>
+
+            <label class="field field-input field-select">
+                <select name="" id="" class="custom-select validate" data-validate="required">
+                    <option value="">Выбор площадки</option>
+                    <option value="1">Площадка 1</option>
+                    <option value="2">Площадка 2</option>
+                    <option value="3">Площадка 3</option>
+                </select>
+                <p class="error-message"></p>
+            </label>
+
+            <label class="field field-input">
+                <input class="input-text placeholder validate" data-validate="required-min" placeholder="Введите название" data-placeholder="Название организации"
+                       name="company_name" type="text">
+                <p class="error-message"></p>
+            </label>
+
+            <label class="field field-input">
+                <input class="input-text placeholder validate input-mask" data-validate="date" data-mask_tpl="date" placeholder="Введите дату выдачи" data-placeholder="Дата выдачи"
+                       name="passport_date"  type="text">
+                <p class="error-message"></p>
+            </label>
+
+            <label class="field field-input margin-bottom">
+                <input class="input-text placeholder validate input-mask" data-mask_tpl="phone_plus7" data-validate="number_phone-required-codes" placeholder="Введите телефон"
+                       data-placeholder="Телефон менеджера"
+                       name="feedback_phone" id="auth-phone-number" type="text">
+                <p class="error-message"></p>
+            </label>
+
+            <label class="field field-input">
+                <input class="input-text placeholder validate" data-validate="email" placeholder="Введите email" data-placeholder="Электронная почта"
+                       name="email"  type="email">
+                <p class="error-message"></p>
+            </label>
+
+            <h6 class="h6 margin-bottom">Прикрепите документы</h6>
+
+
+            <div class="form-file-block">
+                <div class="data">
+                    <div class="title body16">Договор-заявка</div>
+                    <div class="filename body12 color-gray">Не загружен</div>
+                    <input type="file" class="file-input" hidden name="contract">
+                </div>
+                <a href="#" class="button secondary small">Загрузить</a>
+            </div>
+            <div class="form-file-block">
+                <div class="data">
+                    <div class="title body16">Счет</div>
+                    <div class="filename body12 color-gray">Не загружен</div>
+                    <input type="file" class="file-input" hidden name="bill">
+                </div>
+                <a href="#" class="button secondary small">Загрузить</a>
+            </div>
+            <div class="form-file-block">
+                <div class="data">
+                    <div class="title body16">Акт выполненных работ</div>
+                    <div class="filename body12 color-gray">Не загружен</div>
+                    <input type="file" class="file-input" hidden name="act">
+                </div>
+                <a href="#" class="button secondary small">Загрузить</a>
+            </div>
+            <div class="form-file-block">
+                <div class="data">
+                    <div class="title body16">Счет фактура</div>
+                    <div class="filename body12 color-gray">Не загружен</div>
+                    <input type="file" class="file-input" hidden name="invoice">
+                </div>
+                <a href="#" class="button secondary small">Загрузить</a>
+            </div>
+            <div class="form-file-block">
+                <div class="data">
+                    <div class="title body16">Транспортные документы</div>
+                    <div class="filename body12 color-gray">Не загружен</div>
+                    <input type="file" class="file-input" hidden name="transport_docs">
+                </div>
+                <a href="#" class="button secondary small">Загрузить</a>
+            </div>
+
+
+
+            <button class="button full-width margin-bottom" type="submit">Далее</button>
+
+            <a href="/" class="auth__step-link" data-step="1">Вернуться назад</a>
+        </div>
+
+
+        <div class="auth__loader">
+            <div class="loader"></div>
+        </div>
+
+        <div class="auth__message">
+
+        </div>
+    </form>
+</section>
+
+
+<%= _.template(require('./../includes/lk/footer-lk.html').default)(data) %>
