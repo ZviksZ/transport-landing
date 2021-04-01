@@ -38,31 +38,43 @@ export function initFileInputBlock() {
       $(e.currentTarget).closest('.form-file-block').find('input').click();
    });
 
+   const resetField = (input) => {
+      input.type = ''
+      input.type = 'file'
+   }
+
    $('.form-file-block input').on('change', function (e) {
-      let file = e.target.value;
+      const file = e.target.value,
+         fileSize = this.files[0].size / 1024 / 1024,
+         fileType = this.files[0].type,
+         isValidType = fileType.includes('image') || fileType.includes('pdf'),
+         $fileName = $(e.currentTarget).closest('.form-file-block').find('.filename');
 
-      let fileName = file.split('\\');
-
-      $(e.currentTarget)
-         .closest('.form-file-block')
-         .find('.filename')
-         .text(fileName[fileName.length - 1]);
+      if (fileSize > 5) {
+         $fileName.addClass('error').text('Допустимый размер файла не более 5мб');
+         resetField(e.target)
+      } else if (!isValidType) {
+         $fileName.addClass('error').text('Недопустимый тип файла');
+         resetField(e.target)
+      } else {
+         let fileName = file.split('\\');
+         $fileName.removeClass('error').text(fileName[fileName.length - 1]);
+      }
    });
 }
 
 export function initCardRemoveModal() {
    $('.lk__profile-card svg').on('click', function (e) {
-      let cardId = $(e.currentTarget).closest('.lk__profile-card').attr('data-card-id')
+      let cardId = $(e.currentTarget).closest('.lk__profile-card').attr('data-card-id');
 
-      $('#card_remove_id').val(cardId)
-   })
+      $('#card_remove_id').val(cardId);
+   });
 
    $('.card-modal .button[type="submit"]').on('click', function (e) {
       if (location.href.includes('tab=cards')) {
-         location.reload()
+         location.reload();
       } else {
-         location.href += '?tab=cards'
+         location.href += '?tab=cards';
       }
-
-   })
+   });
 }

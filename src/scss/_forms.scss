@@ -448,6 +448,12 @@ input[type="checkbox"]:checked + label:after {
 
     }
 
+    .filename {
+        &.error {
+            color: $colorDangerous !important;
+        }
+    }
+
     .button {
         margin-left: 10px;
     }
