@@ -393,6 +393,7 @@ export class InitAuthForm {
       let data;
 
       const isWithFiles = form.hasClass('with-files')
+      const formRedirect = form.attr('data-redirect')
       const isRegisterForm = form.attr('action') === 'register'
 
       if (isWithFiles) {
@@ -400,8 +401,6 @@ export class InitAuthForm {
       } else if (isRegisterForm) {
          data = JSON.stringify(this.getRegisterFormData())
       } else {
-         //data = form.serialize();
-
          data = JSON.stringify(this.getAllFormData())
       }
 
@@ -418,15 +417,20 @@ export class InitAuthForm {
                this.addLoader();
             },
             success: (res) => {
-               console.log('SUCCESS', res)
-               if (isRegisterForm && res.status === 'OK') {
-                  location.href = '/'
+               this.removeLoader();
+
+               if (res.status !== 'OK') {
+                  form.find('.auth__message').html(this.getErrorMessage())
+                  form.addClass('show-message');
+                  this.scrollToMessage(form);
                }
 
 
-               this.removeLoader();
-
-               if (this.$form.hasClass('with-success')) {
+               if (isRegisterForm) {
+                  location.href = '/'
+               } else if (formRedirect) {
+                  location.href = formRedirect
+               } else if (this.$form.hasClass('with-success')) {
                   form.find('.auth__message').html(this.getSuccessMessage())
                   form.addClass('show-message');
                }
